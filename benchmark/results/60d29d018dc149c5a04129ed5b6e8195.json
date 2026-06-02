@@ -1,0 +1,207 @@
+{
+  "run_id": "60d29d018dc149c5a04129ed5b6e8195",
+  "scenario_id": "tool_file_roundtrip",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_ktoyodww"
+  },
+  "trace": [
+    {
+      "run_id": "60d29d018dc149c5a04129ed5b6e8195",
+      "scenario_id": "tool_file_roundtrip",
+      "step_index": 0,
+      "timestamp": "2026-05-24T03:58:45.786580+00:00",
+      "planned_action": {
+        "action": "create_folder",
+        "data": {
+          "path": "projeto"
+        }
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "pasta criada: projeto",
+        "error": null,
+        "tool_calls": [
+          {
+            "action": "create_folder",
+            "args": {
+              "path": "projeto"
+            },
+            "result": "pasta criada: projeto",
+            "error": null,
+            "status": "success",
+            "duration_ms": 12.93
+          }
+        ],
+        "action": "create_folder",
+        "retry_count": 0,
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "repair_iteration": null,
+        "hallucination_score": 0.0
+      },
+      "tool_calls": [
+        {
+          "action": "create_folder",
+          "args": {
+            "path": "projeto"
+          },
+          "result": "pasta criada: projeto",
+          "error": null,
+          "status": "success",
+          "duration_ms": 12.93
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "60d29d018dc149c5a04129ed5b6e8195",
+      "scenario_id": "tool_file_roundtrip",
+      "step_index": 1,
+      "timestamp": "2026-05-24T03:58:45.798549+00:00",
+      "planned_action": {
+        "action": "write_file",
+        "data": {
+          "path": "projeto/resultado.txt",
+          "content": "ok"
+        }
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "arquivo criado: projeto/resultado.txt",
+        "error": null,
+        "tool_calls": [
+          {
+            "action": "write_file",
+            "args": {
+              "path": "projeto/resultado.txt",
+              "content": "ok"
+            },
+            "result": "arquivo criado: projeto/resultado.txt",
+            "error": null,
+            "status": "success",
+            "duration_ms": 3.99
+          }
+        ],
+        "action": "write_file",
+        "retry_count": 0,
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "repair_iteration": null,
+        "hallucination_score": 0.0
+      },
+      "tool_calls": [
+        {
+          "action": "write_file",
+          "args": {
+            "path": "projeto/resultado.txt",
+            "content": "ok"
+          },
+          "result": "arquivo criado: projeto/resultado.txt",
+          "error": null,
+          "status": "success",
+          "duration_ms": 3.99
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "60d29d018dc149c5a04129ed5b6e8195",
+      "scenario_id": "tool_file_roundtrip",
+      "step_index": 2,
+      "timestamp": "2026-05-24T03:58:45.822483+00:00",
+      "planned_action": {
+        "action": "read_file",
+        "data": {
+          "path": "projeto/resultado.txt"
+        }
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "ok",
+        "error": null,
+        "tool_calls": [
+          {
+            "action": "read_file",
+            "args": {
+              "path": "projeto/resultado.txt"
+            },
+            "result": "ok",
+            "error": null,
+            "status": "success",
+            "duration_ms": 1.0
+          }
+        ],
+        "action": "read_file",
+        "retry_count": 0,
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "repair_iteration": null,
+        "hallucination_score": 0.0
+      },
+      "tool_calls": [
+        {
+          "action": "read_file",
+          "args": {
+            "path": "projeto/resultado.txt"
+          },
+          "result": "ok",
+          "error": null,
+          "status": "success",
+          "duration_ms": 1.0
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    }
+  ],
+  "metrics": {
+    "plan_stability": 0.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 0.2642976999923121,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_ktoyodww",
+  "started_at": "2026-05-24T03:58:45.736953+00:00",
+  "ended_at": "2026-05-24T03:58:45.924411+00:00"
+}

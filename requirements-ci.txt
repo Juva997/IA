@@ -1,0 +1,9 @@
+coverage
+faiss-cpu
+fastapi
+httpx
+mypy
+numpy
+pytest
+requests
+ruff

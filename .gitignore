@@ -1,0 +1,28 @@
+# Local Python environment
+.venv/
+
+# Python generated files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test and coverage output
+.coverage
+.pytest_cache/
+
+# Type/lint caches
+.mypy_cache/
+.ruff_cache/
+
+# Local runtime data
+data/logs/
+data/cache/
+data/vectors/
+benchmark_workspace/
+benchmark/repair_sim_workspaces/
+benchmark-*.json
+benchmark_report.json
+mini_swe_report*.json
+mini_swe_repair*.json
+chat_history.json
+benchmark.zip

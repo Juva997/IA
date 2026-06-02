@@ -1,0 +1,23 @@
+{
+  "run_id": "60ef56a797c542708b95abcd972e5a7f",
+  "scenario_id": "equacao_simples",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_ri7arh08"
+  },
+  "trace": [],
+  "metrics": {
+    "plan_stability": 1.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 0.020574199996190146,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_ri7arh08",
+  "started_at": "2026-05-24T06:28:45.040954+00:00",
+  "ended_at": "2026-05-24T06:28:45.064890+00:00"
+}

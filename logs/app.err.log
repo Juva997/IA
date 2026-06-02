@@ -1,0 +1,12 @@
+[2026-05-11 16:14:24,755] [INFO] app: 
+Assistente Local V2 v2.0.0
+[2026-05-11 16:14:24,771] [INFO] app: Modo inicializando...
+
+[2026-05-11 16:14:24,771] [INFO] app: Iniciando API REST em http://localhost:8000
+[2026-05-11 16:14:24,771] [INFO] app: Docs: http://localhost:8000/docs
+[2026-05-11 16:14:24,771] [INFO] app: Metricas: http://localhost:8001
+[2026-05-11 16:14:24,938] [INFO] app: Metricas ja iniciadas
+INFO:     Started server process [18844]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)

@@ -1,0 +1,25 @@
+[run]
+source =
+    actions
+    benchmark
+    bootstrap
+    cognition
+    core
+    interfaces
+    memory
+    security
+    utils
+omit =
+    tests/*
+    experiments/*
+    interfaces/ui.py
+    interfaces/voice.py
+    integrations/*
+    monitor/*
+    app.py
+    debug_*.py
+
+[report]
+show_missing = True
+skip_empty = True
+fail_under = 65

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "equacao_simples",
+    "input": "Resolva: 2x + 4 = 10",
+    "expected": 3,
+    "type": "math",
+    "min_score": 0.75
+  },
+  {
+    "name": "logica_transitiva",
+    "input": "Se todos A sao B e todos B sao C, A e C?",
+    "expected": "sim",
+    "type": "classification",
+    "min_score": 0.75
+  }
+]

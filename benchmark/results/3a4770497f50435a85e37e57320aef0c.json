@@ -1,0 +1,439 @@
+{
+  "run_id": "3a4770497f50435a85e37e57320aef0c",
+  "scenario_id": "refactor_move_symbol",
+  "meta": {
+    "run_number": 2,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr"
+  },
+  "trace": [
+    {
+      "run_id": "3a4770497f50435a85e37e57320aef0c",
+      "scenario_id": "refactor_move_symbol",
+      "step_index": 0,
+      "timestamp": "2026-05-12T21:07:05.290226+00:00",
+      "planned_action": {
+        "name": "refactor_move_symbol",
+        "type": "real_local",
+        "repair": true,
+        "repair_attempts": 2,
+        "input": "Corrija a importação/movimentação da função `perform` entre módulos para que os testes passem.",
+        "setup": {
+          "files": {
+            "monolith/__init__.py": "",
+            "monolith/a.py": "def perform_v1(x):\n    return x * 2\n",
+            "monolith/b.py": "from monolith.a import perform\n\ndef run(x):\n    return perform(x) + 1\n",
+            "monolith/test_monolith.py": "from monolith.b import run\n\n\ndef test_run():\n    assert run(2) == 5\n"
+          }
+        },
+        "verification": [
+          {
+            "type": "pytest",
+            "path": "monolith/test_monolith.py",
+            "args": [
+              "-q"
+            ],
+            "timeout": 20
+          }
+        ],
+        "expectations": {
+          "requires_tools": true,
+          "requires_benchmark_verification": true,
+          "verification_must_pass": false
+        }
+      },
+      "executed_action": {
+        "status": "error",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": "verification_failed:pytest",
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        },
+        "setup_results": [
+          {
+            "type": "file",
+            "path": "monolith/__init__.py",
+            "status": "success",
+            "bytes": 0
+          },
+          {
+            "type": "file",
+            "path": "monolith/a.py",
+            "status": "success",
+            "bytes": 36
+          },
+          {
+            "type": "file",
+            "path": "monolith/b.py",
+            "status": "success",
+            "bytes": 70
+          },
+          {
+            "type": "file",
+            "path": "monolith/test_monolith.py",
+            "status": "success",
+            "bytes": 68
+          }
+        ],
+        "verification_results": [
+          {
+            "name": "pytest",
+            "type": "pytest",
+            "critical": true,
+            "passed": false,
+            "command": [
+              "c:\\Users\\Juven\\AppData\\Local\\python\\pythoncore-3.14-64\\python.exe",
+              "-I",
+              "-m",
+              "pytest",
+              "-q",
+              "monolith/test_monolith.py"
+            ],
+            "returncode": 2,
+            "expected_returncode": 0,
+            "stdout": "\n=================================== ERRORS ====================================\n_________________ ERROR collecting monolith/test_monolith.py __________________\nImportError while importing test module 'C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr\\monolith\\test_monolith.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n..\\..\\python\\pythoncore-3.14-64\\Lib\\importlib\\__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nmonolith\\test_monolith.py:1: in <module>\n    from monolith.b import run\nmonolith\\b.py:1: in <module>\n    from monolith.a import perform\nE   ImportError: cannot import name 'perform' from 'monolith.a' (C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr\\monolith\\a.py)\n=========================== short test summary info ===========================\nERROR monolith/test_monolith.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.29s\n",
+            "stderr": ""
+          }
+        ],
+        "verification_summary": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1,
+          "critical_total": 1,
+          "critical_failed": 1,
+          "ok": false
+        },
+        "verification_error": "verification_failed:pytest",
+        "attempts": [
+          {
+            "attempt": 1,
+            "engine_result": {
+              "status": "success",
+              "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - monolith",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - monolith",
+                "error": null
+              }
+            },
+            "modified_files": [],
+            "patches": []
+          },
+          {
+            "attempt": 1,
+            "engine_result": {
+              "status": "simulated",
+              "note": "heuristic patch applied (return a + b)"
+            },
+            "verification_results": [
+              {
+                "name": "pytest",
+                "type": "pytest",
+                "critical": true,
+                "passed": false,
+                "command": [
+                  "c:\\Users\\Juven\\AppData\\Local\\python\\pythoncore-3.14-64\\python.exe",
+                  "-I",
+                  "-m",
+                  "pytest",
+                  "-q",
+                  "monolith/test_monolith.py"
+                ],
+                "returncode": 2,
+                "expected_returncode": 0,
+                "stdout": "\n=================================== ERRORS ====================================\n_________________ ERROR collecting monolith/test_monolith.py __________________\nImportError while importing test module 'C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr\\monolith\\test_monolith.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n..\\..\\python\\pythoncore-3.14-64\\Lib\\importlib\\__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nmonolith\\test_monolith.py:1: in <module>\n    from monolith.b import run\nmonolith\\b.py:1: in <module>\n    from monolith.a import perform\nE   ImportError: cannot import name 'perform' from 'monolith.a' (C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr\\monolith\\a.py)\n=========================== short test summary info ===========================\nERROR monolith/test_monolith.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.27s\n",
+                "stderr": ""
+              }
+            ],
+            "verification_summary": {
+              "total": 1,
+              "passed": 0,
+              "failed": 1,
+              "critical_total": 1,
+              "critical_failed": 1,
+              "ok": false
+            },
+            "modified_files": [],
+            "patches": []
+          },
+          {
+            "attempt": 2,
+            "engine_result": {
+              "status": "success",
+              "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - monolith",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - monolith",
+                "error": null
+              }
+            },
+            "modified_files": [],
+            "patches": []
+          },
+          {
+            "attempt": 2,
+            "engine_result": {
+              "status": "simulated",
+              "note": "heuristic patch applied (return a + b)"
+            },
+            "verification_results": [
+              {
+                "name": "pytest",
+                "type": "pytest",
+                "critical": true,
+                "passed": false,
+                "command": [
+                  "c:\\Users\\Juven\\AppData\\Local\\python\\pythoncore-3.14-64\\python.exe",
+                  "-I",
+                  "-m",
+                  "pytest",
+                  "-q",
+                  "monolith/test_monolith.py"
+                ],
+                "returncode": 2,
+                "expected_returncode": 0,
+                "stdout": "\n=================================== ERRORS ====================================\n_________________ ERROR collecting monolith/test_monolith.py __________________\nImportError while importing test module 'C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr\\monolith\\test_monolith.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n..\\..\\python\\pythoncore-3.14-64\\Lib\\importlib\\__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nmonolith\\test_monolith.py:1: in <module>\n    from monolith.b import run\nmonolith\\b.py:1: in <module>\n    from monolith.a import perform\nE   ImportError: cannot import name 'perform' from 'monolith.a' (C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr\\monolith\\a.py)\n=========================== short test summary info ===========================\nERROR monolith/test_monolith.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.27s\n",
+                "stderr": ""
+              }
+            ],
+            "verification_summary": {
+              "total": 1,
+              "passed": 0,
+              "failed": 1,
+              "critical_total": 1,
+              "critical_failed": 1,
+              "ok": false
+            },
+            "modified_files": [],
+            "patches": []
+          }
+        ],
+        "repair": {
+          "attempts": [
+            {
+              "attempt": 1,
+              "engine_result": {
+                "status": "success",
+                "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - monolith",
+                "error": null,
+                "raw": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - monolith",
+                  "error": null
+                }
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 1,
+              "engine_result": {
+                "status": "simulated",
+                "note": "heuristic patch applied (return a + b)"
+              },
+              "verification_results": [
+                {
+                  "name": "pytest",
+                  "type": "pytest",
+                  "critical": true,
+                  "passed": false,
+                  "command": [
+                    "c:\\Users\\Juven\\AppData\\Local\\python\\pythoncore-3.14-64\\python.exe",
+                    "-I",
+                    "-m",
+                    "pytest",
+                    "-q",
+                    "monolith/test_monolith.py"
+                  ],
+                  "returncode": 2,
+                  "expected_returncode": 0,
+                  "stdout": "\n=================================== ERRORS ====================================\n_________________ ERROR collecting monolith/test_monolith.py __________________\nImportError while importing test module 'C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr\\monolith\\test_monolith.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n..\\..\\python\\pythoncore-3.14-64\\Lib\\importlib\\__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nmonolith\\test_monolith.py:1: in <module>\n    from monolith.b import run\nmonolith\\b.py:1: in <module>\n    from monolith.a import perform\nE   ImportError: cannot import name 'perform' from 'monolith.a' (C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr\\monolith\\a.py)\n=========================== short test summary info ===========================\nERROR monolith/test_monolith.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.27s\n",
+                  "stderr": ""
+                }
+              ],
+              "verification_summary": {
+                "total": 1,
+                "passed": 0,
+                "failed": 1,
+                "critical_total": 1,
+                "critical_failed": 1,
+                "ok": false
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 2,
+              "engine_result": {
+                "status": "success",
+                "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - monolith",
+                "error": null,
+                "raw": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - monolith",
+                  "error": null
+                }
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 2,
+              "engine_result": {
+                "status": "simulated",
+                "note": "heuristic patch applied (return a + b)"
+              },
+              "verification_results": [
+                {
+                  "name": "pytest",
+                  "type": "pytest",
+                  "critical": true,
+                  "passed": false,
+                  "command": [
+                    "c:\\Users\\Juven\\AppData\\Local\\python\\pythoncore-3.14-64\\python.exe",
+                    "-I",
+                    "-m",
+                    "pytest",
+                    "-q",
+                    "monolith/test_monolith.py"
+                  ],
+                  "returncode": 2,
+                  "expected_returncode": 0,
+                  "stdout": "\n=================================== ERRORS ====================================\n_________________ ERROR collecting monolith/test_monolith.py __________________\nImportError while importing test module 'C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr\\monolith\\test_monolith.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n..\\..\\python\\pythoncore-3.14-64\\Lib\\importlib\\__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nmonolith\\test_monolith.py:1: in <module>\n    from monolith.b import run\nmonolith\\b.py:1: in <module>\n    from monolith.a import perform\nE   ImportError: cannot import name 'perform' from 'monolith.a' (C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr\\monolith\\a.py)\n=========================== short test summary info ===========================\nERROR monolith/test_monolith.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.27s\n",
+                  "stderr": ""
+                }
+              ],
+              "verification_summary": {
+                "total": 1,
+                "passed": 0,
+                "failed": 1,
+                "critical_total": 1,
+                "critical_failed": 1,
+                "ok": false
+              },
+              "modified_files": [],
+              "patches": []
+            }
+          ],
+          "success": false
+        },
+        "run": 2,
+        "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr",
+        "workspace_files": [
+          ".pytest_cache/.gitignore",
+          ".pytest_cache/CACHEDIR.TAG",
+          ".pytest_cache/README.md",
+          ".pytest_cache/v/cache/lastfailed",
+          ".pytest_cache/v/cache/nodeids",
+          "config.json",
+          "monolith/__init__.py",
+          "monolith/__pycache__/__init__.cpython-314.pyc",
+          "monolith/__pycache__/a.cpython-314.pyc",
+          "monolith/__pycache__/b.cpython-314.pyc",
+          "monolith/__pycache__/test_monolith.cpython-314-pytest-9.0.3.pyc",
+          "monolith/a.py",
+          "monolith/b.py",
+          "monolith/test_monolith.py"
+        ],
+        "workspace_artifacts": {
+          "config.json": {
+            "size": 1669,
+            "sha256": "0aeecbc29d67f708a8233c51cab7b92bfe0568712d44424be7432cdfd8f44797",
+            "text": "{\r\n    \"app_name\": \"Assistente Local V2\",\r\n    \"version\": \"2.0.0\",\r\n    \"workspace_path\": \"\",\r\n    \"project_path\": \"\",\r\n    \"data_paths\": {\r\n        \"memory_dir\": \"data\",\r\n        \"vectors_dir\": \"data/vectors\",\r\n        \"logs_dir\": \"data/logs\",\r\n        \"state_dir\": \"data/state\",\r\n        \"cache_dir\": \"data/cache\",\r\n        \"monitor_dir\": \"data/monitor\",\r\n        \"screens_dir\": \"data/monitor/screens\"\r\n    },\r\n    \"memory\": {\r\n        \"memory_file\": \"data/memory.json\",\r\n        \"max_recent_memories\": 20,\r\n        \"max_retrieved_memories\": 8\r\n    },\r\n    \"vectors\": {\r\n        \"chunks_file\": \"data/vectors/chunks.jsonl\",\r\n        \"metadata_file\": \"data/vectors/metadata.json\",\r\n        \"index_state_file\": \"data/vectors/index_state.json\",\r\n        \"top_k\": 8,\r\n        \"min_score\": 0.15\r\n    },\r\n    \"embeddings\": {\r\n        \"vector_size\": 256,\r\n        \"use_l2_normalization\": true\r\n    },\r\n    \"logging\": {\r\n        \"events_file\": \"data/logs/events.jsonl\",\r\n        \"errors_file\": \"data/logs/errors.jsonl\",\r\n        \"level\": \"INFO\"\r\n    },\r\n    \"llm\": {\r\n        \"base_url\": \"http://localhost:11434/api/generate\",\r\n        \"fast_model\": \"phi3:mini\",\r\n        \"default_model\": \"qwen2.5:3b\",\r\n        \"power_model\": \"qwen2.5-coder:7b\",\n        \"fallback_model\": \"phi3:mini\",\r\n        \"temperature\": 0.3,\r\n        \"timeout\": 15,\r\n        \"cache_ttl\": 120,\r\n        \"max_retries\": 0,\r\n        \"retry_delay\": 0.2,\r\n        \"max_context_chunks\": 6\r\n    },\r\n    \"features\": {\r\n        \"auto_index_on_start\": false,\r\n        \"auto_learn_memory\": true,\r\n        \"enable_action_execution\": true,\r\n        \"enable_vision\": true,\r\n        \"enable_web_search\": true\r\n    }\r\n}\n"
+          },
+          ".pytest_cache/.gitignore": {
+            "size": 39,
+            "sha256": "e7c6bb30148cf667606dcd63e7ca77acaa3cfb0c8303bf09e6419e1e1669dc6d",
+            "text": "# Created by pytest automatically.\r\n*\r\n"
+          },
+          ".pytest_cache/CACHEDIR.TAG": {
+            "size": 191,
+            "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+            "text": "Signature: 8a477f597d28d172789f06886806bc55\n# This file is a cache directory tag created by pytest.\n# For information about cache directory tags, see:\n#\thttps://bford.info/cachedir/spec.html\n"
+          },
+          ".pytest_cache/README.md": {
+            "size": 310,
+            "sha256": "420e808d79a6c25d3cda0af33bc4782314a14949866682c68ce8149e89b66b70",
+            "text": "# pytest cache directory #\r\n\r\nThis directory contains data from the pytest's cache plugin,\r\nwhich provides the `--lf` and `--ff` options, as well as the `cache` fixture.\r\n\r\n**Do not** commit this to version control.\r\n\r\nSee [the docs](https://docs.pytest.org/en/stable/how-to/cache.html) for more information.\r\n"
+          },
+          "monolith/a.py": {
+            "size": 38,
+            "sha256": "cb4ff52e0da84b5cd648e09f546b69669f5f422236ad971adacf018d9e9c12e7",
+            "text": "def perform_v1(x):\r\n    return x * 2\r\n"
+          },
+          "monolith/b.py": {
+            "size": 74,
+            "sha256": "b08f11db94b70d8a2834d1a6ec4ed4e77f59562ab27d05075e0087fb4ac021cd",
+            "text": "from monolith.a import perform\r\n\r\ndef run(x):\r\n    return perform(x) + 1\r\n"
+          },
+          "monolith/test_monolith.py": {
+            "size": 73,
+            "sha256": "b07d1ed0df4a18cdd74afb1b199543e58affb3164b656770bd73ff097d320ea7",
+            "text": "from monolith.b import run\r\n\r\n\r\ndef test_run():\r\n    assert run(2) == 5\r\n"
+          },
+          "monolith/__init__.py": {
+            "size": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "text": ""
+          },
+          "monolith/__pycache__/a.cpython-314.pyc": {
+            "size": 297,
+            "sha256": "bcbd4b1cfc1572cfa1ceb3b270ae08879fa4a4739203f328c425dd9f6ef9c312",
+            "binary": true
+          },
+          "monolith/__pycache__/b.cpython-314.pyc": {
+            "size": 361,
+            "sha256": "8f74e9bc613a3150cf463687cae718f7b8f3aa2d6430dcc4429cc71ec92644e2",
+            "binary": true
+          },
+          "monolith/__pycache__/test_monolith.cpython-314-pytest-9.0.3.pyc": {
+            "size": 1392,
+            "sha256": "06d799b5d32997568c36ef200e2eea3e18bb920d0dc1f8aa3e2518faa3e56347",
+            "binary": true
+          },
+          "monolith/__pycache__/__init__.cpython-314.pyc": {
+            "size": 175,
+            "sha256": "317d46583a6ffaa8172aba12eafb7cef48fd89ab6960e695e21a8baa0dcf49da",
+            "binary": true
+          },
+          ".pytest_cache/v/cache/lastfailed": {
+            "size": 41,
+            "sha256": "45cd4c8cd9394033d5fa3204c74b54693ad09cb91d2f673e790bc07f5d5bf887",
+            "text": "{\r\n  \"monolith/test_monolith.py\": true\r\n}"
+          },
+          ".pytest_cache/v/cache/nodeids": {
+            "size": 2,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "text": "[]"
+          }
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    }
+  ],
+  "metrics": {
+    "plan_stability": 0.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 3.8029325000097742,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_rxzvgahr",
+  "started_at": "2026-05-12T21:07:05.288818+00:00",
+  "ended_at": "2026-05-12T21:07:09.090418+00:00"
+}

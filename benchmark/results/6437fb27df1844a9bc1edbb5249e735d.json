@@ -1,0 +1,23 @@
+{
+  "run_id": "6437fb27df1844a9bc1edbb5249e735d",
+  "scenario_id": "process",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\tmpdbz8j22a\\ia_benchmark_s1w3sleq"
+  },
+  "trace": [],
+  "metrics": {
+    "plan_stability": 1.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 0.0003369000041857362,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\tmpdbz8j22a\\ia_benchmark_s1w3sleq",
+  "started_at": "2026-05-13T03:28:43.153594+00:00",
+  "ended_at": "2026-05-13T03:28:43.261306+00:00"
+}

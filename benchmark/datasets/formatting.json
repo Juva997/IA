@@ -1,0 +1,18 @@
+[
+  {
+    "name": "json_strito",
+    "input": "Responda somente em JSON valido: nome=Joao, idade=20",
+    "format": "json",
+    "type": "format",
+    "min_format_score": 1.0,
+    "min_score": 0.75
+  },
+  {
+    "name": "tabela_markdown",
+    "input": "Responda em tabela markdown com nome=Joao e idade=20",
+    "format": "table",
+    "type": "format",
+    "min_format_score": 1.0,
+    "min_score": 0.75
+  }
+]

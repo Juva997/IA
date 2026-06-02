@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: assistente_local:latest
+    container_name: assistente_local_app
+    environment:
+      # Use the internal compose network service when running with compose
+      - LLM_BASE_URL=http://local-llm:11434/api/generate
+      - LLM_TIMEOUT=15
+      - LLM_CACHE_TTL=120
+      - LLM_MAX_RETRIES=0
+      - LLM_RETRY_DELAY=0.2
+      - EMBEDDINGS_VECTOR_SIZE=384
+      - WORKSPACE_PATH=/app
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    volumes:
+      - ./:/app:rw
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  local-llm:
+    build:
+      context: ./dev/mock_ollama
+      dockerfile: Dockerfile
+    image: local-llm:latest
+    container_name: assistente_local_llm
+    ports:
+      - "11434:11434"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:11434/health || exit 1"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: assistente_prometheus
+    volumes:
+      - ./monitor/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    depends_on:
+      - app
+      - local-llm
+    restart: unless-stopped

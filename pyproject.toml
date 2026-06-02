@@ -1,0 +1,12 @@
+[tool.ruff]
+line-length = 88
+exclude = [
+    "experiments/*",
+    "build",
+    ".git",
+    ".venv",
+    "venv",
+    "debug_*.py",
+    "tests/generated/*",
+    "tests/e2e_optional/*",
+]

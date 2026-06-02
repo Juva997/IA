@@ -1,0 +1,23 @@
+{
+  "run_id": "347d593cc3e747f8b780b5ebaa6ec350",
+  "scenario_id": "memoria_fake",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\pytest-of-Juven\\pytest-321\\test_runner_supports_sequence_0\\ia_benchmark_sai_ijvv"
+  },
+  "trace": [],
+  "metrics": {
+    "plan_stability": 1.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 0.0004437000025063753,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\pytest-of-Juven\\pytest-321\\test_runner_supports_sequence_0\\ia_benchmark_sai_ijvv",
+  "started_at": "2026-05-24T03:27:35.412072+00:00",
+  "ended_at": "2026-05-24T03:27:35.417060+00:00"
+}

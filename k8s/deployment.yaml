@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assistente-local
+  labels:
+    app: assistente-local
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: assistente-local
+  template:
+    metadata:
+      labels:
+        app: assistente-local
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8001"
+    spec:
+      containers:
+        - name: assistente-local
+          image: assistente_local:latest
+          ports:
+            - containerPort: 8000
+            - containerPort: 8001
+          env:
+            - name: LLM_BASE_URL
+              value: "http://local-llm:11434/api/generate"
+            - name: LLM_TIMEOUT
+              value: "15"
+            - name: WORKSPACE_PATH
+              value: "/app"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 15

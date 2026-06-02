@@ -1,0 +1,924 @@
+{
+  "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+  "scenario_id": "long_arithmetic_30",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_56aq9910"
+  },
+  "trace": [
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 0,
+      "timestamp": "2026-05-12T21:51:13.241963+00:00",
+      "planned_action": {
+        "input": "O valor atual é 0. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 1
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 1,
+      "timestamp": "2026-05-12T21:51:13.243957+00:00",
+      "planned_action": {
+        "input": "O valor atual é 1. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 2
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 2,
+      "timestamp": "2026-05-12T21:51:13.244955+00:00",
+      "planned_action": {
+        "input": "O valor atual é 2. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 3
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 3,
+      "timestamp": "2026-05-12T21:51:13.246951+00:00",
+      "planned_action": {
+        "input": "O valor atual é 3. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 4
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 4,
+      "timestamp": "2026-05-12T21:51:13.248945+00:00",
+      "planned_action": {
+        "input": "O valor atual é 4. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 5
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 5,
+      "timestamp": "2026-05-12T21:51:13.250940+00:00",
+      "planned_action": {
+        "input": "O valor atual é 5. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 6
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 6,
+      "timestamp": "2026-05-12T21:51:13.252934+00:00",
+      "planned_action": {
+        "input": "O valor atual é 6. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 7
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 7,
+      "timestamp": "2026-05-12T21:51:13.253932+00:00",
+      "planned_action": {
+        "input": "O valor atual é 7. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 8
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 8,
+      "timestamp": "2026-05-12T21:51:13.255926+00:00",
+      "planned_action": {
+        "input": "O valor atual é 8. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 9
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 9,
+      "timestamp": "2026-05-12T21:51:13.256923+00:00",
+      "planned_action": {
+        "input": "O valor atual é 9. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 10
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 10,
+      "timestamp": "2026-05-12T21:51:13.366631+00:00",
+      "planned_action": {
+        "input": "O valor atual é 10. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 11
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 11,
+      "timestamp": "2026-05-12T21:51:13.386577+00:00",
+      "planned_action": {
+        "input": "O valor atual é 11. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 12
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 12,
+      "timestamp": "2026-05-12T21:51:13.388571+00:00",
+      "planned_action": {
+        "input": "O valor atual é 12. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 13
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 13,
+      "timestamp": "2026-05-12T21:51:13.391564+00:00",
+      "planned_action": {
+        "input": "O valor atual é 13. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 14
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 14,
+      "timestamp": "2026-05-12T21:51:13.393559+00:00",
+      "planned_action": {
+        "input": "O valor atual é 14. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 15
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 15,
+      "timestamp": "2026-05-12T21:51:13.399545+00:00",
+      "planned_action": {
+        "input": "O valor atual é 15. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 16
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 16,
+      "timestamp": "2026-05-12T21:51:13.401539+00:00",
+      "planned_action": {
+        "input": "O valor atual é 16. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 17
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 17,
+      "timestamp": "2026-05-12T21:51:13.403531+00:00",
+      "planned_action": {
+        "input": "O valor atual é 17. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 18
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 18,
+      "timestamp": "2026-05-12T21:51:13.406523+00:00",
+      "planned_action": {
+        "input": "O valor atual é 18. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 19
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 19,
+      "timestamp": "2026-05-12T21:51:13.408517+00:00",
+      "planned_action": {
+        "input": "O valor atual é 19. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 20
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 20,
+      "timestamp": "2026-05-12T21:51:13.409516+00:00",
+      "planned_action": {
+        "input": "O valor atual é 20. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 21
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 21,
+      "timestamp": "2026-05-12T21:51:13.411510+00:00",
+      "planned_action": {
+        "input": "O valor atual é 21. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 22
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 22,
+      "timestamp": "2026-05-12T21:51:13.415500+00:00",
+      "planned_action": {
+        "input": "O valor atual é 22. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 23
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 23,
+      "timestamp": "2026-05-12T21:51:13.417494+00:00",
+      "planned_action": {
+        "input": "O valor atual é 23. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 24
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 24,
+      "timestamp": "2026-05-12T21:51:13.419489+00:00",
+      "planned_action": {
+        "input": "O valor atual é 24. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 25
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 25,
+      "timestamp": "2026-05-12T21:51:13.421483+00:00",
+      "planned_action": {
+        "input": "O valor atual é 25. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 26
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 26,
+      "timestamp": "2026-05-12T21:51:13.424475+00:00",
+      "planned_action": {
+        "input": "O valor atual é 26. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 27
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 27,
+      "timestamp": "2026-05-12T21:51:13.425472+00:00",
+      "planned_action": {
+        "input": "O valor atual é 27. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 28
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 28,
+      "timestamp": "2026-05-12T21:51:13.427467+00:00",
+      "planned_action": {
+        "input": "O valor atual é 28. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 29
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "6a68c5242c0941e4b4baa6980660ea96",
+      "scenario_id": "long_arithmetic_30",
+      "step_index": 29,
+      "timestamp": "2026-05-12T21:51:13.438439+00:00",
+      "planned_action": {
+        "input": "O valor atual é 29. Some 1 e responda apenas com o número resultante.",
+        "type": "math",
+        "expected": 30
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo"
+        }
+      },
+      "tool_calls": [],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    }
+  ],
+  "metrics": {
+    "plan_stability": 0.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 0.20210189999488648,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_56aq9910",
+  "started_at": "2026-05-12T21:51:13.239969+00:00",
+  "ended_at": "2026-05-12T21:51:13.440432+00:00"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "run": 1,
+    "exit": 0,
+    "out": "D:\\IA\\tmp_test_runs\\run_1.txt",
+    "duration": 3.7844390869140625
+  },
+  {
+    "run": 2,
+    "exit": 0,
+    "out": "D:\\IA\\tmp_test_runs\\run_2.txt",
+    "duration": 4.113423109054565
+  },
+  {
+    "run": 3,
+    "exit": 0,
+    "out": "D:\\IA\\tmp_test_runs\\run_3.txt",
+    "duration": 4.221441268920898
+  },
+  {
+    "run": 4,
+    "exit": 0,
+    "out": "D:\\IA\\tmp_test_runs\\run_4.txt",
+    "duration": 4.01772403717041
+  },
+  {
+    "run": 5,
+    "exit": 0,
+    "out": "D:\\IA\\tmp_test_runs\\run_5.txt",
+    "duration": 3.6632132530212402
+  },
+  {
+    "run": 6,
+    "exit": 0,
+    "out": "D:\\IA\\tmp_test_runs\\run_6.txt",
+    "duration": 4.122655630111694
+  },
+  {
+    "run": 7,
+    "exit": 0,
+    "out": "D:\\IA\\tmp_test_runs\\run_7.txt",
+    "duration": 3.771946907043457
+  },
+  {
+    "run": 8,
+    "exit": 0,
+    "out": "D:\\IA\\tmp_test_runs\\run_8.txt",
+    "duration": 3.557438373565674
+  },
+  {
+    "run": 9,
+    "exit": 0,
+    "out": "D:\\IA\\tmp_test_runs\\run_9.txt",
+    "duration": 4.072015047073364
+  },
+  {
+    "run": 10,
+    "exit": 0,
+    "out": "D:\\IA\\tmp_test_runs\\run_10.txt",
+    "duration": 3.8558056354522705
+  }
+]

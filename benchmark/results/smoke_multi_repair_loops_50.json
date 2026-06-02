@@ -1,0 +1,1394 @@
+{
+  "meta": {
+    "dataset": "multi_repair_loops_50",
+    "runs_per_test": 1,
+    "wall_time_s": 17.250628,
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "llm_judge": false,
+    "generated_at": "2026-05-12T22:03:52.366663+00:00"
+  },
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "quality_gate": "FAIL"
+  },
+  "results": [
+    {
+      "name": "multi_repair_loops_50",
+      "type": "real_local",
+      "status": "error",
+      "evaluation": {
+        "semantic": 0.0,
+        "format": 1.0,
+        "consistency": 1.0,
+        "status": 0.0,
+        "process": 1.0
+      },
+      "metrics": {
+        "runs": 1,
+        "latency_avg": 17.22325360000832,
+        "latency_stdev": 0.0,
+        "latency_p50": 17.22325360000832,
+        "latency_p95": 17.22325360000832,
+        "latency_p99": 17.22325360000832,
+        "latency_min": 17.22325360000832,
+        "latency_max": 17.22325360000832,
+        "semantic_score": 0.0,
+        "format_score": 1.0,
+        "consistency_score": 1.0,
+        "status_score": 0.0,
+        "process_score": 1.0,
+        "process": {
+          "has_trace": false,
+          "agent_steps": 50,
+          "benchmark_steps": 50,
+          "steps": 50,
+          "tool_calls": 0,
+          "tools": [],
+          "tool_sequence": [],
+          "iterations_avg": 0.0,
+          "attempts_avg": 12.0,
+          "initial_score_avg": 0.0,
+          "final_score_avg": 0.0,
+          "improvement_gain": 0.0,
+          "refinement_gain": 0.0,
+          "has_refinement": true,
+          "has_critic": false,
+          "has_verification": false,
+          "failure_recovery": false,
+          "workspace_files": [
+            ".pytest_cache/.gitignore",
+            ".pytest_cache/CACHEDIR.TAG",
+            ".pytest_cache/README.md",
+            ".pytest_cache/v/cache/lastfailed",
+            ".pytest_cache/v/cache/nodeids",
+            "config.json",
+            "repair_loops_pkg/__init__.py",
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc",
+            "repair_loops_pkg/module_alpha.py",
+            "repair_loops_pkg/module_beta.py",
+            "repair_loops_pkg/test_repair.py"
+          ],
+          "workspace_artifacts": {
+            ".pytest_cache/.gitignore": {
+              "size": 39,
+              "sha256": "e7c6bb30148cf667606dcd63e7ca77acaa3cfb0c8303bf09e6419e1e1669dc6d",
+              "text": "# Created by pytest automatically.\r\n*\r\n"
+            },
+            ".pytest_cache/CACHEDIR.TAG": {
+              "size": 191,
+              "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+              "text": "Signature: 8a477f597d28d172789f06886806bc55\n# This file is a cache directory tag created by pytest.\n# For information about cache directory tags, see:\n#\thttps://bford.info/cachedir/spec.html\n"
+            },
+            ".pytest_cache/README.md": {
+              "size": 310,
+              "sha256": "420e808d79a6c25d3cda0af33bc4782314a14949866682c68ce8149e89b66b70",
+              "text": "# pytest cache directory #\r\n\r\nThis directory contains data from the pytest's cache plugin,\r\nwhich provides the `--lf` and `--ff` options, as well as the `cache` fixture.\r\n\r\n**Do not** commit this to version control.\r\n\r\nSee [the docs](https://docs.pytest.org/en/stable/how-to/cache.html) for more information.\r\n"
+            },
+            ".pytest_cache/v/cache/lastfailed": {
+              "size": 47,
+              "sha256": "b63281c72411837e675b901ce33befa310f0343d5bad49a50be12c13b15d3f20",
+              "text": "{\r\n  \"repair_loops_pkg/test_repair.py\": true\r\n}"
+            },
+            ".pytest_cache/v/cache/nodeids": {
+              "size": 2,
+              "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "text": "[]"
+            },
+            "repair_loops_pkg/module_alpha.py": {
+              "size": 104,
+              "sha256": "a3274376cc37fe37467ca10d2e00e3b8a0162185e95b844ee42c7261bbaad91c",
+              "text": "def alpha(x):\\n    # implementação intencionalmente incorreta para forçar repairs\\n    return x + 1\\n"
+            },
+            "repair_loops_pkg/module_beta.py": {
+              "size": 90,
+              "sha256": "98692a3db03c003030cca08afd357f8a62c69ccf7be8c4723f46767a92eebf77",
+              "text": "from repair_loops_pkg.module_alpha import alpha\\n\\ndef beta(x):\\n    return alpha(x) * 2\\n"
+            },
+            "repair_loops_pkg/test_repair.py": {
+              "size": 129,
+              "sha256": "4510557b549f97496a800bc3539f61b72ca32bae36ee7899b51a1ca37cb138fb",
+              "text": "from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 então beta=8\\n"
+            },
+            "repair_loops_pkg/__init__.py": {
+              "size": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc": {
+              "size": 193,
+              "sha256": "a5f8a419b42ad3fd067c5d571b7ad8dfb858c2bc4e456fc29fd81ef862850b3f",
+              "binary": true
+            }
+          },
+          "workspace_writes": 10,
+          "setup_total": 4,
+          "setup_files": 4,
+          "setup_dirs": 0,
+          "verification_total": 1,
+          "verification_passed": 0,
+          "verification_failed": 1,
+          "verification_critical_failed": 1,
+          "verification_ok": false,
+          "stability_score": 1.0,
+          "semantic_stability_score": 1.0,
+          "iteration_semantic_delta_avg": 0.0,
+          "iteration_semantic_first_last_distance": 0.0,
+          "iteration_semantic_runs_with_pairs": 1,
+          "redundant_tool_calls": 0,
+          "efficiency_factor": 1.0,
+          "plan_stability": 0.0,
+          "critic_usefulness": 0.0,
+          "tool_misuse_rate": 0.0,
+          "hallucination_rate": 0.0,
+          "memory_relevance": 0.0,
+          "self_correction_success": 0.0,
+          "avg_repair_iterations": 0.0,
+          "context_drift_slope": 0.0
+        },
+        "instrumentation": {
+          "plan_stability": 0.0,
+          "critic_usefulness": 0.0,
+          "tool_misuse_rate": 0.0,
+          "hallucination_rate": 0.0,
+          "memory_relevance": 0.0,
+          "self_correction_success": 0.0,
+          "avg_repair_iterations": 0.0,
+          "context_drift_slope": 0.0
+        },
+        "final_score": 0.37,
+        "agent_score": 0.625
+      },
+      "runs": [
+        {
+          "status": "error",
+          "output": "Resposta benchmark sem LLM externo",
+          "error": "verification_failed:pytest",
+          "steps": [
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            }
+          ],
+          "setup_results": [
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/__init__.py",
+              "status": "success",
+              "bytes": 0
+            },
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/module_alpha.py",
+              "status": "success",
+              "bytes": 104
+            },
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/module_beta.py",
+              "status": "success",
+              "bytes": 90
+            },
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/test_repair.py",
+              "status": "success",
+              "bytes": 129
+            }
+          ],
+          "verification_results": [
+            {
+              "name": "pytest",
+              "type": "pytest",
+              "critical": true,
+              "passed": false,
+              "command": [
+                "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                "-I",
+                "-m",
+                "pytest",
+                "-q",
+                "repair_loops_pkg/test_repair.py"
+              ],
+              "returncode": 2,
+              "expected_returncode": 0,
+              "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 1.32s\n",
+              "stderr": ""
+            }
+          ],
+          "verification_summary": {
+            "total": 1,
+            "passed": 0,
+            "failed": 1,
+            "critical_total": 1,
+            "critical_failed": 1,
+            "ok": false
+          },
+          "verification_error": "verification_failed:pytest",
+          "attempts": [
+            {
+              "attempt": 1,
+              "engine_result": {
+                "status": "success",
+                "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                "error": null,
+                "raw": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null
+                }
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 1,
+              "engine_result": {
+                "status": "simulated",
+                "note": "heuristic patch applied (return a + b)"
+              },
+              "verification_results": [
+                {
+                  "name": "pytest",
+                  "type": "pytest",
+                  "critical": true,
+                  "passed": false,
+                  "command": [
+                    "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                    "-I",
+                    "-m",
+                    "pytest",
+                    "-q",
+                    "repair_loops_pkg/test_repair.py"
+                  ],
+                  "returncode": 2,
+                  "expected_returncode": 0,
+                  "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.67s\n",
+                  "stderr": ""
+                }
+              ],
+              "verification_summary": {
+                "total": 1,
+                "passed": 0,
+                "failed": 1,
+                "critical_total": 1,
+                "critical_failed": 1,
+                "ok": false
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 2,
+              "engine_result": {
+                "status": "success",
+                "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                "error": null,
+                "raw": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null
+                }
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 2,
+              "engine_result": {
+                "status": "simulated",
+                "note": "heuristic patch applied (return a + b)"
+              },
+              "verification_results": [
+                {
+                  "name": "pytest",
+                  "type": "pytest",
+                  "critical": true,
+                  "passed": false,
+                  "command": [
+                    "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                    "-I",
+                    "-m",
+                    "pytest",
+                    "-q",
+                    "repair_loops_pkg/test_repair.py"
+                  ],
+                  "returncode": 2,
+                  "expected_returncode": 0,
+                  "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.67s\n",
+                  "stderr": ""
+                }
+              ],
+              "verification_summary": {
+                "total": 1,
+                "passed": 0,
+                "failed": 1,
+                "critical_total": 1,
+                "critical_failed": 1,
+                "ok": false
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 3,
+              "engine_result": {
+                "status": "success",
+                "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                "error": null,
+                "raw": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null
+                }
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 3,
+              "engine_result": {
+                "status": "simulated",
+                "note": "heuristic patch applied (return a + b)"
+              },
+              "verification_results": [
+                {
+                  "name": "pytest",
+                  "type": "pytest",
+                  "critical": true,
+                  "passed": false,
+                  "command": [
+                    "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                    "-I",
+                    "-m",
+                    "pytest",
+                    "-q",
+                    "repair_loops_pkg/test_repair.py"
+                  ],
+                  "returncode": 2,
+                  "expected_returncode": 0,
+                  "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.59s\n",
+                  "stderr": ""
+                }
+              ],
+              "verification_summary": {
+                "total": 1,
+                "passed": 0,
+                "failed": 1,
+                "critical_total": 1,
+                "critical_failed": 1,
+                "ok": false
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 4,
+              "engine_result": {
+                "status": "success",
+                "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                "error": null,
+                "raw": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null
+                }
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 4,
+              "engine_result": {
+                "status": "simulated",
+                "note": "heuristic patch applied (return a + b)"
+              },
+              "verification_results": [
+                {
+                  "name": "pytest",
+                  "type": "pytest",
+                  "critical": true,
+                  "passed": false,
+                  "command": [
+                    "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                    "-I",
+                    "-m",
+                    "pytest",
+                    "-q",
+                    "repair_loops_pkg/test_repair.py"
+                  ],
+                  "returncode": 2,
+                  "expected_returncode": 0,
+                  "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.55s\n",
+                  "stderr": ""
+                }
+              ],
+              "verification_summary": {
+                "total": 1,
+                "passed": 0,
+                "failed": 1,
+                "critical_total": 1,
+                "critical_failed": 1,
+                "ok": false
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 5,
+              "engine_result": {
+                "status": "success",
+                "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                "error": null,
+                "raw": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null
+                }
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 5,
+              "engine_result": {
+                "status": "simulated",
+                "note": "heuristic patch applied (return a + b)"
+              },
+              "verification_results": [
+                {
+                  "name": "pytest",
+                  "type": "pytest",
+                  "critical": true,
+                  "passed": false,
+                  "command": [
+                    "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                    "-I",
+                    "-m",
+                    "pytest",
+                    "-q",
+                    "repair_loops_pkg/test_repair.py"
+                  ],
+                  "returncode": 2,
+                  "expected_returncode": 0,
+                  "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.57s\n",
+                  "stderr": ""
+                }
+              ],
+              "verification_summary": {
+                "total": 1,
+                "passed": 0,
+                "failed": 1,
+                "critical_total": 1,
+                "critical_failed": 1,
+                "ok": false
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 6,
+              "engine_result": {
+                "status": "success",
+                "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                "error": null,
+                "raw": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null
+                }
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 6,
+              "engine_result": {
+                "status": "simulated",
+                "note": "heuristic patch applied (return a + b)"
+              },
+              "verification_results": [
+                {
+                  "name": "pytest",
+                  "type": "pytest",
+                  "critical": true,
+                  "passed": false,
+                  "command": [
+                    "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                    "-I",
+                    "-m",
+                    "pytest",
+                    "-q",
+                    "repair_loops_pkg/test_repair.py"
+                  ],
+                  "returncode": 2,
+                  "expected_returncode": 0,
+                  "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.71s\n",
+                  "stderr": ""
+                }
+              ],
+              "verification_summary": {
+                "total": 1,
+                "passed": 0,
+                "failed": 1,
+                "critical_total": 1,
+                "critical_failed": 1,
+                "ok": false
+              },
+              "modified_files": [],
+              "patches": []
+            }
+          ],
+          "repair": {
+            "attempts": [
+              {
+                "attempt": 1,
+                "engine_result": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                    "error": null
+                  }
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 1,
+                "engine_result": {
+                  "status": "simulated",
+                  "note": "heuristic patch applied (return a + b)"
+                },
+                "verification_results": [
+                  {
+                    "name": "pytest",
+                    "type": "pytest",
+                    "critical": true,
+                    "passed": false,
+                    "command": [
+                      "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                      "-I",
+                      "-m",
+                      "pytest",
+                      "-q",
+                      "repair_loops_pkg/test_repair.py"
+                    ],
+                    "returncode": 2,
+                    "expected_returncode": 0,
+                    "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.67s\n",
+                    "stderr": ""
+                  }
+                ],
+                "verification_summary": {
+                  "total": 1,
+                  "passed": 0,
+                  "failed": 1,
+                  "critical_total": 1,
+                  "critical_failed": 1,
+                  "ok": false
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 2,
+                "engine_result": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                    "error": null
+                  }
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 2,
+                "engine_result": {
+                  "status": "simulated",
+                  "note": "heuristic patch applied (return a + b)"
+                },
+                "verification_results": [
+                  {
+                    "name": "pytest",
+                    "type": "pytest",
+                    "critical": true,
+                    "passed": false,
+                    "command": [
+                      "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                      "-I",
+                      "-m",
+                      "pytest",
+                      "-q",
+                      "repair_loops_pkg/test_repair.py"
+                    ],
+                    "returncode": 2,
+                    "expected_returncode": 0,
+                    "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.67s\n",
+                    "stderr": ""
+                  }
+                ],
+                "verification_summary": {
+                  "total": 1,
+                  "passed": 0,
+                  "failed": 1,
+                  "critical_total": 1,
+                  "critical_failed": 1,
+                  "ok": false
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 3,
+                "engine_result": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                    "error": null
+                  }
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 3,
+                "engine_result": {
+                  "status": "simulated",
+                  "note": "heuristic patch applied (return a + b)"
+                },
+                "verification_results": [
+                  {
+                    "name": "pytest",
+                    "type": "pytest",
+                    "critical": true,
+                    "passed": false,
+                    "command": [
+                      "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                      "-I",
+                      "-m",
+                      "pytest",
+                      "-q",
+                      "repair_loops_pkg/test_repair.py"
+                    ],
+                    "returncode": 2,
+                    "expected_returncode": 0,
+                    "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.59s\n",
+                    "stderr": ""
+                  }
+                ],
+                "verification_summary": {
+                  "total": 1,
+                  "passed": 0,
+                  "failed": 1,
+                  "critical_total": 1,
+                  "critical_failed": 1,
+                  "ok": false
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 4,
+                "engine_result": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                    "error": null
+                  }
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 4,
+                "engine_result": {
+                  "status": "simulated",
+                  "note": "heuristic patch applied (return a + b)"
+                },
+                "verification_results": [
+                  {
+                    "name": "pytest",
+                    "type": "pytest",
+                    "critical": true,
+                    "passed": false,
+                    "command": [
+                      "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                      "-I",
+                      "-m",
+                      "pytest",
+                      "-q",
+                      "repair_loops_pkg/test_repair.py"
+                    ],
+                    "returncode": 2,
+                    "expected_returncode": 0,
+                    "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.55s\n",
+                    "stderr": ""
+                  }
+                ],
+                "verification_summary": {
+                  "total": 1,
+                  "passed": 0,
+                  "failed": 1,
+                  "critical_total": 1,
+                  "critical_failed": 1,
+                  "ok": false
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 5,
+                "engine_result": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                    "error": null
+                  }
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 5,
+                "engine_result": {
+                  "status": "simulated",
+                  "note": "heuristic patch applied (return a + b)"
+                },
+                "verification_results": [
+                  {
+                    "name": "pytest",
+                    "type": "pytest",
+                    "critical": true,
+                    "passed": false,
+                    "command": [
+                      "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                      "-I",
+                      "-m",
+                      "pytest",
+                      "-q",
+                      "repair_loops_pkg/test_repair.py"
+                    ],
+                    "returncode": 2,
+                    "expected_returncode": 0,
+                    "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.57s\n",
+                    "stderr": ""
+                  }
+                ],
+                "verification_summary": {
+                  "total": 1,
+                  "passed": 0,
+                  "failed": 1,
+                  "critical_total": 1,
+                  "critical_failed": 1,
+                  "ok": false
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 6,
+                "engine_result": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - repair_loops_pkg",
+                    "error": null
+                  }
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 6,
+                "engine_result": {
+                  "status": "simulated",
+                  "note": "heuristic patch applied (return a + b)"
+                },
+                "verification_results": [
+                  {
+                    "name": "pytest",
+                    "type": "pytest",
+                    "critical": true,
+                    "passed": false,
+                    "command": [
+                      "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                      "-I",
+                      "-m",
+                      "pytest",
+                      "-q",
+                      "repair_loops_pkg/test_repair.py"
+                    ],
+                    "returncode": 2,
+                    "expected_returncode": 0,
+                    "stdout": "\n=================================== ERRORS ====================================\n______________ ERROR collecting repair_loops_pkg/test_repair.py _______________\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\python.py:507: in importtestmodule\n    mod = import_path(\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\pathlib.py:587: in import_path\n    importlib.import_module(module_name)\n..\\..\\Programs\\Python\\Python311\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1204: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1176: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:690: in _load_unlocked\n    ???\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:188: in exec_module\n    source_stat, co = _rewrite_test(fn, self.config)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\site-packages\\_pytest\\assertion\\rewrite.py:357: in _rewrite_test\n    tree = ast.parse(source, filename=strfn)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\..\\Programs\\Python\\Python311\\Lib\\ast.py:50: in parse\n    return compile(source, filename, mode, flags,\nE     File \"C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz\\repair_loops_pkg\\test_repair.py\", line 1\nE       from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 ent�o beta=8\\n\nE                                                     ^\nE   SyntaxError: unexpected character after line continuation character\n=========================== short test summary info ===========================\nERROR repair_loops_pkg/test_repair.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.71s\n",
+                    "stderr": ""
+                  }
+                ],
+                "verification_summary": {
+                  "total": 1,
+                  "passed": 0,
+                  "failed": 1,
+                  "critical_total": 1,
+                  "critical_failed": 1,
+                  "ok": false
+                },
+                "modified_files": [],
+                "patches": []
+              }
+            ],
+            "success": false
+          },
+          "run": 1,
+          "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_pnovtgtz",
+          "workspace_files": [
+            ".pytest_cache/.gitignore",
+            ".pytest_cache/CACHEDIR.TAG",
+            ".pytest_cache/README.md",
+            ".pytest_cache/v/cache/lastfailed",
+            ".pytest_cache/v/cache/nodeids",
+            "config.json",
+            "repair_loops_pkg/__init__.py",
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc",
+            "repair_loops_pkg/module_alpha.py",
+            "repair_loops_pkg/module_beta.py",
+            "repair_loops_pkg/test_repair.py"
+          ],
+          "workspace_artifacts": {
+            "config.json": {
+              "size": 1669,
+              "sha256": "0aeecbc29d67f708a8233c51cab7b92bfe0568712d44424be7432cdfd8f44797",
+              "text": "{\r\n    \"app_name\": \"Assistente Local V2\",\r\n    \"version\": \"2.0.0\",\r\n    \"workspace_path\": \"\",\r\n    \"project_path\": \"\",\r\n    \"data_paths\": {\r\n        \"memory_dir\": \"data\",\r\n        \"vectors_dir\": \"data/vectors\",\r\n        \"logs_dir\": \"data/logs\",\r\n        \"state_dir\": \"data/state\",\r\n        \"cache_dir\": \"data/cache\",\r\n        \"monitor_dir\": \"data/monitor\",\r\n        \"screens_dir\": \"data/monitor/screens\"\r\n    },\r\n    \"memory\": {\r\n        \"memory_file\": \"data/memory.json\",\r\n        \"max_recent_memories\": 20,\r\n        \"max_retrieved_memories\": 8\r\n    },\r\n    \"vectors\": {\r\n        \"chunks_file\": \"data/vectors/chunks.jsonl\",\r\n        \"metadata_file\": \"data/vectors/metadata.json\",\r\n        \"index_state_file\": \"data/vectors/index_state.json\",\r\n        \"top_k\": 8,\r\n        \"min_score\": 0.15\r\n    },\r\n    \"embeddings\": {\r\n        \"vector_size\": 256,\r\n        \"use_l2_normalization\": true\r\n    },\r\n    \"logging\": {\r\n        \"events_file\": \"data/logs/events.jsonl\",\r\n        \"errors_file\": \"data/logs/errors.jsonl\",\r\n        \"level\": \"INFO\"\r\n    },\r\n    \"llm\": {\r\n        \"base_url\": \"http://localhost:11434/api/generate\",\r\n        \"fast_model\": \"phi3:mini\",\r\n        \"default_model\": \"qwen2.5:3b\",\r\n        \"power_model\": \"qwen2.5-coder:7b\",\n        \"fallback_model\": \"phi3:mini\",\r\n        \"temperature\": 0.3,\r\n        \"timeout\": 15,\r\n        \"cache_ttl\": 120,\r\n        \"max_retries\": 0,\r\n        \"retry_delay\": 0.2,\r\n        \"max_context_chunks\": 6\r\n    },\r\n    \"features\": {\r\n        \"auto_index_on_start\": false,\r\n        \"auto_learn_memory\": true,\r\n        \"enable_action_execution\": true,\r\n        \"enable_vision\": true,\r\n        \"enable_web_search\": true\r\n    }\r\n}\n"
+            },
+            ".pytest_cache/.gitignore": {
+              "size": 39,
+              "sha256": "e7c6bb30148cf667606dcd63e7ca77acaa3cfb0c8303bf09e6419e1e1669dc6d",
+              "text": "# Created by pytest automatically.\r\n*\r\n"
+            },
+            ".pytest_cache/CACHEDIR.TAG": {
+              "size": 191,
+              "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+              "text": "Signature: 8a477f597d28d172789f06886806bc55\n# This file is a cache directory tag created by pytest.\n# For information about cache directory tags, see:\n#\thttps://bford.info/cachedir/spec.html\n"
+            },
+            ".pytest_cache/README.md": {
+              "size": 310,
+              "sha256": "420e808d79a6c25d3cda0af33bc4782314a14949866682c68ce8149e89b66b70",
+              "text": "# pytest cache directory #\r\n\r\nThis directory contains data from the pytest's cache plugin,\r\nwhich provides the `--lf` and `--ff` options, as well as the `cache` fixture.\r\n\r\n**Do not** commit this to version control.\r\n\r\nSee [the docs](https://docs.pytest.org/en/stable/how-to/cache.html) for more information.\r\n"
+            },
+            ".pytest_cache/v/cache/lastfailed": {
+              "size": 47,
+              "sha256": "b63281c72411837e675b901ce33befa310f0343d5bad49a50be12c13b15d3f20",
+              "text": "{\r\n  \"repair_loops_pkg/test_repair.py\": true\r\n}"
+            },
+            ".pytest_cache/v/cache/nodeids": {
+              "size": 2,
+              "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "text": "[]"
+            },
+            "repair_loops_pkg/module_alpha.py": {
+              "size": 104,
+              "sha256": "a3274376cc37fe37467ca10d2e00e3b8a0162185e95b844ee42c7261bbaad91c",
+              "text": "def alpha(x):\\n    # implementação intencionalmente incorreta para forçar repairs\\n    return x + 1\\n"
+            },
+            "repair_loops_pkg/module_beta.py": {
+              "size": 90,
+              "sha256": "98692a3db03c003030cca08afd357f8a62c69ccf7be8c4723f46767a92eebf77",
+              "text": "from repair_loops_pkg.module_alpha import alpha\\n\\ndef beta(x):\\n    return alpha(x) * 2\\n"
+            },
+            "repair_loops_pkg/test_repair.py": {
+              "size": 129,
+              "sha256": "4510557b549f97496a800bc3539f61b72ca32bae36ee7899b51a1ca37cb138fb",
+              "text": "from repair_loops_pkg.module_beta import beta\\n\\n\\ndef test_beta():\\n    assert beta(2) == 8  # espera alpha(2)=4 então beta=8\\n"
+            },
+            "repair_loops_pkg/__init__.py": {
+              "size": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc": {
+              "size": 193,
+              "sha256": "a5f8a419b42ad3fd067c5d571b7ad8dfb858c2bc4e456fc29fd81ef862850b3f",
+              "binary": true
+            }
+          },
+          "instrumentation_trace": "D:\\IA\\benchmark\\results\\7cfd3c6e789b49a481d7378a487164be.json",
+          "instrumentation_metrics": {
+            "plan_stability": 0.0,
+            "critic_usefulness": 0.0,
+            "tool_misuse_rate": 0.0,
+            "hallucination_rate": 0.0,
+            "memory_relevance": 0.0,
+            "self_correction_success": 0.0,
+            "avg_repair_iterations": 0.0,
+            "context_drift_slope": 0.0
+          }
+        }
+      ]
+    }
+  ]
+}

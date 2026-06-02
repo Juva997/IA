@@ -1,0 +1,19 @@
+[
+  {
+    "name": "memoria_nome",
+    "type": "memory",
+    "min_score": 0.75,
+    "steps": [
+      {
+        "input": "Me chamo Carlos",
+        "expected": "Carlos",
+        "type": "memory"
+      },
+      {
+        "input": "Qual e meu nome?",
+        "expected": "Carlos",
+        "type": "qa"
+      }
+    ]
+  }
+]

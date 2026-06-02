@@ -1,0 +1,23 @@
+{
+  "run_id": "39b9314d144a478699b84c63277d9c0c",
+  "scenario_id": "missing_trace",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\pytest-of-Juven\\pytest-253\\test_runner_enforces_process_e0\\ia_benchmark_lvv975jc"
+  },
+  "trace": [],
+  "metrics": {
+    "plan_stability": 1.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 0.00029969999923196156,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\pytest-of-Juven\\pytest-253\\test_runner_enforces_process_e0\\ia_benchmark_lvv975jc",
+  "started_at": "2026-05-14T00:09:55.408037+00:00",
+  "ended_at": "2026-05-14T00:09:55.547663+00:00"
+}

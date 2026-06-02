@@ -1,0 +1,5 @@
+INFO:     127.0.0.1:49259 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49261 - "GET /api/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49262 - "POST /api/generate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49364 - "POST /api/generate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49413 - "POST /api/generate HTTP/1.1" 200 OK

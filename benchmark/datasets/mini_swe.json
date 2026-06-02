@@ -1,0 +1,165 @@
+[
+  {
+    "name": "mini_swe_proj_001_fix_add",
+    "type": "real_local",
+    "repair": true,
+    "input": "Corrija o projeto para que o teste unitário passe (função add).",
+    "setup": {
+      "files": {
+        "swe_proj_001/__init__.py": "",
+        "swe_proj_001/calc.py": "def add(a, b):\n    return a * b\n",
+        "swe_proj_001/test_calc.py": "from swe_proj_001.calc import add\n\n\ndef test_add():\n    assert add(2, 3) == 5\n"
+      }
+    },
+    "verification": [
+      {"type": "pytest", "path": "swe_proj_001/test_calc.py", "args": ["-q"], "timeout": 20}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": false,
+      "critical_expectations": []
+    }
+  },
+  {
+    "name": "mini_swe_proj_002_fix_add",
+    "type": "real_local",
+    "repair": true,
+    "input": "Corrija a função add no projeto para que o teste passe.",
+    "setup": {
+      "files": {
+        "swe_proj_002/__init__.py": "",
+        "swe_proj_002/calc.py": "def add(a, b):\n    return a - b\n",
+        "swe_proj_002/test_calc.py": "from swe_proj_002.calc import add\n\n\ndef test_add():\n    assert add(2, 3) == 5\n"
+      }
+    },
+    "verification": [
+      {"type": "pytest", "path": "swe_proj_002/test_calc.py", "args": ["-q"], "timeout": 20}
+    ],
+    "expectations": {"requires_tools": true, "requires_benchmark_verification": true, "verification_must_pass": false, "critical_expectations": []}
+  },
+  {
+    "name": "mini_swe_proj_003_fix_add",
+    "type": "real_local",
+    "repair": true,
+    "input": "Corrija o projeto para que add(2,3) retorne 5.",
+    "setup": {
+      "files": {
+        "swe_proj_003/__init__.py": "",
+        "swe_proj_003/calc.py": "def add(a, b):\n    return a + b + 1\n",
+        "swe_proj_003/test_calc.py": "from swe_proj_003.calc import add\n\n\ndef test_add():\n    assert add(2, 3) == 5\n"
+      }
+    },
+    "verification": [
+      {"type": "pytest", "path": "swe_proj_003/test_calc.py", "args": ["-q"], "timeout": 20}
+    ],
+    "expectations": {"requires_tools": true, "requires_benchmark_verification": true, "verification_must_pass": false, "critical_expectations": []}
+  },
+  {
+    "name": "mini_swe_proj_004_fix_add",
+    "type": "real_local",
+    "repair": true,
+    "input": "Corrija o comportamento incorreto da função add.",
+    "setup": {
+      "files": {
+        "swe_proj_004/__init__.py": "",
+        "swe_proj_004/calc.py": "def add(a, b):\n    return '5'\n",
+        "swe_proj_004/test_calc.py": "from swe_proj_004.calc import add\n\n\ndef test_add():\n    assert add(2, 3) == 5\n"
+      }
+    },
+    "verification": [
+      {"type": "pytest", "path": "swe_proj_004/test_calc.py", "args": ["-q"], "timeout": 20}
+    ],
+    "expectations": {"requires_tools": true, "requires_benchmark_verification": true, "verification_must_pass": false, "critical_expectations": []}
+  },
+  {
+    "name": "mini_swe_proj_005_fix_add",
+    "type": "real_local",
+    "repair": true,
+    "input": "Corrija a implementação para que o teste passe (caso edge).",
+    "setup": {
+      "files": {
+        "swe_proj_005/__init__.py": "",
+        "swe_proj_005/calc.py": "def add(a, b):\n    return a + b if isinstance(a, int) and isinstance(b, int) else None\n",
+        "swe_proj_005/test_calc.py": "from swe_proj_005.calc import add\n\n\ndef test_add():\n    assert add(2, 3) == 5\n"
+      }
+    },
+    "verification": [{"type": "pytest", "path": "swe_proj_005/test_calc.py", "args": ["-q"], "timeout": 20}],
+    "expectations": {"requires_tools": true, "requires_benchmark_verification": true, "verification_must_pass": false, "critical_expectations": []}
+  },
+  {
+    "name": "mini_swe_proj_006_fix_add",
+    "type": "real_local",
+    "repair": true,
+    "input": "Encontre e corrija o bug que faz add retornar valor errado.",
+    "setup": {
+      "files": {
+        "swe_proj_006/__init__.py": "",
+        "swe_proj_006/calc.py": "def add(a, b):\n    return (a + b) * 1\n",
+        "swe_proj_006/test_calc.py": "from swe_proj_006.calc import add\n\n\ndef test_add():\n    assert add(2, 3) == 5\n"
+      }
+    },
+    "verification": [{"type": "pytest", "path": "swe_proj_006/test_calc.py", "args": ["-q"], "timeout": 20}],
+    "expectations": {"requires_tools": true, "requires_benchmark_verification": true, "verification_must_pass": false, "critical_expectations": []}
+  },
+  {
+    "name": "mini_swe_proj_007_fix_add",
+    "type": "real_local",
+    "repair": true,
+    "input": "Corrija a função add para que teste unitário passe.",
+    "setup": {
+      "files": {
+        "swe_proj_007/__init__.py": "",
+        "swe_proj_007/calc.py": "def add(a, b):\n    return a + b - 1\n",
+        "swe_proj_007/test_calc.py": "from swe_proj_007.calc import add\n\n\ndef test_add():\n    assert add(2, 3) == 5\n"
+      }
+    },
+    "verification": [{"type": "pytest", "path": "swe_proj_007/test_calc.py", "args": ["-q"], "timeout": 20}],
+    "expectations": {"requires_tools": true, "requires_benchmark_verification": true, "verification_must_pass": false, "critical_expectations": []}
+  },
+  {
+    "name": "mini_swe_proj_008_fix_add",
+    "type": "real_local",
+    "repair": true,
+    "input": "Identifique e corrija o bug no módulo calc.",
+    "setup": {
+      "files": {
+        "swe_proj_008/__init__.py": "",
+        "swe_proj_008/calc.py": "def add(a, b):\n    return int(str(a) + str(b))\n",
+        "swe_proj_008/test_calc.py": "from swe_proj_008.calc import add\n\n\ndef test_add():\n    assert add(2, 3) == 5\n"
+      }
+    },
+    "verification": [{"type": "pytest", "path": "swe_proj_008/test_calc.py", "args": ["-q"], "timeout": 20}],
+    "expectations": {"requires_tools": true, "requires_benchmark_verification": true, "verification_must_pass": false, "critical_expectations": []}
+  },
+  {
+    "name": "mini_swe_proj_009_fix_add",
+    "type": "real_local",
+    "repair": true,
+    "input": "Repare o projeto para que o teste unitário passe.",
+    "setup": {
+      "files": {
+        "swe_proj_009/__init__.py": "",
+        "swe_proj_009/calc.py": "def add(a, b):\n    return 0\n",
+        "swe_proj_009/test_calc.py": "from swe_proj_009.calc import add\n\n\ndef test_add():\n    assert add(2, 3) == 5\n"
+      }
+    },
+    "verification": [{"type": "pytest", "path": "swe_proj_009/test_calc.py", "args": ["-q"], "timeout": 20}],
+    "expectations": {"requires_tools": true, "requires_benchmark_verification": true, "verification_must_pass": false, "critical_expectations": []}
+  },
+  {
+    "name": "mini_swe_proj_010_fix_add",
+    "type": "real_local",
+    "repair": true,
+    "input": "Ajuste o código para que add retorne a soma correta.",
+    "setup": {
+      "files": {
+        "swe_proj_010/__init__.py": "",
+        "swe_proj_010/calc.py": "def add(a, b):\n    return a + b if b != 3 else a + b + 2\n",
+        "swe_proj_010/test_calc.py": "from swe_proj_010.calc import add\n\n\ndef test_add():\n    assert add(2, 3) == 5\n"
+      }
+    },
+    "verification": [{"type": "pytest", "path": "swe_proj_010/test_calc.py", "args": ["-q"], "timeout": 20}],
+    "expectations": {"requires_tools": true, "requires_benchmark_verification": true, "verification_must_pass": false, "critical_expectations": []}
+  }
+]

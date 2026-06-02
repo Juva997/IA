@@ -1,0 +1,23 @@
+{
+  "run_id": "f2b8a7ca256948afa6deaab37f409649",
+  "scenario_id": "sem_delta",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\pytest-of-Juven\\pytest-265\\test_min_iteration_semantic_de0\\ia_benchmark_6quyq3pc"
+  },
+  "trace": [],
+  "metrics": {
+    "plan_stability": 1.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 0.00023820000933483243,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\pytest-of-Juven\\pytest-265\\test_min_iteration_semantic_de0\\ia_benchmark_6quyq3pc",
+  "started_at": "2026-05-14T17:11:10.080595+00:00",
+  "ended_at": "2026-05-14T17:11:10.281060+00:00"
+}

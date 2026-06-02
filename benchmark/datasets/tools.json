@@ -1,0 +1,24 @@
+[
+  {
+    "name": "tool_file_roundtrip",
+    "input": "crie uma pasta chamada projeto, dentro crie arquivo resultado.txt com ok e depois leia",
+    "expected": "ok",
+    "type": "tool",
+    "min_score": 0.75,
+    "expectations": {
+      "requires_tools": true,
+      "expected_files": ["projeto/resultado.txt"],
+      "expected_file_contents": {
+        "projeto/resultado.txt": {
+          "equals": "ok"
+        }
+      },
+      "critical_expectations": ["expected_files", "expected_file_contents"],
+      "process_weights": {
+        "requires_tools": 1,
+        "expected_files": 2,
+        "expected_file_contents": 3
+      }
+    }
+  }
+]

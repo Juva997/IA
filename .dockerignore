@@ -1,0 +1,16 @@
+.venv
+env
+venv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+build/
+dist/
+.git
+.vscode
+data/vectors/*.data.npz
+data/vectors/*.index
+data/
+*.log
+.env

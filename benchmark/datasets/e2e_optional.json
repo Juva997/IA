@@ -1,0 +1,239 @@
+[
+  {
+    "name": "e2e_optional_resolucao_problemas",
+    "type": "qa",
+    "input": "como resolver o problema das 8 rainhas no xadrez?",
+    "expected": "backtracking",
+    "must_contain_any": ["rainhas", "backtracking"],
+    "tags": ["e2e_optional", "llm", "slow", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_codigo",
+    "type": "real_local",
+    "input": "criar script python que imprime números de 1 a 5",
+    "expected": "range",
+    "verification": [
+      {"type": "file_contains", "path": "script_numeros.py", "contains": ["for numero", "range(1, 6)"]}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["e2e_optional", "slow", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_processamento_csv",
+    "type": "real_local",
+    "input": "crie um arquivo de texto com dados numéricos separados por vírgula",
+    "expected": "dados",
+    "verification": [
+      {"type": "file_contains", "path": "numeros.txt", "contains": ["dados", "1,2,3"]}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["e2e_optional", "slow", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_estatisticas",
+    "type": "qa",
+    "input": "gere 100 números aleatórios e calcule média, mediana e desvio padrão",
+    "expected": "média",
+    "must_contain": ["mediana", "desvio"],
+    "tags": ["e2e_optional", "slow", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_planejamento_complexo",
+    "type": "real_local",
+    "input": "criar sistema em python com arquivo que gera número aleatório e salva em txt",
+    "expected": "gerador.py",
+    "verification": [
+      {"type": "file_contains", "path": "gerador.py", "contains": ["random.randint", "numero.txt"]}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["e2e_optional", "slow", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_debug_codigo",
+    "type": "real_local",
+    "input": "crie um código python simples que funcione corretamente",
+    "expected": "saudacao",
+    "verification": [
+      {"type": "file_contains", "path": "codigo_funcional.py", "contains": ["def saudacao", "print"]}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["e2e_optional", "slow", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_refatoracao",
+    "type": "real_local",
+    "input": "crie um código python simples e funcional",
+    "expected": "saudacao",
+    "verification": [
+      {"type": "file_contains", "path": "codigo_funcional.py", "contains": ["def saudacao", "return mensagem"]}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["e2e_optional", "slow", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_evolucao_codigo",
+    "type": "real_local",
+    "input": "crie uma versão melhorada deste código: print('hello')",
+    "expected": "mostrar_mensagem",
+    "verification": [
+      {"type": "file_contains", "path": "hello_melhorado.py", "contains": ["def mostrar_mensagem", "hello"]}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["e2e_optional", "slow", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_memory_sequence",
+    "type": "memory",
+    "steps": [
+      {"input": "Me chamo Beatriz", "expected": "Beatriz", "type": "memory"},
+      {"input": "Qual e meu nome?", "expected": "Beatriz", "type": "qa"}
+    ],
+    "tags": ["e2e_optional", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_format_table",
+    "type": "format",
+    "input": "Responda em tabela markdown com nome=Joao e idade=20",
+    "format": "table",
+    "must_contain": ["Joao"],
+    "tags": ["e2e_optional", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_format_json",
+    "type": "format",
+    "input": "Responda somente em JSON valido: nome=Joao, idade=20",
+    "format": "json",
+    "must_contain": ["Joao"],
+    "tags": ["e2e_optional", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_ambiguous_clarify",
+    "type": "behavior",
+    "input": "faz isso pra mim",
+    "expected": "clarify",
+    "tags": ["e2e_optional", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_logic_transitive",
+    "type": "classification",
+    "input": "Se todos A sao B e todos B sao C, A e C?",
+    "expected": "sim",
+    "tags": ["e2e_optional", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_tool_file_roundtrip",
+    "type": "tool",
+    "input": "crie uma pasta chamada projeto, dentro crie arquivo resultado.txt com ok e depois leia",
+    "expected": "ok",
+    "verification": [
+      {"type": "file_equals", "path": "projeto/resultado.txt", "equals": "ok"}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["e2e_optional", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_python_benchmark",
+    "type": "real_local",
+    "input": "crie um exemplo simples de benchmark em python",
+    "expected": "benchmark",
+    "verification": [
+      {"type": "python_file", "path": "benchmark_exemplo.py", "stdout_contains": "benchmark"}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["e2e_optional", "slow", "optional", "offline"]
+  },
+  {
+    "name": "e2e_optional_quality_benchmark_rubric",
+    "type": "real_local",
+    "input": "crie um exemplo simples de benchmark em python",
+    "expected": "benchmark",
+    "verification": [
+      {"type": "python_file", "path": "benchmark_exemplo.py", "stdout_contains": "benchmark"}
+    ],
+    "semantic_expectation": {
+      "must_contain_concepts": ["benchmark", "time.perf_counter"]
+    },
+    "rubric": {
+      "criteria": {
+        "creates_script": {"weight": 1, "must_contain": ["def benchmark"]},
+        "measures_time": {"weight": 2, "must_contain": ["time.perf_counter"]},
+        "prints_result": {"weight": 1, "must_contain": ["print"]}
+      }
+    },
+    "min_rubric_score": 0.75,
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["e2e_optional", "slow", "optional", "offline", "rubric"]
+  },
+  {
+    "name": "e2e_optional_external_ollama_exact_token",
+    "type": "qa",
+    "input": "Responda exatamente com o texto E2E_LLM_OK_2026 e nada mais.",
+    "expected": "E2E_LLM_OK_2026",
+    "must_contain": ["E2E_LLM_OK_2026"],
+    "requires_external_llm": true,
+    "tags": ["e2e_optional", "llm", "slow", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "e2e_optional_external_ollama_route_token",
+    "type": "qa",
+    "input": "Responda exatamente com o texto E2E_ROUTE_OK_2026 e nada mais.",
+    "expected": "E2E_ROUTE_OK_2026",
+    "must_contain": ["E2E_ROUTE_OK_2026"],
+    "requires_external_llm": true,
+    "tags": ["e2e_optional", "llm", "slow", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "e2e_optional_external_ollama_verification_word",
+    "type": "qa",
+    "input": "Responda exatamente com o texto E2E_VERIFY_OK_2026 e nada mais.",
+    "expected": "E2E_VERIFY_OK_2026",
+    "must_contain": ["E2E_VERIFY_OK_2026"],
+    "requires_external_llm": true,
+    "tags": ["e2e_optional", "llm", "slow", "optional", "external_llm", "ollama"]
+  }
+]

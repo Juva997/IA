@@ -1,0 +1,897 @@
+{
+  "meta": {
+    "dataset": "multi_repair_loops_50",
+    "runs_per_test": 1,
+    "wall_time_s": 40.230848,
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "llm_judge": false,
+    "generated_at": "2026-05-12T22:35:33.783103+00:00"
+  },
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "quality_gate": "FAIL"
+  },
+  "results": [
+    {
+      "name": "multi_repair_loops_50",
+      "type": "real_local",
+      "status": "error",
+      "evaluation": {
+        "semantic": 1.0,
+        "format": 1.0,
+        "consistency": 1.0,
+        "status": 0.0,
+        "process": 1.0
+      },
+      "metrics": {
+        "runs": 1,
+        "latency_avg": 40.18050879999646,
+        "latency_stdev": 0.0,
+        "latency_p50": 40.18050879999646,
+        "latency_p95": 40.18050879999646,
+        "latency_p99": 40.18050879999646,
+        "latency_min": 40.18050879999646,
+        "latency_max": 40.18050879999646,
+        "semantic_score": 1.0,
+        "format_score": 1.0,
+        "consistency_score": 1.0,
+        "status_score": 0.0,
+        "process_score": 1.0,
+        "process": {
+          "has_trace": false,
+          "agent_steps": 50,
+          "benchmark_steps": 50,
+          "steps": 50,
+          "tool_calls": 0,
+          "tools": [],
+          "tool_sequence": [],
+          "iterations_avg": 0.0,
+          "attempts_avg": 2.0,
+          "initial_score_avg": 0.0,
+          "final_score_avg": 0.0,
+          "improvement_gain": 0.0,
+          "refinement_gain": 0.0,
+          "has_refinement": true,
+          "has_critic": false,
+          "has_verification": false,
+          "failure_recovery": false,
+          "workspace_files": [
+            ".pytest_cache/.gitignore",
+            ".pytest_cache/CACHEDIR.TAG",
+            ".pytest_cache/README.md",
+            ".pytest_cache/v/cache/nodeids",
+            "config.json",
+            "repair_loops_pkg/__init__.py",
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/module_alpha.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/module_beta.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/test_repair.cpython-311-pytest-9.0.3.pyc",
+            "repair_loops_pkg/module_alpha.py",
+            "repair_loops_pkg/module_beta.py",
+            "repair_loops_pkg/test_repair.py"
+          ],
+          "workspace_artifacts": {
+            ".pytest_cache/.gitignore": {
+              "size": 39,
+              "sha256": "e7c6bb30148cf667606dcd63e7ca77acaa3cfb0c8303bf09e6419e1e1669dc6d",
+              "text": "# Created by pytest automatically.\r\n*\r\n"
+            },
+            ".pytest_cache/CACHEDIR.TAG": {
+              "size": 191,
+              "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+              "text": "Signature: 8a477f597d28d172789f06886806bc55\n# This file is a cache directory tag created by pytest.\n# For information about cache directory tags, see:\n#\thttps://bford.info/cachedir/spec.html\n"
+            },
+            ".pytest_cache/README.md": {
+              "size": 310,
+              "sha256": "420e808d79a6c25d3cda0af33bc4782314a14949866682c68ce8149e89b66b70",
+              "text": "# pytest cache directory #\r\n\r\nThis directory contains data from the pytest's cache plugin,\r\nwhich provides the `--lf` and `--ff` options, as well as the `cache` fixture.\r\n\r\n**Do not** commit this to version control.\r\n\r\nSee [the docs](https://docs.pytest.org/en/stable/how-to/cache.html) for more information.\r\n"
+            },
+            ".pytest_cache/v/cache/nodeids": {
+              "size": 52,
+              "sha256": "540d88643d7ba519e2959f787dcfc97a58e3d58c460114cf1b3ac6f1961c05f4",
+              "text": "[\r\n  \"repair_loops_pkg/test_repair.py::test_beta\"\r\n]"
+            },
+            "repair_loops_pkg/module_alpha.py": {
+              "size": 86,
+              "sha256": "777bdbddf92b609ae8e806e8f1f0e280c00fe8a81fb8ebedd55173222b72901b",
+              "text": "def alpha(x):\r\n    # implementação corrigida para passar o teste\r\n    return x * 2\r\n"
+            },
+            "repair_loops_pkg/module_beta.py": {
+              "size": 90,
+              "sha256": "a744163ce1e268e4f59851254c297fe691facd1071f99c5a11132ce7f073ae31",
+              "text": "from repair_loops_pkg.module_alpha import alpha\r\n\r\ndef beta(x):\r\n    return alpha(x) * 2\r\n"
+            },
+            "repair_loops_pkg/test_repair.py": {
+              "size": 129,
+              "sha256": "ac1be8b7b41e8f9e90d8931caa07dc6c6cbc2cde070aaa330c2653c898b29f3f",
+              "text": "from repair_loops_pkg.module_beta import beta\r\n\r\n\r\ndef test_beta():\r\n    assert beta(2) == 8  # espera alpha(2)=4 então beta=8\r\n"
+            },
+            "repair_loops_pkg/__init__.py": {
+              "size": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            "repair_loops_pkg/__pycache__/module_alpha.cpython-311.pyc": {
+              "size": 324,
+              "sha256": "22c0742ca506b35d5351014ae50f37a73736c1b95f74c394b855e9f7cac60b07",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/module_beta.cpython-311.pyc": {
+              "size": 435,
+              "sha256": "cf2a694d0dd1859c7954f2ea792362f9a9dec703a863f1bee3b5cd53eaee273e",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/test_repair.cpython-311-pytest-9.0.3.pyc": {
+              "size": 1554,
+              "sha256": "1e17baf59d9d7bfe900b3df9c627b8eace262f437ebeddf88e52beecb12c9725",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc": {
+              "size": 193,
+              "sha256": "4d876c10f806a560fc45b13f5f5c736555612426c8f3e71aad496c590add914c",
+              "binary": true
+            }
+          },
+          "workspace_writes": 12,
+          "setup_total": 4,
+          "setup_files": 4,
+          "setup_dirs": 0,
+          "verification_total": 1,
+          "verification_passed": 1,
+          "verification_failed": 0,
+          "verification_critical_failed": 0,
+          "verification_ok": true,
+          "stability_score": 1.0,
+          "semantic_stability_score": 1.0,
+          "iteration_semantic_delta_avg": 0.0,
+          "iteration_semantic_first_last_distance": 0.0,
+          "iteration_semantic_runs_with_pairs": 1,
+          "redundant_tool_calls": 0,
+          "efficiency_factor": 1.0,
+          "plan_stability": 0.0,
+          "critic_usefulness": 0.0,
+          "tool_misuse_rate": 0.0,
+          "hallucination_rate": 0.0,
+          "memory_relevance": 0.0,
+          "self_correction_success": 0.0,
+          "avg_repair_iterations": 0.0,
+          "context_drift_slope": 0.0
+        },
+        "instrumentation": {
+          "plan_stability": 0.0,
+          "critic_usefulness": 0.0,
+          "tool_misuse_rate": 0.0,
+          "hallucination_rate": 0.0,
+          "memory_relevance": 0.0,
+          "self_correction_success": 0.0,
+          "avg_repair_iterations": 0.0,
+          "context_drift_slope": 0.0
+        },
+        "final_score": 0.685,
+        "agent_score": 0.975
+      },
+      "runs": [
+        {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "steps": [
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            }
+          ],
+          "setup_results": [
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/__init__.py",
+              "status": "success",
+              "bytes": 0
+            },
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/module_alpha.py",
+              "status": "success",
+              "bytes": 83
+            },
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/module_beta.py",
+              "status": "success",
+              "bytes": 86
+            },
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/test_repair.py",
+              "status": "success",
+              "bytes": 124
+            }
+          ],
+          "verification_results": [
+            {
+              "name": "pytest",
+              "type": "pytest",
+              "critical": true,
+              "passed": true,
+              "command": [
+                "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                "-I",
+                "-m",
+                "pytest",
+                "-q",
+                "repair_loops_pkg/test_repair.py"
+              ],
+              "returncode": 0,
+              "expected_returncode": 0,
+              "stdout": ".                                                                        [100%]\n1 passed in 0.08s\n",
+              "stderr": ""
+            }
+          ],
+          "verification_summary": {
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "critical_total": 1,
+            "critical_failed": 0,
+            "ok": true
+          },
+          "attempts": [
+            {
+              "attempt": 1,
+              "engine_result": {
+                "status": "success",
+                "output": "Arquivos na pasta '.':\n  - config.json\n  - repair_loops_pkg",
+                "error": null,
+                "raw": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - config.json\n  - repair_loops_pkg",
+                  "error": null
+                }
+              },
+              "modified_files": [],
+              "patches": []
+            },
+            {
+              "attempt": 1,
+              "engine_result": {
+                "status": "simulated",
+                "note": "heuristic patch applied (return a + b)"
+              },
+              "verification_results": [
+                {
+                  "name": "pytest",
+                  "type": "pytest",
+                  "critical": true,
+                  "passed": true,
+                  "command": [
+                    "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                    "-I",
+                    "-m",
+                    "pytest",
+                    "-q",
+                    "repair_loops_pkg/test_repair.py"
+                  ],
+                  "returncode": 0,
+                  "expected_returncode": 0,
+                  "stdout": ".                                                                        [100%]\n1 passed in 0.08s\n",
+                  "stderr": ""
+                }
+              ],
+              "verification_summary": {
+                "total": 1,
+                "passed": 1,
+                "failed": 0,
+                "critical_total": 1,
+                "critical_failed": 0,
+                "ok": true
+              },
+              "modified_files": [],
+              "patches": []
+            }
+          ],
+          "repair": {
+            "attempts": [
+              {
+                "attempt": 1,
+                "engine_result": {
+                  "status": "success",
+                  "output": "Arquivos na pasta '.':\n  - config.json\n  - repair_loops_pkg",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Arquivos na pasta '.':\n  - config.json\n  - repair_loops_pkg",
+                    "error": null
+                  }
+                },
+                "modified_files": [],
+                "patches": []
+              },
+              {
+                "attempt": 1,
+                "engine_result": {
+                  "status": "simulated",
+                  "note": "heuristic patch applied (return a + b)"
+                },
+                "verification_results": [
+                  {
+                    "name": "pytest",
+                    "type": "pytest",
+                    "critical": true,
+                    "passed": true,
+                    "command": [
+                      "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                      "-I",
+                      "-m",
+                      "pytest",
+                      "-q",
+                      "repair_loops_pkg/test_repair.py"
+                    ],
+                    "returncode": 0,
+                    "expected_returncode": 0,
+                    "stdout": ".                                                                        [100%]\n1 passed in 0.08s\n",
+                    "stderr": ""
+                  }
+                ],
+                "verification_summary": {
+                  "total": 1,
+                  "passed": 1,
+                  "failed": 0,
+                  "critical_total": 1,
+                  "critical_failed": 0,
+                  "ok": true
+                },
+                "modified_files": [],
+                "patches": []
+              }
+            ],
+            "success": true
+          },
+          "run": 1,
+          "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_n4teys20",
+          "workspace_files": [
+            ".pytest_cache/.gitignore",
+            ".pytest_cache/CACHEDIR.TAG",
+            ".pytest_cache/README.md",
+            ".pytest_cache/v/cache/nodeids",
+            "config.json",
+            "repair_loops_pkg/__init__.py",
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/module_alpha.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/module_beta.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/test_repair.cpython-311-pytest-9.0.3.pyc",
+            "repair_loops_pkg/module_alpha.py",
+            "repair_loops_pkg/module_beta.py",
+            "repair_loops_pkg/test_repair.py"
+          ],
+          "workspace_artifacts": {
+            "config.json": {
+              "size": 1669,
+              "sha256": "0aeecbc29d67f708a8233c51cab7b92bfe0568712d44424be7432cdfd8f44797",
+              "text": "{\r\n    \"app_name\": \"Assistente Local V2\",\r\n    \"version\": \"2.0.0\",\r\n    \"workspace_path\": \"\",\r\n    \"project_path\": \"\",\r\n    \"data_paths\": {\r\n        \"memory_dir\": \"data\",\r\n        \"vectors_dir\": \"data/vectors\",\r\n        \"logs_dir\": \"data/logs\",\r\n        \"state_dir\": \"data/state\",\r\n        \"cache_dir\": \"data/cache\",\r\n        \"monitor_dir\": \"data/monitor\",\r\n        \"screens_dir\": \"data/monitor/screens\"\r\n    },\r\n    \"memory\": {\r\n        \"memory_file\": \"data/memory.json\",\r\n        \"max_recent_memories\": 20,\r\n        \"max_retrieved_memories\": 8\r\n    },\r\n    \"vectors\": {\r\n        \"chunks_file\": \"data/vectors/chunks.jsonl\",\r\n        \"metadata_file\": \"data/vectors/metadata.json\",\r\n        \"index_state_file\": \"data/vectors/index_state.json\",\r\n        \"top_k\": 8,\r\n        \"min_score\": 0.15\r\n    },\r\n    \"embeddings\": {\r\n        \"vector_size\": 256,\r\n        \"use_l2_normalization\": true\r\n    },\r\n    \"logging\": {\r\n        \"events_file\": \"data/logs/events.jsonl\",\r\n        \"errors_file\": \"data/logs/errors.jsonl\",\r\n        \"level\": \"INFO\"\r\n    },\r\n    \"llm\": {\r\n        \"base_url\": \"http://localhost:11434/api/generate\",\r\n        \"fast_model\": \"phi3:mini\",\r\n        \"default_model\": \"qwen2.5:3b\",\r\n        \"power_model\": \"qwen2.5-coder:7b\",\n        \"fallback_model\": \"phi3:mini\",\r\n        \"temperature\": 0.3,\r\n        \"timeout\": 15,\r\n        \"cache_ttl\": 120,\r\n        \"max_retries\": 0,\r\n        \"retry_delay\": 0.2,\r\n        \"max_context_chunks\": 6\r\n    },\r\n    \"features\": {\r\n        \"auto_index_on_start\": false,\r\n        \"auto_learn_memory\": true,\r\n        \"enable_action_execution\": true,\r\n        \"enable_vision\": true,\r\n        \"enable_web_search\": true\r\n    }\r\n}\n"
+            },
+            ".pytest_cache/.gitignore": {
+              "size": 39,
+              "sha256": "e7c6bb30148cf667606dcd63e7ca77acaa3cfb0c8303bf09e6419e1e1669dc6d",
+              "text": "# Created by pytest automatically.\r\n*\r\n"
+            },
+            ".pytest_cache/CACHEDIR.TAG": {
+              "size": 191,
+              "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+              "text": "Signature: 8a477f597d28d172789f06886806bc55\n# This file is a cache directory tag created by pytest.\n# For information about cache directory tags, see:\n#\thttps://bford.info/cachedir/spec.html\n"
+            },
+            ".pytest_cache/README.md": {
+              "size": 310,
+              "sha256": "420e808d79a6c25d3cda0af33bc4782314a14949866682c68ce8149e89b66b70",
+              "text": "# pytest cache directory #\r\n\r\nThis directory contains data from the pytest's cache plugin,\r\nwhich provides the `--lf` and `--ff` options, as well as the `cache` fixture.\r\n\r\n**Do not** commit this to version control.\r\n\r\nSee [the docs](https://docs.pytest.org/en/stable/how-to/cache.html) for more information.\r\n"
+            },
+            ".pytest_cache/v/cache/nodeids": {
+              "size": 52,
+              "sha256": "540d88643d7ba519e2959f787dcfc97a58e3d58c460114cf1b3ac6f1961c05f4",
+              "text": "[\r\n  \"repair_loops_pkg/test_repair.py::test_beta\"\r\n]"
+            },
+            "repair_loops_pkg/module_alpha.py": {
+              "size": 86,
+              "sha256": "777bdbddf92b609ae8e806e8f1f0e280c00fe8a81fb8ebedd55173222b72901b",
+              "text": "def alpha(x):\r\n    # implementação corrigida para passar o teste\r\n    return x * 2\r\n"
+            },
+            "repair_loops_pkg/module_beta.py": {
+              "size": 90,
+              "sha256": "a744163ce1e268e4f59851254c297fe691facd1071f99c5a11132ce7f073ae31",
+              "text": "from repair_loops_pkg.module_alpha import alpha\r\n\r\ndef beta(x):\r\n    return alpha(x) * 2\r\n"
+            },
+            "repair_loops_pkg/test_repair.py": {
+              "size": 129,
+              "sha256": "ac1be8b7b41e8f9e90d8931caa07dc6c6cbc2cde070aaa330c2653c898b29f3f",
+              "text": "from repair_loops_pkg.module_beta import beta\r\n\r\n\r\ndef test_beta():\r\n    assert beta(2) == 8  # espera alpha(2)=4 então beta=8\r\n"
+            },
+            "repair_loops_pkg/__init__.py": {
+              "size": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            "repair_loops_pkg/__pycache__/module_alpha.cpython-311.pyc": {
+              "size": 324,
+              "sha256": "22c0742ca506b35d5351014ae50f37a73736c1b95f74c394b855e9f7cac60b07",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/module_beta.cpython-311.pyc": {
+              "size": 435,
+              "sha256": "cf2a694d0dd1859c7954f2ea792362f9a9dec703a863f1bee3b5cd53eaee273e",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/test_repair.cpython-311-pytest-9.0.3.pyc": {
+              "size": 1554,
+              "sha256": "1e17baf59d9d7bfe900b3df9c627b8eace262f437ebeddf88e52beecb12c9725",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc": {
+              "size": 193,
+              "sha256": "4d876c10f806a560fc45b13f5f5c736555612426c8f3e71aad496c590add914c",
+              "binary": true
+            }
+          },
+          "instrumentation_trace": "D:\\IA\\benchmark\\results\\c1acbc2c113546aa9a5674a3157f2fdd.json",
+          "instrumentation_metrics": {
+            "plan_stability": 0.0,
+            "critic_usefulness": 0.0,
+            "tool_misuse_rate": 0.0,
+            "hallucination_rate": 0.0,
+            "memory_relevance": 0.0,
+            "self_correction_success": 0.0,
+            "avg_repair_iterations": 0.0,
+            "context_drift_slope": 0.0
+          }
+        }
+      ]
+    }
+  ]
+}

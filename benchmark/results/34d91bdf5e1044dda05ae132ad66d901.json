@@ -1,0 +1,23 @@
+{
+  "run_id": "34d91bdf5e1044dda05ae132ad66d901",
+  "scenario_id": "artifact",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\pytest-of-Juven\\pytest-60\\test_runner_validates_workspac0\\ia_benchmark_ner2tjq6"
+  },
+  "trace": [],
+  "metrics": {
+    "plan_stability": 1.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 0.0017774999996618135,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\pytest-of-Juven\\pytest-60\\test_runner_validates_workspac0\\ia_benchmark_ner2tjq6",
+  "started_at": "2026-05-26T16:27:39.744213+00:00",
+  "ended_at": "2026-05-26T16:27:39.816270+00:00"
+}

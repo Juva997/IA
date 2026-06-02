@@ -1,0 +1,23 @@
+{
+  "run_id": "6e264bb06d3b4205b66adf2d052d21e4",
+  "scenario_id": "memory_sequence",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\pytest-of-Juven\\pytest-2\\test_v3_runner_sequences_share0\\ia_benchmark__51n5ewn"
+  },
+  "trace": [],
+  "metrics": {
+    "plan_stability": 1.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 0.9326729000003979,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\pytest-of-Juven\\pytest-2\\test_v3_runner_sequences_share0\\ia_benchmark__51n5ewn",
+  "started_at": "2026-05-25T23:33:58.297779+00:00",
+  "ended_at": "2026-05-25T23:33:59.212943+00:00"
+}

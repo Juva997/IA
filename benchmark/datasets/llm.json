@@ -1,0 +1,185 @@
+[
+  {
+    "name": "llm_offline_chat_greeting",
+    "type": "qa",
+    "input": "oi",
+    "expected": "ajudar",
+    "tags": ["llm", "optional", "offline"]
+  },
+  {
+    "name": "llm_offline_reasoning_8_queens",
+    "type": "qa",
+    "input": "como resolver o problema das 8 rainhas no xadrez?",
+    "expected": "backtracking",
+    "must_contain_any": ["rainhas", "backtracking"],
+    "tags": ["llm", "optional", "offline"]
+  },
+  {
+    "name": "llm_offline_json_response",
+    "type": "format",
+    "input": "Responda somente em JSON valido: nome=Joao, idade=20",
+    "format": "json",
+    "must_contain": ["Joao"],
+    "tags": ["llm", "optional", "offline"]
+  },
+  {
+    "name": "llm_offline_markdown_table",
+    "type": "format",
+    "input": "Responda em tabela markdown com nome=Joao e idade=20",
+    "format": "table",
+    "must_contain": ["Joao"],
+    "tags": ["llm", "optional", "offline"]
+  },
+  {
+    "name": "llm_offline_clarify_ambiguous",
+    "type": "behavior",
+    "input": "faz isso pra mim",
+    "expected": "clarify",
+    "tags": ["llm", "optional", "offline"]
+  },
+  {
+    "name": "llm_offline_logic_transitive",
+    "type": "classification",
+    "input": "Se todos A sao B e todos B sao C, A e C?",
+    "expected": "sim",
+    "tags": ["llm", "optional", "offline"]
+  },
+  {
+    "name": "llm_quality_8_queens_rubric",
+    "type": "qa",
+    "input": "como resolver o problema das 8 rainhas no xadrez?",
+    "expected": "backtracking",
+    "semantic_expectation": {
+      "must_contain_concepts": ["backtracking", "rainhas"],
+      "must_not_contain_concepts": ["aleatorio sem validar"]
+    },
+    "rubric": {
+      "criteria": {
+        "core_algorithm": {"weight": 2, "must_contain": ["backtracking"]},
+        "constraints": {"weight": 2, "must_contain_any": [["coluna", "diagonal"]]},
+        "task_relevance": {"weight": 1, "must_contain": ["rainhas"]}
+      }
+    },
+    "min_rubric_score": 0.75,
+    "tags": ["llm", "optional", "offline", "rubric"]
+  },
+  {
+    "name": "llm_quality_clarification_rubric",
+    "type": "behavior",
+    "input": "faz isso pra mim",
+    "expected": "clarify",
+    "semantic_expectation": {
+      "must_contain_concepts": ["detalhes"],
+      "max_words": 20
+    },
+    "rubric": {
+      "criteria": {
+        "asks_for_detail": {"weight": 2, "must_contain_any": [["detalhes", "?"]]},
+        "concise": {"weight": 1, "max_words": 20}
+      }
+    },
+    "min_rubric_score": 0.75,
+    "tags": ["llm", "optional", "offline", "rubric"]
+  },
+  {
+    "name": "llm_external_ollama_exact_token",
+    "type": "qa",
+    "input": "Responda exatamente com o texto OLLAMA_OK_2026 e nada mais.",
+    "expected": "OLLAMA_OK_2026",
+    "must_contain": ["OLLAMA_OK_2026"],
+    "requires_external_llm": true,
+    "tags": ["llm", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "llm_external_ollama_short_reasoning",
+    "type": "qa",
+    "input": "Em uma frase curta, diga que logs estruturados ajudam debugging. Inclua a palavra debugging.",
+    "expected": "debugging",
+    "must_contain": ["debugging"],
+    "requires_external_llm": true,
+    "tags": ["llm", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "llm_external_ollama_route_token",
+    "type": "qa",
+    "input": "Responda exatamente com o texto ROUTEOK2026 e nada mais.",
+    "expected": "ROUTEOK2026",
+    "must_contain": ["ROUTEOK2026"],
+    "requires_external_llm": true,
+    "tags": ["llm", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "llm_external_ollama_pytest_word",
+    "type": "qa",
+    "input": "Diga uma frase curta contendo exatamente a palavra pytest.",
+    "expected": "pytest",
+    "must_contain": ["pytest"],
+    "requires_external_llm": true,
+    "tags": ["llm", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "llm_external_ollama_memory_word",
+    "type": "qa",
+    "input": "Responda exatamente com o texto MEMORIA_OK_2026 e nada mais.",
+    "expected": "MEMORIA_OK_2026",
+    "must_contain": ["MEMORIA_OK_2026"],
+    "requires_external_llm": true,
+    "tags": ["llm", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "llm_external_ollama_sandbox_token",
+    "type": "qa",
+    "input": "Responda exatamente com o texto SANDBOX_OK_2026 e nada mais.",
+    "expected": "SANDBOX_OK_2026",
+    "must_contain": ["SANDBOX_OK_2026"],
+    "requires_external_llm": true,
+    "tags": ["llm", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "llm_external_ollama_latency_word",
+    "type": "qa",
+    "input": "Responda exatamente com o texto LATENCIA_OK_2026 e nada mais.",
+    "expected": "LATENCIA_OK_2026",
+    "must_contain": ["LATENCIA_OK_2026"],
+    "requires_external_llm": true,
+    "tags": ["llm", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "llm_external_ollama_json_token",
+    "type": "qa",
+    "input": "Responda exatamente com o texto JSON_OK_2026 e nada mais.",
+    "expected": "JSON_OK_2026",
+    "must_contain": ["JSON_OK_2026"],
+    "requires_external_llm": true,
+    "tags": ["llm", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "llm_external_judged_debugging_quality",
+    "type": "qa",
+    "input": "Em duas frases curtas, explique por que logs estruturados ajudam debugging.",
+    "expected": "logs",
+    "must_contain": ["logs"],
+    "semantic_expectation": {
+      "must_contain_concepts": ["logs"],
+      "must_contain_any_concepts": ["debugging", "erros", "falhas"],
+      "min_words": 6
+    },
+    "rubric": {
+      "llm_judge": true,
+      "criteria": {
+        "accuracy": {
+          "weight": 2,
+          "must_contain": ["logs"],
+          "must_contain_any": ["debugging", "erros", "falhas"]
+        },
+        "usefulness": {"weight": 1, "must_contain_any": ["erro", "problema", "diagnosticar", "rastrear"]},
+        "concise": {"weight": 1, "max_words": 80}
+      }
+    },
+    "llm_judge": true,
+    "min_rubric_score": 0.5,
+    "min_judge_score": 0.5,
+    "requires_external_llm": true,
+    "tags": ["llm", "optional", "external_llm", "ollama", "judge", "rubric"]
+  }
+]

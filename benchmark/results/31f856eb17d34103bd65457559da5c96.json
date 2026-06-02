@@ -1,0 +1,288 @@
+{
+  "run_id": "31f856eb17d34103bd65457559da5c96",
+  "scenario_id": "tool_file_roundtrip",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_p13szzjr"
+  },
+  "trace": [
+    {
+      "run_id": "31f856eb17d34103bd65457559da5c96",
+      "scenario_id": "tool_file_roundtrip",
+      "step_index": 0,
+      "timestamp": "2026-05-26T01:46:58.406978+00:00",
+      "planned_action": {
+        "action": "create_folder",
+        "data": {
+          "path": "projeto"
+        }
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "pasta criada: projeto",
+        "mutations": [
+          {
+            "type": "filesystem",
+            "operation": "mkdir",
+            "path": "projeto",
+            "existed": false
+          }
+        ],
+        "side_effects": [
+          {
+            "type": "filesystem",
+            "operation": "create_folder",
+            "path": "projeto"
+          }
+        ],
+        "replay_safe": false,
+        "error": null,
+        "schema": "tool_result_v1",
+        "success": true,
+        "action": "create_folder",
+        "inferred_data": [],
+        "warnings": [],
+        "deterministic": true,
+        "metadata": {},
+        "input_hash": "b5512f309906e331404a22074397e73c",
+        "output_hash": "57afe76564246fd026e760c6bbd95ffa",
+        "execution_time_ms": 6.98,
+        "tool_calls": [
+          {
+            "action": "create_folder",
+            "args": {
+              "path": "projeto"
+            },
+            "result": "pasta criada: projeto",
+            "error": null,
+            "status": "success",
+            "duration_ms": 6.98,
+            "tool_call_id": "tool_call_0001",
+            "correlation_id": "execution_cfe0e78bae014359"
+          }
+        ],
+        "retry_count": 0,
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "repair_iteration": null,
+        "hallucination_score": 0.0
+      },
+      "tool_calls": [
+        {
+          "action": "create_folder",
+          "args": {
+            "path": "projeto"
+          },
+          "result": "pasta criada: projeto",
+          "error": null,
+          "status": "success",
+          "duration_ms": 6.98,
+          "tool_call_id": "tool_call_0001",
+          "correlation_id": "execution_cfe0e78bae014359"
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "31f856eb17d34103bd65457559da5c96",
+      "scenario_id": "tool_file_roundtrip",
+      "step_index": 1,
+      "timestamp": "2026-05-26T01:46:58.490754+00:00",
+      "planned_action": {
+        "action": "write_file",
+        "data": {
+          "path": "projeto/resultado.txt",
+          "content": "ok"
+        }
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "arquivo criado: projeto/resultado.txt",
+        "mutations": [
+          {
+            "type": "filesystem",
+            "operation": "write",
+            "path": "projeto/resultado.txt",
+            "existed": false,
+            "bytes_written": 2
+          }
+        ],
+        "inferred_data": [],
+        "side_effects": [
+          {
+            "type": "filesystem",
+            "operation": "write_file",
+            "path": "projeto/resultado.txt"
+          }
+        ],
+        "warnings": [],
+        "replay_safe": false,
+        "error": null,
+        "schema": "tool_result_v1",
+        "success": true,
+        "action": "write_file",
+        "deterministic": true,
+        "metadata": {},
+        "input_hash": "02f477ea0818e3d8da9fc86c627e7abc",
+        "output_hash": "e089826cdbdd7413e6cde0eda3543d10",
+        "execution_time_ms": 10.97,
+        "tool_calls": [
+          {
+            "action": "write_file",
+            "args": {
+              "path": "projeto/resultado.txt",
+              "content": "ok"
+            },
+            "result": "arquivo criado: projeto/resultado.txt",
+            "error": null,
+            "status": "success",
+            "duration_ms": 10.97,
+            "tool_call_id": "tool_call_0002",
+            "correlation_id": "execution_cfe0e78bae014359"
+          }
+        ],
+        "retry_count": 0,
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "repair_iteration": null,
+        "hallucination_score": 0.0
+      },
+      "tool_calls": [
+        {
+          "action": "write_file",
+          "args": {
+            "path": "projeto/resultado.txt",
+            "content": "ok"
+          },
+          "result": "arquivo criado: projeto/resultado.txt",
+          "error": null,
+          "status": "success",
+          "duration_ms": 10.97,
+          "tool_call_id": "tool_call_0002",
+          "correlation_id": "execution_cfe0e78bae014359"
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "31f856eb17d34103bd65457559da5c96",
+      "scenario_id": "tool_file_roundtrip",
+      "step_index": 2,
+      "timestamp": "2026-05-26T01:46:58.532642+00:00",
+      "planned_action": {
+        "action": "read_file",
+        "data": {
+          "path": "projeto/resultado.txt"
+        }
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "ok",
+        "side_effects": [
+          {
+            "type": "filesystem",
+            "operation": "read_file",
+            "path": "projeto/resultado.txt"
+          }
+        ],
+        "replay_safe": true,
+        "error": null,
+        "schema": "tool_result_v1",
+        "success": true,
+        "action": "read_file",
+        "mutations": [],
+        "inferred_data": [],
+        "warnings": [],
+        "deterministic": true,
+        "metadata": {},
+        "input_hash": "30a06a586273e63cedeaa8973943879c",
+        "output_hash": "c48b5b1a9776c84602de2306d7903a72",
+        "execution_time_ms": 6.98,
+        "tool_calls": [
+          {
+            "action": "read_file",
+            "args": {
+              "path": "projeto/resultado.txt"
+            },
+            "result": "ok",
+            "error": null,
+            "status": "success",
+            "duration_ms": 6.98,
+            "tool_call_id": "tool_call_0003",
+            "correlation_id": "execution_cfe0e78bae014359"
+          }
+        ],
+        "retry_count": 0,
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "repair_iteration": null,
+        "hallucination_score": 0.0
+      },
+      "tool_calls": [
+        {
+          "action": "read_file",
+          "args": {
+            "path": "projeto/resultado.txt"
+          },
+          "result": "ok",
+          "error": null,
+          "status": "success",
+          "duration_ms": 6.98,
+          "tool_call_id": "tool_call_0003",
+          "correlation_id": "execution_cfe0e78bae014359"
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    }
+  ],
+  "metrics": {
+    "plan_stability": 0.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 0.5277865000025486,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_p13szzjr",
+  "started_at": "2026-05-26T01:46:58.118750+00:00",
+  "ended_at": "2026-05-26T01:46:58.781976+00:00"
+}

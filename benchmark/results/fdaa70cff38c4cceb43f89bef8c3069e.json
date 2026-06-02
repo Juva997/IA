@@ -1,0 +1,3983 @@
+{
+  "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+  "scenario_id": "multi_repair_loops_50",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_b1obz76p"
+  },
+  "trace": [
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 0,
+      "timestamp": "2026-05-13T00:42:53.620914+00:00",
+      "planned_action": {
+        "input": "Passo 1: Rode testes e registre falhas iniciais."
+      },
+      "executed_action": {
+        "status": "error",
+        "output": "unable_to_plan_action",
+        "error": "unable_to_plan_action",
+        "raw": {
+          "status": "error",
+          "error": "unable_to_plan_action",
+          "output": null,
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "unable_to_plan_action",
+              "args": {
+                "input": "Passo 1: Rode testes e registre falhas iniciais."
+              },
+              "result": null,
+              "error": "unable_to_plan_action",
+              "status": "error",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "unable_to_plan_action",
+            "args": {
+              "input": "Passo 1: Rode testes e registre falhas iniciais."
+            },
+            "result": null,
+            "error": "unable_to_plan_action",
+            "status": "error",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "unable_to_plan_action",
+          "args": {
+            "input": "Passo 1: Rode testes e registre falhas iniciais."
+          },
+          "result": null,
+          "error": "unable_to_plan_action",
+          "status": "error",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 1,
+      "timestamp": "2026-05-13T00:42:54.262696+00:00",
+      "planned_action": {
+        "input": "Passo 2: Localize primeira falha em module_alpha.py."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 2: Localize primeira falha em module_alpha.py."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 2: Localize primeira falha em module_alpha.py."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 2: Localize primeira falha em module_alpha.py."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 2,
+      "timestamp": "2026-05-13T00:42:54.951770+00:00",
+      "planned_action": {
+        "input": "Passo 3: Aplique patch mínimo para passar um teste unitário."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 3: Aplique patch mínimo para passar um teste unitário."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 3: Aplique patch mínimo para passar um teste unitário."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 3: Aplique patch mínimo para passar um teste unitário."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 3,
+      "timestamp": "2026-05-13T00:42:55.600566+00:00",
+      "planned_action": {
+        "input": "Passo 4: Reexecute testes; anote regressões novas."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 4: Reexecute testes; anote regressões novas."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 4: Reexecute testes; anote regressões novas."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 4: Reexecute testes; anote regressões novas."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 4,
+      "timestamp": "2026-05-13T00:42:56.871106+00:00",
+      "planned_action": {
+        "input": "Passo 5: Se falha persistir, gere patch alternativo (segunda tentativa)."
+      },
+      "executed_action": {
+        "status": "error",
+        "output": "unable_to_plan_action",
+        "error": "unable_to_plan_action",
+        "raw": {
+          "status": "error",
+          "error": "unable_to_plan_action",
+          "output": null,
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "unable_to_plan_action",
+              "args": {
+                "input": "Passo 5: Se falha persistir, gere patch alternativo (segunda tentativa)."
+              },
+              "result": null,
+              "error": "unable_to_plan_action",
+              "status": "error",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "unable_to_plan_action",
+            "args": {
+              "input": "Passo 5: Se falha persistir, gere patch alternativo (segunda tentativa)."
+            },
+            "result": null,
+            "error": "unable_to_plan_action",
+            "status": "error",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "unable_to_plan_action",
+          "args": {
+            "input": "Passo 5: Se falha persistir, gere patch alternativo (segunda tentativa)."
+          },
+          "result": null,
+          "error": "unable_to_plan_action",
+          "status": "error",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 5,
+      "timestamp": "2026-05-13T00:42:58.384002+00:00",
+      "planned_action": {
+        "input": "Passo 6: Documente razão de cada tentativa de repair."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 6: Documente razão de cada tentativa de repair."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 6: Documente razão de cada tentativa de repair."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 6: Documente razão de cada tentativa de repair."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 6,
+      "timestamp": "2026-05-13T00:42:59.480388+00:00",
+      "planned_action": {
+        "input": "Passo 7: Ao aplicar patch, rode subset de integration tests."
+      },
+      "executed_action": {
+        "status": "error",
+        "output": "unable_to_plan_action",
+        "error": "unable_to_plan_action",
+        "raw": {
+          "status": "error",
+          "error": "unable_to_plan_action",
+          "output": null,
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "unable_to_plan_action",
+              "args": {
+                "input": "Passo 7: Ao aplicar patch, rode subset de integration tests."
+              },
+              "result": null,
+              "error": "unable_to_plan_action",
+              "status": "error",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "unable_to_plan_action",
+            "args": {
+              "input": "Passo 7: Ao aplicar patch, rode subset de integration tests."
+            },
+            "result": null,
+            "error": "unable_to_plan_action",
+            "status": "error",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "unable_to_plan_action",
+          "args": {
+            "input": "Passo 7: Ao aplicar patch, rode subset de integration tests."
+          },
+          "result": null,
+          "error": "unable_to_plan_action",
+          "status": "error",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 7,
+      "timestamp": "2026-05-13T00:43:00.066528+00:00",
+      "planned_action": {
+        "input": "Passo 8: Se patch causa regressão, revert e tente abordagem B."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 8: Se patch causa regressão, revert e tente abordagem B."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 8: Se patch causa regressão, revert e tente abordagem B."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 8: Se patch causa regressão, revert e tente abordagem B."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 8,
+      "timestamp": "2026-05-13T00:43:00.646839+00:00",
+      "planned_action": {
+        "input": "Passo 9: Em caso de dependência quebrada, ajuste imports e contratos."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 9: Em caso de dependência quebrada, ajuste imports e contratos."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 9: Em caso de dependência quebrada, ajuste imports e contratos."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 9: Em caso de dependência quebrada, ajuste imports e contratos."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 9,
+      "timestamp": "2026-05-13T00:43:01.051959+00:00",
+      "planned_action": {
+        "input": "Passo 10: Instrua agent a anotar retry_count e repair_iteration."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 10: Instrua agent a anotar retry_count e repair_iteration."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 10: Instrua agent a anotar retry_count e repair_iteration."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 10: Instrua agent a anotar retry_count e repair_iteration."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 10,
+      "timestamp": "2026-05-13T00:43:02.576805+00:00",
+      "planned_action": {
+        "input": "Passo 11: Crie teste adicional que cobre caminho consertado."
+      },
+      "executed_action": {
+        "status": "error",
+        "output": "unable_to_plan_action",
+        "error": "unable_to_plan_action",
+        "raw": {
+          "status": "error",
+          "error": "unable_to_plan_action",
+          "output": null,
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "unable_to_plan_action",
+              "args": {
+                "input": "Passo 11: Crie teste adicional que cobre caminho consertado."
+              },
+              "result": null,
+              "error": "unable_to_plan_action",
+              "status": "error",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "unable_to_plan_action",
+            "args": {
+              "input": "Passo 11: Crie teste adicional que cobre caminho consertado."
+            },
+            "result": null,
+            "error": "unable_to_plan_action",
+            "status": "error",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "unable_to_plan_action",
+          "args": {
+            "input": "Passo 11: Crie teste adicional que cobre caminho consertado."
+          },
+          "result": null,
+          "error": "unable_to_plan_action",
+          "status": "error",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 11,
+      "timestamp": "2026-05-13T00:43:03.385556+00:00",
+      "planned_action": {
+        "input": "Passo 12: Refaça pequenas refactors para reduzir hotspots."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 12: Refaça pequenas refactors para reduzir hotspots."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 12: Refaça pequenas refactors para reduzir hotspots."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 12: Refaça pequenas refactors para reduzir hotspots."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 12,
+      "timestamp": "2026-05-13T00:43:04.345920+00:00",
+      "planned_action": {
+        "input": "Passo 13: Validar que cada repair attempt reduz número de falhas."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 13: Validar que cada repair attempt reduz número de falhas."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 13: Validar que cada repair attempt reduz número de falhas."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 13: Validar que cada repair attempt reduz número de falhas."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 13,
+      "timestamp": "2026-05-13T00:43:05.710742+00:00",
+      "planned_action": {
+        "input": "Passo 14: Para falhas não triviais, abrir investigação e isolar repro."
+      },
+      "executed_action": {
+        "status": "error",
+        "output": "unable_to_plan_action",
+        "error": "unable_to_plan_action",
+        "raw": {
+          "status": "error",
+          "error": "unable_to_plan_action",
+          "output": null,
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "unable_to_plan_action",
+              "args": {
+                "input": "Passo 14: Para falhas não triviais, abrir investigação e isolar repro."
+              },
+              "result": null,
+              "error": "unable_to_plan_action",
+              "status": "error",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "unable_to_plan_action",
+            "args": {
+              "input": "Passo 14: Para falhas não triviais, abrir investigação e isolar repro."
+            },
+            "result": null,
+            "error": "unable_to_plan_action",
+            "status": "error",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "unable_to_plan_action",
+          "args": {
+            "input": "Passo 14: Para falhas não triviais, abrir investigação e isolar repro."
+          },
+          "result": null,
+          "error": "unable_to_plan_action",
+          "status": "error",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 14,
+      "timestamp": "2026-05-13T00:43:06.477496+00:00",
+      "planned_action": {
+        "input": "Passo 15: Realizar patch em múltiplos arquivos quando necessário."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 15: Realizar patch em múltiplos arquivos quando necessário."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 15: Realizar patch em múltiplos arquivos quando necessário."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 15: Realizar patch em múltiplos arquivos quando necessário."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 15,
+      "timestamp": "2026-05-13T00:43:06.987200+00:00",
+      "planned_action": {
+        "input": "Passo 16: Automatizar aplicação de patch e testes subsequentes."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 16: Automatizar aplicação de patch e testes subsequentes."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 16: Automatizar aplicação de patch e testes subsequentes."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 16: Automatizar aplicação de patch e testes subsequentes."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 16,
+      "timestamp": "2026-05-13T00:43:07.731215+00:00",
+      "planned_action": {
+        "input": "Passo 17: Medir impacto em tempo de execução por attempt."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 17: Medir impacto em tempo de execução por attempt."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 17: Medir impacto em tempo de execução por attempt."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 17: Medir impacto em tempo de execução por attempt."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 17,
+      "timestamp": "2026-05-13T00:43:08.368765+00:00",
+      "planned_action": {
+        "input": "Passo 18: Se attempts excederem limite, sinalizar necessidade de intervenção humana."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 18: Se attempts excederem limite, sinalizar necessidade de intervenção humana."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 18: Se attempts excederem limite, sinalizar necessidade de intervenção humana."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 18: Se attempts excederem limite, sinalizar necessidade de intervenção humana."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 18,
+      "timestamp": "2026-05-13T00:43:09.120121+00:00",
+      "planned_action": {
+        "input": "Passo 19: Adicionar logs estruturados para cada patch aplicado."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 19: Adicionar logs estruturados para cada patch aplicado."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 19: Adicionar logs estruturados para cada patch aplicado."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 19: Adicionar logs estruturados para cada patch aplicado."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 19,
+      "timestamp": "2026-05-13T00:43:09.711158+00:00",
+      "planned_action": {
+        "input": "Passo 20: Reavaliar cobertura de testes após cada repair."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 20: Reavaliar cobertura de testes após cada repair."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 20: Reavaliar cobertura de testes após cada repair."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 20: Reavaliar cobertura de testes após cada repair."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 20,
+      "timestamp": "2026-05-13T00:43:10.696542+00:00",
+      "planned_action": {
+        "input": "Passo 21: Tentar simplificar solução para limitar surface change."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 21: Tentar simplificar solução para limitar surface change."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 21: Tentar simplificar solução para limitar surface change."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 21: Tentar simplificar solução para limitar surface change."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 21,
+      "timestamp": "2026-05-13T00:43:11.113964+00:00",
+      "planned_action": {
+        "input": "Passo 22: Reexamine interação entre módulos após patches."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 22: Reexamine interação entre módulos após patches."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 22: Reexamine interação entre módulos após patches."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 22: Reexamine interação entre módulos após patches."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 22,
+      "timestamp": "2026-05-13T00:43:11.786927+00:00",
+      "planned_action": {
+        "input": "Passo 23: Verificar efeitos colaterais em integração externa."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 23: Verificar efeitos colaterais em integração externa."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 23: Verificar efeitos colaterais em integração externa."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 23: Verificar efeitos colaterais em integração externa."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 23,
+      "timestamp": "2026-05-13T00:43:13.416717+00:00",
+      "planned_action": {
+        "input": "Passo 24: Garantir que each repair possui test associado."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 24: Garantir que each repair possui test associado."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 24: Garantir que each repair possui test associado."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 24: Garantir que each repair possui test associado."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 24,
+      "timestamp": "2026-05-13T00:43:14.130879+00:00",
+      "planned_action": {
+        "input": "Passo 25: Consolidar patches relacionados em um commit coerente."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 25: Consolidar patches relacionados em um commit coerente."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 25: Consolidar patches relacionados em um commit coerente."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 25: Consolidar patches relacionados em um commit coerente."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 25,
+      "timestamp": "2026-05-13T00:43:15.385880+00:00",
+      "planned_action": {
+        "input": "Passo 26: Executar suíte completa e medir regressões residuais."
+      },
+      "executed_action": {
+        "status": "error",
+        "output": "unable_to_plan_action",
+        "error": "unable_to_plan_action",
+        "raw": {
+          "status": "error",
+          "error": "unable_to_plan_action",
+          "output": null,
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "unable_to_plan_action",
+              "args": {
+                "input": "Passo 26: Executar suíte completa e medir regressões residuais."
+              },
+              "result": null,
+              "error": "unable_to_plan_action",
+              "status": "error",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "unable_to_plan_action",
+            "args": {
+              "input": "Passo 26: Executar suíte completa e medir regressões residuais."
+            },
+            "result": null,
+            "error": "unable_to_plan_action",
+            "status": "error",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "unable_to_plan_action",
+          "args": {
+            "input": "Passo 26: Executar suíte completa e medir regressões residuais."
+          },
+          "result": null,
+          "error": "unable_to_plan_action",
+          "status": "error",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 26,
+      "timestamp": "2026-05-13T00:43:15.977856+00:00",
+      "planned_action": {
+        "input": "Passo 27: Validar idempotência de patches quando re-aplicados."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 27: Validar idempotência de patches quando re-aplicados."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 27: Validar idempotência de patches quando re-aplicados."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 27: Validar idempotência de patches quando re-aplicados."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 27,
+      "timestamp": "2026-05-13T00:43:16.935471+00:00",
+      "planned_action": {
+        "input": "Passo 28: Se patches interferirem, propor nova estratégia de decomposition."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 28: Se patches interferirem, propor nova estratégia de decomposition."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 28: Se patches interferirem, propor nova estratégia de decomposition."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 28: Se patches interferirem, propor nova estratégia de decomposition."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 28,
+      "timestamp": "2026-05-13T00:43:17.644399+00:00",
+      "planned_action": {
+        "input": "Passo 29: Reescrever testes frágeis para reduzir flakiness."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 29: Reescrever testes frágeis para reduzir flakiness."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 29: Reescrever testes frágeis para reduzir flakiness."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 29: Reescrever testes frágeis para reduzir flakiness."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 29,
+      "timestamp": "2026-05-13T00:43:18.398657+00:00",
+      "planned_action": {
+        "input": "Passo 30: Incluir testes de integração que simulem múltiplos repairs."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 30: Incluir testes de integração que simulem múltiplos repairs."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 30: Incluir testes de integração que simulem múltiplos repairs."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 30: Incluir testes de integração que simulem múltiplos repairs."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 30,
+      "timestamp": "2026-05-13T00:43:19.179226+00:00",
+      "planned_action": {
+        "input": "Passo 31: Medir eficiência do ciclo (tempo até primeiro passe)."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 31: Medir eficiência do ciclo (tempo até primeiro passe)."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 31: Medir eficiência do ciclo (tempo até primeiro passe)."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 31: Medir eficiência do ciclo (tempo até primeiro passe)."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 31,
+      "timestamp": "2026-05-13T00:43:20.268821+00:00",
+      "planned_action": {
+        "input": "Passo 32: Extrair heurísticas de sucesso das tentativas anteriores."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 32: Extrair heurísticas de sucesso das tentativas anteriores."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 32: Extrair heurísticas de sucesso das tentativas anteriores."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 32: Extrair heurísticas de sucesso das tentativas anteriores."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 32,
+      "timestamp": "2026-05-13T00:43:21.342831+00:00",
+      "planned_action": {
+        "input": "Passo 33: Aplicar heurística para priorizar arquivos com maior impacto."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 33: Aplicar heurística para priorizar arquivos com maior impacto."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 33: Aplicar heurística para priorizar arquivos com maior impacto."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 33: Aplicar heurística para priorizar arquivos com maior impacto."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 33,
+      "timestamp": "2026-05-13T00:43:21.891033+00:00",
+      "planned_action": {
+        "input": "Passo 34: Evitar mudanças globais desnecessárias; prefira local fixes."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 34: Evitar mudanças globais desnecessárias; prefira local fixes."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 34: Evitar mudanças globais desnecessárias; prefira local fixes."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 34: Evitar mudanças globais desnecessárias; prefira local fixes."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 34,
+      "timestamp": "2026-05-13T00:43:22.261837+00:00",
+      "planned_action": {
+        "input": "Passo 35: Gerar histórico de repair_iterations por run."
+      },
+      "executed_action": {
+        "status": "error",
+        "output": "unable_to_plan_action",
+        "error": "unable_to_plan_action",
+        "raw": {
+          "status": "error",
+          "error": "unable_to_plan_action",
+          "output": null,
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "unable_to_plan_action",
+              "args": {
+                "input": "Passo 35: Gerar histórico de repair_iterations por run."
+              },
+              "result": null,
+              "error": "unable_to_plan_action",
+              "status": "error",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "unable_to_plan_action",
+            "args": {
+              "input": "Passo 35: Gerar histórico de repair_iterations por run."
+            },
+            "result": null,
+            "error": "unable_to_plan_action",
+            "status": "error",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "unable_to_plan_action",
+          "args": {
+            "input": "Passo 35: Gerar histórico de repair_iterations por run."
+          },
+          "result": null,
+          "error": "unable_to_plan_action",
+          "status": "error",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 35,
+      "timestamp": "2026-05-13T00:43:22.264829+00:00",
+      "planned_action": {
+        "input": "Passo 36: Validar que repairs não adicionam vulnerabilidades."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 36: Validar que repairs não adicionam vulnerabilidades."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 36: Validar que repairs não adicionam vulnerabilidades."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 36: Validar que repairs não adicionam vulnerabilidades."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 36,
+      "timestamp": "2026-05-13T00:43:22.272827+00:00",
+      "planned_action": {
+        "input": "Passo 37: Refatorar módulo que originou mais falhas."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 37: Refatorar módulo que originou mais falhas."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 37: Refatorar módulo que originou mais falhas."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 37: Refatorar módulo que originou mais falhas."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 37,
+      "timestamp": "2026-05-13T00:43:22.295819+00:00",
+      "planned_action": {
+        "input": "Passo 38: Executar análise de dependências e minimizar acoplamento."
+      },
+      "executed_action": {
+        "status": "error",
+        "output": "unable_to_plan_action",
+        "error": "unable_to_plan_action",
+        "raw": {
+          "status": "error",
+          "error": "unable_to_plan_action",
+          "output": null,
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "unable_to_plan_action",
+              "args": {
+                "input": "Passo 38: Executar análise de dependências e minimizar acoplamento."
+              },
+              "result": null,
+              "error": "unable_to_plan_action",
+              "status": "error",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "unable_to_plan_action",
+            "args": {
+              "input": "Passo 38: Executar análise de dependências e minimizar acoplamento."
+            },
+            "result": null,
+            "error": "unable_to_plan_action",
+            "status": "error",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "unable_to_plan_action",
+          "args": {
+            "input": "Passo 38: Executar análise de dependências e minimizar acoplamento."
+          },
+          "result": null,
+          "error": "unable_to_plan_action",
+          "status": "error",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 38,
+      "timestamp": "2026-05-13T00:43:22.324761+00:00",
+      "planned_action": {
+        "input": "Passo 39: Consolidar métricas e calcular retry efficiency."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 39: Consolidar métricas e calcular retry efficiency."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 39: Consolidar métricas e calcular retry efficiency."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 39: Consolidar métricas e calcular retry efficiency."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 39,
+      "timestamp": "2026-05-13T00:43:22.410766+00:00",
+      "planned_action": {
+        "input": "Passo 40: Confirmar estabilidade após último repair."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 40: Confirmar estabilidade após último repair."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 40: Confirmar estabilidade após último repair."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 40: Confirmar estabilidade após último repair."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 40,
+      "timestamp": "2026-05-13T00:43:23.303111+00:00",
+      "planned_action": {
+        "input": "Passo 41: Limpar código temporário adicionado durante debugging."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 41: Limpar código temporário adicionado durante debugging."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 41: Limpar código temporário adicionado durante debugging."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 41: Limpar código temporário adicionado durante debugging."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 41,
+      "timestamp": "2026-05-13T00:43:24.183316+00:00",
+      "planned_action": {
+        "input": "Passo 42: Garantir que testes adicionais sejam mantidos."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 42: Garantir que testes adicionais sejam mantidos."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 42: Garantir que testes adicionais sejam mantidos."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 42: Garantir que testes adicionais sejam mantidos."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 42,
+      "timestamp": "2026-05-13T00:43:25.399891+00:00",
+      "planned_action": {
+        "input": "Passo 43: Gerar resumo dos patches e rationale para revisão."
+      },
+      "executed_action": {
+        "status": "error",
+        "output": "unable_to_plan_action",
+        "error": "unable_to_plan_action",
+        "raw": {
+          "status": "error",
+          "error": "unable_to_plan_action",
+          "output": null,
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "unable_to_plan_action",
+              "args": {
+                "input": "Passo 43: Gerar resumo dos patches e rationale para revisão."
+              },
+              "result": null,
+              "error": "unable_to_plan_action",
+              "status": "error",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "unable_to_plan_action",
+            "args": {
+              "input": "Passo 43: Gerar resumo dos patches e rationale para revisão."
+            },
+            "result": null,
+            "error": "unable_to_plan_action",
+            "status": "error",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "unable_to_plan_action",
+          "args": {
+            "input": "Passo 43: Gerar resumo dos patches e rationale para revisão."
+          },
+          "result": null,
+          "error": "unable_to_plan_action",
+          "status": "error",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 43,
+      "timestamp": "2026-05-13T00:43:26.340610+00:00",
+      "planned_action": {
+        "input": "Passo 44: Reexecutar suíte completa como validação final."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 44: Reexecutar suíte completa como validação final."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 44: Reexecutar suíte completa como validação final."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 44: Reexecutar suíte completa como validação final."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 44,
+      "timestamp": "2026-05-13T00:43:26.945991+00:00",
+      "planned_action": {
+        "input": "Passo 45: Armazenar trace detalhado de cada repair attempt."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 45: Armazenar trace detalhado de cada repair attempt."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 45: Armazenar trace detalhado de cada repair attempt."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 45: Armazenar trace detalhado de cada repair attempt."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 45,
+      "timestamp": "2026-05-13T00:43:27.379844+00:00",
+      "planned_action": {
+        "input": "Passo 46: Avaliar se problema exige arquitetura diferente."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 46: Avaliar se problema exige arquitetura diferente."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 46: Avaliar se problema exige arquitetura diferente."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 46: Avaliar se problema exige arquitetura diferente."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 46,
+      "timestamp": "2026-05-13T00:43:28.379209+00:00",
+      "planned_action": {
+        "input": "Passo 47: Se necessário, dividir tarefa em subtasks menores."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 47: Se necessário, dividir tarefa em subtasks menores."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 47: Se necessário, dividir tarefa em subtasks menores."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 47: Se necessário, dividir tarefa em subtasks menores."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 47,
+      "timestamp": "2026-05-13T00:43:29.275358+00:00",
+      "planned_action": {
+        "input": "Passo 48: Preparar arquivo CHANGELOG com entradas relevantes."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 48: Preparar arquivo CHANGELOG com entradas relevantes."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 48: Preparar arquivo CHANGELOG com entradas relevantes."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 48: Preparar arquivo CHANGELOG com entradas relevantes."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 48,
+      "timestamp": "2026-05-13T00:43:30.118894+00:00",
+      "planned_action": {
+        "input": "Passo 49: Revisar e fechar issues criadas durante processo."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 49: Revisar e fechar issues criadas durante processo."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 49: Revisar e fechar issues criadas durante processo."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 49: Revisar e fechar issues criadas durante processo."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    },
+    {
+      "run_id": "fdaa70cff38c4cceb43f89bef8c3069e",
+      "scenario_id": "multi_repair_loops_50",
+      "step_index": 49,
+      "timestamp": "2026-05-13T00:43:30.907326+00:00",
+      "planned_action": {
+        "input": "Passo 50: Encerrar cenário e arquivar artefatos e traces."
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Resposta benchmark sem LLM externo",
+        "error": null,
+        "raw": {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "critic_suggestions": [],
+          "memory_reads": [],
+          "validation": null,
+          "hallucination": false,
+          "self_detected": false,
+          "self_fixed": false,
+          "retry_count": 0,
+          "repair_iteration": null,
+          "tool_calls": [
+            {
+              "action": "direct_response",
+              "args": {
+                "input": "Passo 50: Encerrar cenário e arquivar artefatos e traces."
+              },
+              "result": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "status": "success",
+              "duration_ms": null
+            }
+          ]
+        },
+        "tool_calls": [
+          {
+            "action": "direct_response",
+            "args": {
+              "input": "Passo 50: Encerrar cenário e arquivar artefatos e traces."
+            },
+            "result": "Resposta benchmark sem LLM externo",
+            "error": null,
+            "status": "success",
+            "duration_ms": null
+          }
+        ],
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "retry_count": 0,
+        "repair_iteration": null
+      },
+      "tool_calls": [
+        {
+          "action": "direct_response",
+          "args": {
+            "input": "Passo 50: Encerrar cenário e arquivar artefatos e traces."
+          },
+          "result": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "status": "success",
+          "duration_ms": null
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": null,
+      "extra": {}
+    }
+  ],
+  "metrics": {
+    "plan_stability": 0.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.18,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 0.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 81.12537860000157,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_b1obz76p",
+  "started_at": "2026-05-13T00:42:52.032378+00:00",
+  "ended_at": "2026-05-13T00:44:13.529314+00:00"
+}

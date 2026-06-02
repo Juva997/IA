@@ -1,0 +1,49 @@
+[
+  {
+    "name": "file_exists",
+    "type": "file_exists",
+    "critical": true,
+    "passed": true,
+    "path": "script.py"
+  },
+  {
+    "name": "json_equals",
+    "type": "json_equals",
+    "critical": true,
+    "passed": true,
+    "path": "data.json"
+  },
+  {
+    "name": "python_file",
+    "type": "python_file",
+    "critical": true,
+    "passed": true,
+    "command": [
+      "c:\\Users\\Juven\\AppData\\Local\\python\\pythoncore-3.14-64\\python.exe",
+      "-I",
+      "script.py"
+    ],
+    "returncode": 0,
+    "expected_returncode": 0,
+    "stdout": "script_ok\n",
+    "stderr": ""
+  },
+  {
+    "name": "pytest",
+    "type": "pytest",
+    "critical": true,
+    "passed": false,
+    "command": [
+      "c:\\Users\\Juven\\AppData\\Local\\python\\pythoncore-3.14-64\\python.exe",
+      "-I",
+      "-m",
+      "pytest",
+      "-q",
+      "test_sample.py"
+    ],
+    "returncode": null,
+    "expected_returncode": 0,
+    "stdout": "",
+    "stderr": "timeout after 20.0s"
+  }
+]

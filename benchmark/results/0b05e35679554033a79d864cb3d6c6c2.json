@@ -1,0 +1,84 @@
+{
+  "run_id": "0b05e35679554033a79d864cb3d6c6c2",
+  "scenario_id": "smoke_multi_repair_loops_50",
+  "meta": {
+    "run_number": 1,
+    "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_lt6jwy0p"
+  },
+  "trace": [
+    {
+      "run_id": "0b05e35679554033a79d864cb3d6c6c2",
+      "scenario_id": "smoke_multi_repair_loops_50",
+      "step_index": 0,
+      "timestamp": "2026-05-13T02:10:55.642253+00:00",
+      "planned_action": {
+        "action": "list_files",
+        "data": {
+          "path": "."
+        }
+      },
+      "executed_action": {
+        "status": "success",
+        "output": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - smoke_proj",
+        "error": null,
+        "tool_calls": [
+          {
+            "action": "list_files",
+            "args": {
+              "path": "."
+            },
+            "result": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - smoke_proj",
+            "error": null,
+            "status": "success",
+            "duration_ms": 0.0
+          }
+        ],
+        "action": "list_files",
+        "retry_count": 0,
+        "critic_suggestions": [],
+        "memory_reads": [],
+        "validation": null,
+        "hallucination": false,
+        "self_detected": false,
+        "self_fixed": false,
+        "repair_iteration": 1,
+        "hallucination_score": 0.0
+      },
+      "tool_calls": [
+        {
+          "action": "list_files",
+          "args": {
+            "path": "."
+          },
+          "result": "Arquivos na pasta '.':\n  - .pytest_cache\n  - config.json\n  - smoke_proj",
+          "error": null,
+          "status": "success",
+          "duration_ms": 0.0
+        }
+      ],
+      "critic_suggestions": [],
+      "memory_reads": [],
+      "validation": null,
+      "hallucination": false,
+      "self_detected": false,
+      "self_fixed": false,
+      "retry_count": 0,
+      "repair_iteration": 1,
+      "extra": {}
+    }
+  ],
+  "metrics": {
+    "plan_stability": 0.0,
+    "critic_usefulness": 0.0,
+    "tool_misuse_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "memory_relevance": 0.0,
+    "self_correction_success": 0.0,
+    "avg_repair_iterations": 1.0,
+    "context_drift_slope": 0.0
+  },
+  "elapsed": 17.79482690000441,
+  "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_lt6jwy0p",
+  "started_at": "2026-05-13T02:10:48.714688+00:00",
+  "ended_at": "2026-05-13T02:11:06.256460+00:00"
+}

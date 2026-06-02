@@ -1,0 +1,725 @@
+{
+  "meta": {
+    "dataset": "long_horizon",
+    "runs_per_test": 1,
+    "wall_time_s": 0.432585,
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "llm_judge": false,
+    "generated_at": "2026-05-12T21:51:51.059376+00:00"
+  },
+  "summary": {
+    "total": 2,
+    "passed": 0,
+    "failed": 2,
+    "quality_gate": "FAIL"
+  },
+  "results": [
+    {
+      "name": "long_arithmetic_20",
+      "type": "long_horizon",
+      "status": "error",
+      "evaluation": {
+        "semantic": 0.0,
+        "format": 1.0,
+        "consistency": 1.0,
+        "status": 1.0,
+        "process": 1.0
+      },
+      "metrics": {
+        "runs": 1,
+        "latency_avg": 0.26407090001157485,
+        "latency_stdev": 0.0,
+        "latency_p50": 0.26407090001157485,
+        "latency_p95": 0.26407090001157485,
+        "latency_p99": 0.26407090001157485,
+        "latency_min": 0.26407090001157485,
+        "latency_max": 0.26407090001157485,
+        "semantic_score": 0.0,
+        "format_score": 1.0,
+        "consistency_score": 1.0,
+        "status_score": 1.0,
+        "process_score": 1.0,
+        "process": {
+          "has_trace": false,
+          "agent_steps": 20,
+          "benchmark_steps": 20,
+          "steps": 20,
+          "tool_calls": 0,
+          "tools": [],
+          "tool_sequence": [],
+          "iterations_avg": 0.0,
+          "attempts_avg": 0.0,
+          "initial_score_avg": 0.0,
+          "final_score_avg": 0.0,
+          "improvement_gain": 0.0,
+          "refinement_gain": 0.0,
+          "has_refinement": false,
+          "has_critic": false,
+          "has_verification": false,
+          "failure_recovery": false,
+          "workspace_files": [
+            "config.json"
+          ],
+          "workspace_artifacts": {},
+          "workspace_writes": 0,
+          "setup_total": 0,
+          "setup_files": 0,
+          "setup_dirs": 0,
+          "verification_total": 0,
+          "verification_passed": 0,
+          "verification_failed": 0,
+          "verification_critical_failed": 0,
+          "verification_ok": true,
+          "stability_score": 1.0,
+          "semantic_stability_score": 1.0,
+          "iteration_semantic_delta_avg": 0.0,
+          "iteration_semantic_first_last_distance": 0.0,
+          "iteration_semantic_runs_with_pairs": 0,
+          "redundant_tool_calls": 0,
+          "efficiency_factor": 1.0,
+          "plan_stability": 0.0,
+          "critic_usefulness": 0.0,
+          "tool_misuse_rate": 0.0,
+          "hallucination_rate": 0.0,
+          "memory_relevance": 0.0,
+          "self_correction_success": 0.0,
+          "avg_repair_iterations": 0.0,
+          "context_drift_slope": 0.0
+        },
+        "instrumentation": {
+          "plan_stability": 0.0,
+          "critic_usefulness": 0.0,
+          "tool_misuse_rate": 0.0,
+          "hallucination_rate": 0.0,
+          "memory_relevance": 0.0,
+          "self_correction_success": 0.0,
+          "avg_repair_iterations": 0.0,
+          "context_drift_slope": 0.0
+        },
+        "final_score": 0.475,
+        "agent_score": 0.5
+      },
+      "runs": [
+        {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "steps": [
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            }
+          ],
+          "setup_results": [],
+          "verification_results": [],
+          "verification_summary": {
+            "total": 0,
+            "passed": 0,
+            "failed": 0,
+            "critical_total": 0,
+            "critical_failed": 0,
+            "ok": true
+          },
+          "run": 1,
+          "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark__trbv7xc",
+          "workspace_files": [
+            "config.json"
+          ],
+          "workspace_artifacts": {
+            "config.json": {
+              "size": 1669,
+              "sha256": "0aeecbc29d67f708a8233c51cab7b92bfe0568712d44424be7432cdfd8f44797",
+              "text": "{\r\n    \"app_name\": \"Assistente Local V2\",\r\n    \"version\": \"2.0.0\",\r\n    \"workspace_path\": \"\",\r\n    \"project_path\": \"\",\r\n    \"data_paths\": {\r\n        \"memory_dir\": \"data\",\r\n        \"vectors_dir\": \"data/vectors\",\r\n        \"logs_dir\": \"data/logs\",\r\n        \"state_dir\": \"data/state\",\r\n        \"cache_dir\": \"data/cache\",\r\n        \"monitor_dir\": \"data/monitor\",\r\n        \"screens_dir\": \"data/monitor/screens\"\r\n    },\r\n    \"memory\": {\r\n        \"memory_file\": \"data/memory.json\",\r\n        \"max_recent_memories\": 20,\r\n        \"max_retrieved_memories\": 8\r\n    },\r\n    \"vectors\": {\r\n        \"chunks_file\": \"data/vectors/chunks.jsonl\",\r\n        \"metadata_file\": \"data/vectors/metadata.json\",\r\n        \"index_state_file\": \"data/vectors/index_state.json\",\r\n        \"top_k\": 8,\r\n        \"min_score\": 0.15\r\n    },\r\n    \"embeddings\": {\r\n        \"vector_size\": 256,\r\n        \"use_l2_normalization\": true\r\n    },\r\n    \"logging\": {\r\n        \"events_file\": \"data/logs/events.jsonl\",\r\n        \"errors_file\": \"data/logs/errors.jsonl\",\r\n        \"level\": \"INFO\"\r\n    },\r\n    \"llm\": {\r\n        \"base_url\": \"http://localhost:11434/api/generate\",\r\n        \"fast_model\": \"phi3:mini\",\r\n        \"default_model\": \"qwen2.5:3b\",\r\n        \"power_model\": \"qwen2.5-coder:7b\",\n        \"fallback_model\": \"phi3:mini\",\r\n        \"temperature\": 0.3,\r\n        \"timeout\": 15,\r\n        \"cache_ttl\": 120,\r\n        \"max_retries\": 0,\r\n        \"retry_delay\": 0.2,\r\n        \"max_context_chunks\": 6\r\n    },\r\n    \"features\": {\r\n        \"auto_index_on_start\": false,\r\n        \"auto_learn_memory\": true,\r\n        \"enable_action_execution\": true,\r\n        \"enable_vision\": true,\r\n        \"enable_web_search\": true\r\n    }\r\n}\n"
+            }
+          },
+          "instrumentation_trace": "D:\\IA\\benchmark\\results\\e560f138db2049ceb1be27c95c5ecba8.json",
+          "instrumentation_metrics": {
+            "plan_stability": 0.0,
+            "critic_usefulness": 0.0,
+            "tool_misuse_rate": 0.0,
+            "hallucination_rate": 0.0,
+            "memory_relevance": 0.0,
+            "self_correction_success": 0.0,
+            "avg_repair_iterations": 0.0,
+            "context_drift_slope": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "name": "long_arithmetic_30",
+      "type": "long_horizon",
+      "status": "error",
+      "evaluation": {
+        "semantic": 0.0,
+        "format": 1.0,
+        "consistency": 1.0,
+        "status": 1.0,
+        "process": 1.0
+      },
+      "metrics": {
+        "runs": 1,
+        "latency_avg": 0.1326270999998087,
+        "latency_stdev": 0.0,
+        "latency_p50": 0.1326270999998087,
+        "latency_p95": 0.1326270999998087,
+        "latency_p99": 0.1326270999998087,
+        "latency_min": 0.1326270999998087,
+        "latency_max": 0.1326270999998087,
+        "semantic_score": 0.0,
+        "format_score": 1.0,
+        "consistency_score": 1.0,
+        "status_score": 1.0,
+        "process_score": 1.0,
+        "process": {
+          "has_trace": false,
+          "agent_steps": 30,
+          "benchmark_steps": 30,
+          "steps": 30,
+          "tool_calls": 0,
+          "tools": [],
+          "tool_sequence": [],
+          "iterations_avg": 0.0,
+          "attempts_avg": 0.0,
+          "initial_score_avg": 0.0,
+          "final_score_avg": 0.0,
+          "improvement_gain": 0.0,
+          "refinement_gain": 0.0,
+          "has_refinement": false,
+          "has_critic": false,
+          "has_verification": false,
+          "failure_recovery": false,
+          "workspace_files": [
+            "config.json"
+          ],
+          "workspace_artifacts": {},
+          "workspace_writes": 0,
+          "setup_total": 0,
+          "setup_files": 0,
+          "setup_dirs": 0,
+          "verification_total": 0,
+          "verification_passed": 0,
+          "verification_failed": 0,
+          "verification_critical_failed": 0,
+          "verification_ok": true,
+          "stability_score": 1.0,
+          "semantic_stability_score": 1.0,
+          "iteration_semantic_delta_avg": 0.0,
+          "iteration_semantic_first_last_distance": 0.0,
+          "iteration_semantic_runs_with_pairs": 0,
+          "redundant_tool_calls": 0,
+          "efficiency_factor": 1.0,
+          "plan_stability": 0.0,
+          "critic_usefulness": 0.0,
+          "tool_misuse_rate": 0.0,
+          "hallucination_rate": 0.0,
+          "memory_relevance": 0.0,
+          "self_correction_success": 0.0,
+          "avg_repair_iterations": 0.0,
+          "context_drift_slope": 0.0
+        },
+        "instrumentation": {
+          "plan_stability": 0.0,
+          "critic_usefulness": 0.0,
+          "tool_misuse_rate": 0.0,
+          "hallucination_rate": 0.0,
+          "memory_relevance": 0.0,
+          "self_correction_success": 0.0,
+          "avg_repair_iterations": 0.0,
+          "context_drift_slope": 0.0
+        },
+        "final_score": 0.475,
+        "agent_score": 0.5
+      },
+      "runs": [
+        {
+          "status": "success",
+          "output": "Resposta benchmark sem LLM externo",
+          "error": null,
+          "steps": [
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            }
+          ],
+          "setup_results": [],
+          "verification_results": [],
+          "verification_summary": {
+            "total": 0,
+            "passed": 0,
+            "failed": 0,
+            "critical_total": 0,
+            "critical_failed": 0,
+            "ok": true
+          },
+          "run": 1,
+          "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_wop4e9jo",
+          "workspace_files": [
+            "config.json"
+          ],
+          "workspace_artifacts": {
+            "config.json": {
+              "size": 1669,
+              "sha256": "0aeecbc29d67f708a8233c51cab7b92bfe0568712d44424be7432cdfd8f44797",
+              "text": "{\r\n    \"app_name\": \"Assistente Local V2\",\r\n    \"version\": \"2.0.0\",\r\n    \"workspace_path\": \"\",\r\n    \"project_path\": \"\",\r\n    \"data_paths\": {\r\n        \"memory_dir\": \"data\",\r\n        \"vectors_dir\": \"data/vectors\",\r\n        \"logs_dir\": \"data/logs\",\r\n        \"state_dir\": \"data/state\",\r\n        \"cache_dir\": \"data/cache\",\r\n        \"monitor_dir\": \"data/monitor\",\r\n        \"screens_dir\": \"data/monitor/screens\"\r\n    },\r\n    \"memory\": {\r\n        \"memory_file\": \"data/memory.json\",\r\n        \"max_recent_memories\": 20,\r\n        \"max_retrieved_memories\": 8\r\n    },\r\n    \"vectors\": {\r\n        \"chunks_file\": \"data/vectors/chunks.jsonl\",\r\n        \"metadata_file\": \"data/vectors/metadata.json\",\r\n        \"index_state_file\": \"data/vectors/index_state.json\",\r\n        \"top_k\": 8,\r\n        \"min_score\": 0.15\r\n    },\r\n    \"embeddings\": {\r\n        \"vector_size\": 256,\r\n        \"use_l2_normalization\": true\r\n    },\r\n    \"logging\": {\r\n        \"events_file\": \"data/logs/events.jsonl\",\r\n        \"errors_file\": \"data/logs/errors.jsonl\",\r\n        \"level\": \"INFO\"\r\n    },\r\n    \"llm\": {\r\n        \"base_url\": \"http://localhost:11434/api/generate\",\r\n        \"fast_model\": \"phi3:mini\",\r\n        \"default_model\": \"qwen2.5:3b\",\r\n        \"power_model\": \"qwen2.5-coder:7b\",\n        \"fallback_model\": \"phi3:mini\",\r\n        \"temperature\": 0.3,\r\n        \"timeout\": 15,\r\n        \"cache_ttl\": 120,\r\n        \"max_retries\": 0,\r\n        \"retry_delay\": 0.2,\r\n        \"max_context_chunks\": 6\r\n    },\r\n    \"features\": {\r\n        \"auto_index_on_start\": false,\r\n        \"auto_learn_memory\": true,\r\n        \"enable_action_execution\": true,\r\n        \"enable_vision\": true,\r\n        \"enable_web_search\": true\r\n    }\r\n}\n"
+            }
+          },
+          "instrumentation_trace": "D:\\IA\\benchmark\\results\\1f6ff6f7d10445b48646cdc842c29f5b.json",
+          "instrumentation_metrics": {
+            "plan_stability": 0.0,
+            "critic_usefulness": 0.0,
+            "tool_misuse_rate": 0.0,
+            "hallucination_rate": 0.0,
+            "memory_relevance": 0.0,
+            "self_correction_success": 0.0,
+            "avg_repair_iterations": 0.0,
+            "context_drift_slope": 0.0
+          }
+        }
+      ]
+    }
+  ]
+}

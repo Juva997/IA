@@ -1,0 +1,56 @@
+{
+    "app_name": "Assistente Local V2",
+    "version": "2.0.0",
+    "workspace_path": "",
+    "project_path": "",
+    "data_paths": {
+        "memory_dir": "data",
+        "vectors_dir": "data/vectors",
+        "logs_dir": "data/logs",
+        "state_dir": "data/state",
+        "cache_dir": "data/cache",
+        "monitor_dir": "data/monitor",
+        "screens_dir": "data/monitor/screens"
+    },
+    "memory": {
+        "memory_file": "data/memory.json",
+        "max_recent_memories": 20,
+        "max_retrieved_memories": 8
+    },
+    "vectors": {
+        "chunks_file": "data/vectors/chunks.jsonl",
+        "metadata_file": "data/vectors/metadata.json",
+        "index_state_file": "data/vectors/index_state.json",
+        "top_k": 8,
+        "min_score": 0.15
+    },
+    "embeddings": {
+        "vector_size": 256,
+        "use_l2_normalization": true
+    },
+    "logging": {
+        "events_file": "data/logs/events.jsonl",
+        "errors_file": "data/logs/errors.jsonl",
+        "level": "INFO"
+    },
+    "llm": {
+        "base_url": "http://localhost:11434/api/generate",
+        "fast_model": "phi3:mini",
+        "default_model": "qwen2.5:3b",
+        "power_model": "qwen2.5-coder:7b",
+        "fallback_model": "phi3:mini",
+        "temperature": 0.3,
+        "timeout": 15,
+        "cache_ttl": 120,
+        "max_retries": 0,
+        "retry_delay": 0.2,
+        "max_context_chunks": 6
+    },
+    "features": {
+        "auto_index_on_start": false,
+        "auto_learn_memory": true,
+        "enable_action_execution": true,
+        "enable_vision": true,
+        "enable_web_search": true
+    }
+}

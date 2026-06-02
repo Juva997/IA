@@ -1,0 +1,181 @@
+[
+  {
+    "name": "slow_python_script_numbers",
+    "type": "real_local",
+    "input": "criar script python que imprime números de 1 a 5",
+    "expected": "range",
+    "verification": [
+      {"type": "file_contains", "path": "script_numeros.py", "contains": ["range(1, 6)", "print"]}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["slow", "optional", "offline"]
+  },
+  {
+    "name": "slow_statistics_canned",
+    "type": "qa",
+    "input": "gere 100 números aleatórios e calcule média, mediana e desvio padrão",
+    "expected": "média",
+    "must_contain": ["mediana", "desvio"],
+    "tags": ["slow", "optional", "offline"]
+  },
+  {
+    "name": "slow_file_create_exact",
+    "type": "real_local",
+    "input": "crie arquivo chamado slow_saida.txt com ok-slow e leia",
+    "expected": "ok-slow",
+    "verification": [
+      {"type": "file_equals", "path": "slow_saida.txt", "equals": "ok-slow"}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["slow", "optional", "offline"]
+  },
+  {
+    "name": "slow_folder_file_roundtrip",
+    "type": "real_local",
+    "input": "crie uma pasta chamada slow_proj, dentro crie arquivo resultado.txt com ok e depois leia",
+    "expected": "ok",
+    "verification": [
+      {"type": "file_equals", "path": "slow_proj/resultado.txt", "equals": "ok"}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["slow", "optional", "offline"]
+  },
+  {
+    "name": "slow_nested_path_direct",
+    "type": "real_local",
+    "input": "crie arquivo logs/out.txt com linha-final e leia",
+    "expected": "linha-final",
+    "verification": [
+      {"type": "file_equals", "path": "logs/out.txt", "equals": "linha-final"}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["slow", "optional", "offline"]
+  },
+  {
+    "name": "slow_file_contains_terms",
+    "type": "real_local",
+    "input": "crie arquivo chamado notas.txt com alpha beta gamma e leia",
+    "expected": "beta",
+    "verification": [
+      {"type": "file_contains", "path": "notas.txt", "contains": ["alpha", "gamma"]}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["slow", "optional", "offline"]
+  },
+  {
+    "name": "slow_python_benchmark_executes",
+    "type": "real_local",
+    "input": "crie um exemplo simples de benchmark em python",
+    "expected": "benchmark",
+    "verification": [
+      {"type": "python_file", "path": "benchmark_exemplo.py", "stdout_contains": "benchmark"}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["slow", "optional", "offline"]
+  },
+  {
+    "name": "slow_python_factorial_executes",
+    "type": "real_local",
+    "input": "crie um script python de fatorial",
+    "expected": "fatorial",
+    "verification": [
+      {"type": "python_file", "path": "fatorial.py", "stdout_contains": "120"}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["slow", "optional", "offline"]
+  },
+  {
+    "name": "slow_python_unittest_executes",
+    "type": "real_local",
+    "input": "crie um teste unitario python simples",
+    "expected": "unittest",
+    "verification": [
+      {"type": "python_file", "path": "test_example.py", "stderr_contains_any": ["OK", "Ran 1 test"]}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["slow", "optional", "offline"]
+  },
+  {
+    "name": "slow_csv_roundtrip",
+    "type": "real_local",
+    "input": "crie arquivo chamado numeros.txt com 1,2,3 e leia",
+    "expected": "Soma",
+    "verification": [
+      {"type": "file_equals", "path": "numeros.txt", "equals": "1,2,3"}
+    ],
+    "expectations": {
+      "requires_tools": true,
+      "requires_benchmark_verification": true,
+      "verification_must_pass": true,
+      "critical_expectations": ["verification_must_pass"]
+    },
+    "tags": ["slow", "optional", "offline"]
+  },
+  {
+    "name": "slow_external_ollama_exact_token",
+    "type": "qa",
+    "input": "Responda exatamente com o texto SLOW_LLM_OK_2026 e nada mais.",
+    "expected": "SLOW_LLM_OK_2026",
+    "must_contain": ["SLOW_LLM_OK_2026"],
+    "requires_external_llm": true,
+    "tags": ["slow", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "slow_external_ollama_second_token",
+    "type": "qa",
+    "input": "Responda exatamente com o texto SLOW_ROUTE_OK_2026 e nada mais.",
+    "expected": "SLOW_ROUTE_OK_2026",
+    "must_contain": ["SLOW_ROUTE_OK_2026"],
+    "requires_external_llm": true,
+    "tags": ["slow", "optional", "external_llm", "ollama"]
+  },
+  {
+    "name": "slow_external_ollama_summary_word",
+    "type": "qa",
+    "input": "Diga uma frase curta contendo exatamente a palavra benchmark.",
+    "expected": "benchmark",
+    "must_contain": ["benchmark"],
+    "requires_external_llm": true,
+    "tags": ["slow", "optional", "external_llm", "ollama"]
+  }
+]

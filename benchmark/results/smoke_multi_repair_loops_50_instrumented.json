@@ -1,0 +1,2210 @@
+{
+  "meta": {
+    "dataset": "multi_repair_loops_50",
+    "runs_per_test": 1,
+    "wall_time_s": 2.999237,
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "llm_judge": false,
+    "generated_at": "2026-05-12T22:39:36.744720+00:00"
+  },
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "quality_gate": "FAIL"
+  },
+  "results": [
+    {
+      "name": "multi_repair_loops_50",
+      "type": "real_local",
+      "status": "error",
+      "evaluation": {
+        "semantic": 0.0,
+        "format": 1.0,
+        "consistency": 1.0,
+        "status": 0.0,
+        "process": 1.0
+      },
+      "metrics": {
+        "runs": 1,
+        "latency_avg": 2.943752500010305,
+        "latency_stdev": 0.0,
+        "latency_p50": 2.943752500010305,
+        "latency_p95": 2.943752500010305,
+        "latency_p99": 2.943752500010305,
+        "latency_min": 2.943752500010305,
+        "latency_max": 2.943752500010305,
+        "semantic_score": 0.0,
+        "format_score": 1.0,
+        "consistency_score": 1.0,
+        "status_score": 0.0,
+        "process_score": 1.0,
+        "process": {
+          "has_trace": true,
+          "agent_steps": 50,
+          "benchmark_steps": 50,
+          "steps": 50,
+          "tool_calls": 0,
+          "tools": [],
+          "tool_sequence": [],
+          "iterations_avg": 0.0,
+          "attempts_avg": 0.0,
+          "initial_score_avg": 0.0,
+          "final_score_avg": 0.0,
+          "improvement_gain": 0.0,
+          "refinement_gain": 0.0,
+          "has_refinement": false,
+          "has_critic": false,
+          "has_verification": false,
+          "failure_recovery": false,
+          "workspace_files": [
+            ".pytest_cache/.gitignore",
+            ".pytest_cache/CACHEDIR.TAG",
+            ".pytest_cache/README.md",
+            ".pytest_cache/v/cache/nodeids",
+            "config.json",
+            "repair_loops_pkg/__init__.py",
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/module_alpha.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/module_beta.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/test_repair.cpython-311-pytest-9.0.3.pyc",
+            "repair_loops_pkg/module_alpha.py",
+            "repair_loops_pkg/module_beta.py",
+            "repair_loops_pkg/test_repair.py"
+          ],
+          "workspace_artifacts": {
+            ".pytest_cache/.gitignore": {
+              "size": 39,
+              "sha256": "e7c6bb30148cf667606dcd63e7ca77acaa3cfb0c8303bf09e6419e1e1669dc6d",
+              "text": "# Created by pytest automatically.\r\n*\r\n"
+            },
+            ".pytest_cache/CACHEDIR.TAG": {
+              "size": 191,
+              "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+              "text": "Signature: 8a477f597d28d172789f06886806bc55\n# This file is a cache directory tag created by pytest.\n# For information about cache directory tags, see:\n#\thttps://bford.info/cachedir/spec.html\n"
+            },
+            ".pytest_cache/README.md": {
+              "size": 310,
+              "sha256": "420e808d79a6c25d3cda0af33bc4782314a14949866682c68ce8149e89b66b70",
+              "text": "# pytest cache directory #\r\n\r\nThis directory contains data from the pytest's cache plugin,\r\nwhich provides the `--lf` and `--ff` options, as well as the `cache` fixture.\r\n\r\n**Do not** commit this to version control.\r\n\r\nSee [the docs](https://docs.pytest.org/en/stable/how-to/cache.html) for more information.\r\n"
+            },
+            ".pytest_cache/v/cache/nodeids": {
+              "size": 52,
+              "sha256": "540d88643d7ba519e2959f787dcfc97a58e3d58c460114cf1b3ac6f1961c05f4",
+              "text": "[\r\n  \"repair_loops_pkg/test_repair.py::test_beta\"\r\n]"
+            },
+            "repair_loops_pkg/module_alpha.py": {
+              "size": 86,
+              "sha256": "777bdbddf92b609ae8e806e8f1f0e280c00fe8a81fb8ebedd55173222b72901b",
+              "text": "def alpha(x):\r\n    # implementação corrigida para passar o teste\r\n    return x * 2\r\n"
+            },
+            "repair_loops_pkg/module_beta.py": {
+              "size": 90,
+              "sha256": "a744163ce1e268e4f59851254c297fe691facd1071f99c5a11132ce7f073ae31",
+              "text": "from repair_loops_pkg.module_alpha import alpha\r\n\r\ndef beta(x):\r\n    return alpha(x) * 2\r\n"
+            },
+            "repair_loops_pkg/test_repair.py": {
+              "size": 129,
+              "sha256": "ac1be8b7b41e8f9e90d8931caa07dc6c6cbc2cde070aaa330c2653c898b29f3f",
+              "text": "from repair_loops_pkg.module_beta import beta\r\n\r\n\r\ndef test_beta():\r\n    assert beta(2) == 8  # espera alpha(2)=4 então beta=8\r\n"
+            },
+            "repair_loops_pkg/__init__.py": {
+              "size": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            "repair_loops_pkg/__pycache__/module_alpha.cpython-311.pyc": {
+              "size": 324,
+              "sha256": "7b320fa108bb6a59cfe90c22f045dfe22046b3ec3c1945c3f07643bf0226a0cf",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/module_beta.cpython-311.pyc": {
+              "size": 435,
+              "sha256": "c2ad7ccf8c114a9389abf7592f1ec3aa07c14f54ae1d6b40a2cfa6660f9ab26f",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/test_repair.cpython-311-pytest-9.0.3.pyc": {
+              "size": 1554,
+              "sha256": "bd78f7c09cf29fde356364941cf6edaeb55e317942d40a02f545b4cb8d77941a",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc": {
+              "size": 193,
+              "sha256": "bfca5c616526a6990be53937110e254147dbb689a48bb278130d3de8dc7f1aed",
+              "binary": true
+            }
+          },
+          "workspace_writes": 12,
+          "setup_total": 4,
+          "setup_files": 4,
+          "setup_dirs": 0,
+          "verification_total": 1,
+          "verification_passed": 1,
+          "verification_failed": 0,
+          "verification_critical_failed": 0,
+          "verification_ok": true,
+          "stability_score": 1.0,
+          "semantic_stability_score": 1.0,
+          "iteration_semantic_delta_avg": 0.0,
+          "iteration_semantic_first_last_distance": 0.0,
+          "iteration_semantic_runs_with_pairs": 0,
+          "redundant_tool_calls": 0,
+          "efficiency_factor": 1.0,
+          "plan_stability": 0.0,
+          "critic_usefulness": 0.0,
+          "tool_misuse_rate": 0.0,
+          "hallucination_rate": 0.0,
+          "memory_relevance": 0.0,
+          "self_correction_success": 0.0,
+          "avg_repair_iterations": 0.0,
+          "context_drift_slope": 0.0
+        },
+        "instrumentation": {
+          "plan_stability": 0.0,
+          "critic_usefulness": 0.0,
+          "tool_misuse_rate": 0.0,
+          "hallucination_rate": 0.0,
+          "memory_relevance": 0.0,
+          "self_correction_success": 0.0,
+          "avg_repair_iterations": 0.0,
+          "context_drift_slope": 0.0
+        },
+        "final_score": 0.37,
+        "agent_score": 0.6
+      },
+      "runs": [
+        {
+          "status": "error",
+          "output": "Resposta benchmark sem LLM externo",
+          "error": "unable_to_plan_action",
+          "steps": [
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "error",
+              "output": "unable_to_plan_action",
+              "error": "unable_to_plan_action",
+              "raw": {
+                "status": "error",
+                "error": "unable_to_plan_action"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            },
+            {
+              "status": "success",
+              "output": "Resposta benchmark sem LLM externo",
+              "error": null,
+              "raw": {
+                "status": "success",
+                "output": "Resposta benchmark sem LLM externo"
+              }
+            }
+          ],
+          "setup_results": [
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/__init__.py",
+              "status": "success",
+              "bytes": 0
+            },
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/module_alpha.py",
+              "status": "success",
+              "bytes": 83
+            },
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/module_beta.py",
+              "status": "success",
+              "bytes": 86
+            },
+            {
+              "type": "file",
+              "path": "repair_loops_pkg/test_repair.py",
+              "status": "success",
+              "bytes": 124
+            }
+          ],
+          "verification_results": [
+            {
+              "name": "pytest",
+              "type": "pytest",
+              "critical": true,
+              "passed": true,
+              "command": [
+                "C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                "-I",
+                "-m",
+                "pytest",
+                "-q",
+                "repair_loops_pkg/test_repair.py"
+              ],
+              "returncode": 0,
+              "expected_returncode": 0,
+              "stdout": ".                                                                        [100%]\n1 passed in 0.21s\n",
+              "stderr": ""
+            }
+          ],
+          "verification_summary": {
+            "total": 1,
+            "passed": 1,
+            "failed": 0,
+            "critical_total": 1,
+            "critical_failed": 0,
+            "ok": true
+          },
+          "run": 1,
+          "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_ph523i7n",
+          "workspace_files": [
+            ".pytest_cache/.gitignore",
+            ".pytest_cache/CACHEDIR.TAG",
+            ".pytest_cache/README.md",
+            ".pytest_cache/v/cache/nodeids",
+            "config.json",
+            "repair_loops_pkg/__init__.py",
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/module_alpha.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/module_beta.cpython-311.pyc",
+            "repair_loops_pkg/__pycache__/test_repair.cpython-311-pytest-9.0.3.pyc",
+            "repair_loops_pkg/module_alpha.py",
+            "repair_loops_pkg/module_beta.py",
+            "repair_loops_pkg/test_repair.py"
+          ],
+          "workspace_artifacts": {
+            "config.json": {
+              "size": 1669,
+              "sha256": "0aeecbc29d67f708a8233c51cab7b92bfe0568712d44424be7432cdfd8f44797",
+              "text": "{\r\n    \"app_name\": \"Assistente Local V2\",\r\n    \"version\": \"2.0.0\",\r\n    \"workspace_path\": \"\",\r\n    \"project_path\": \"\",\r\n    \"data_paths\": {\r\n        \"memory_dir\": \"data\",\r\n        \"vectors_dir\": \"data/vectors\",\r\n        \"logs_dir\": \"data/logs\",\r\n        \"state_dir\": \"data/state\",\r\n        \"cache_dir\": \"data/cache\",\r\n        \"monitor_dir\": \"data/monitor\",\r\n        \"screens_dir\": \"data/monitor/screens\"\r\n    },\r\n    \"memory\": {\r\n        \"memory_file\": \"data/memory.json\",\r\n        \"max_recent_memories\": 20,\r\n        \"max_retrieved_memories\": 8\r\n    },\r\n    \"vectors\": {\r\n        \"chunks_file\": \"data/vectors/chunks.jsonl\",\r\n        \"metadata_file\": \"data/vectors/metadata.json\",\r\n        \"index_state_file\": \"data/vectors/index_state.json\",\r\n        \"top_k\": 8,\r\n        \"min_score\": 0.15\r\n    },\r\n    \"embeddings\": {\r\n        \"vector_size\": 256,\r\n        \"use_l2_normalization\": true\r\n    },\r\n    \"logging\": {\r\n        \"events_file\": \"data/logs/events.jsonl\",\r\n        \"errors_file\": \"data/logs/errors.jsonl\",\r\n        \"level\": \"INFO\"\r\n    },\r\n    \"llm\": {\r\n        \"base_url\": \"http://localhost:11434/api/generate\",\r\n        \"fast_model\": \"phi3:mini\",\r\n        \"default_model\": \"qwen2.5:3b\",\r\n        \"power_model\": \"qwen2.5-coder:7b\",\n        \"fallback_model\": \"phi3:mini\",\r\n        \"temperature\": 0.3,\r\n        \"timeout\": 15,\r\n        \"cache_ttl\": 120,\r\n        \"max_retries\": 0,\r\n        \"retry_delay\": 0.2,\r\n        \"max_context_chunks\": 6\r\n    },\r\n    \"features\": {\r\n        \"auto_index_on_start\": false,\r\n        \"auto_learn_memory\": true,\r\n        \"enable_action_execution\": true,\r\n        \"enable_vision\": true,\r\n        \"enable_web_search\": true\r\n    }\r\n}\n"
+            },
+            ".pytest_cache/.gitignore": {
+              "size": 39,
+              "sha256": "e7c6bb30148cf667606dcd63e7ca77acaa3cfb0c8303bf09e6419e1e1669dc6d",
+              "text": "# Created by pytest automatically.\r\n*\r\n"
+            },
+            ".pytest_cache/CACHEDIR.TAG": {
+              "size": 191,
+              "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+              "text": "Signature: 8a477f597d28d172789f06886806bc55\n# This file is a cache directory tag created by pytest.\n# For information about cache directory tags, see:\n#\thttps://bford.info/cachedir/spec.html\n"
+            },
+            ".pytest_cache/README.md": {
+              "size": 310,
+              "sha256": "420e808d79a6c25d3cda0af33bc4782314a14949866682c68ce8149e89b66b70",
+              "text": "# pytest cache directory #\r\n\r\nThis directory contains data from the pytest's cache plugin,\r\nwhich provides the `--lf` and `--ff` options, as well as the `cache` fixture.\r\n\r\n**Do not** commit this to version control.\r\n\r\nSee [the docs](https://docs.pytest.org/en/stable/how-to/cache.html) for more information.\r\n"
+            },
+            ".pytest_cache/v/cache/nodeids": {
+              "size": 52,
+              "sha256": "540d88643d7ba519e2959f787dcfc97a58e3d58c460114cf1b3ac6f1961c05f4",
+              "text": "[\r\n  \"repair_loops_pkg/test_repair.py::test_beta\"\r\n]"
+            },
+            "repair_loops_pkg/module_alpha.py": {
+              "size": 86,
+              "sha256": "777bdbddf92b609ae8e806e8f1f0e280c00fe8a81fb8ebedd55173222b72901b",
+              "text": "def alpha(x):\r\n    # implementação corrigida para passar o teste\r\n    return x * 2\r\n"
+            },
+            "repair_loops_pkg/module_beta.py": {
+              "size": 90,
+              "sha256": "a744163ce1e268e4f59851254c297fe691facd1071f99c5a11132ce7f073ae31",
+              "text": "from repair_loops_pkg.module_alpha import alpha\r\n\r\ndef beta(x):\r\n    return alpha(x) * 2\r\n"
+            },
+            "repair_loops_pkg/test_repair.py": {
+              "size": 129,
+              "sha256": "ac1be8b7b41e8f9e90d8931caa07dc6c6cbc2cde070aaa330c2653c898b29f3f",
+              "text": "from repair_loops_pkg.module_beta import beta\r\n\r\n\r\ndef test_beta():\r\n    assert beta(2) == 8  # espera alpha(2)=4 então beta=8\r\n"
+            },
+            "repair_loops_pkg/__init__.py": {
+              "size": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            "repair_loops_pkg/__pycache__/module_alpha.cpython-311.pyc": {
+              "size": 324,
+              "sha256": "7b320fa108bb6a59cfe90c22f045dfe22046b3ec3c1945c3f07643bf0226a0cf",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/module_beta.cpython-311.pyc": {
+              "size": 435,
+              "sha256": "c2ad7ccf8c114a9389abf7592f1ec3aa07c14f54ae1d6b40a2cfa6660f9ab26f",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/test_repair.cpython-311-pytest-9.0.3.pyc": {
+              "size": 1554,
+              "sha256": "bd78f7c09cf29fde356364941cf6edaeb55e317942d40a02f545b4cb8d77941a",
+              "binary": true
+            },
+            "repair_loops_pkg/__pycache__/__init__.cpython-311.pyc": {
+              "size": 193,
+              "sha256": "bfca5c616526a6990be53937110e254147dbb689a48bb278130d3de8dc7f1aed",
+              "binary": true
+            }
+          },
+          "instrumentation_trace": "D:\\IA\\benchmark\\results\\218ad689cfcb4c7d8f99598c83376103.json",
+          "instrumentation_metrics": {
+            "plan_stability": 0.0,
+            "critic_usefulness": 0.0,
+            "tool_misuse_rate": 0.0,
+            "hallucination_rate": 0.0,
+            "memory_relevance": 0.0,
+            "self_correction_success": 0.0,
+            "avg_repair_iterations": 0.0,
+            "context_drift_slope": 0.0
+          },
+          "trace": {
+            "run_id": "218ad689cfcb4c7d8f99598c83376103",
+            "scenario_id": "multi_repair_loops_50",
+            "meta": {
+              "run_number": 1,
+              "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_ph523i7n"
+            },
+            "trace": [
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 0,
+                "timestamp": "2026-05-12T22:39:33.386020+00:00",
+                "planned_action": {
+                  "input": "Passo 1: Rode testes e registre falhas iniciais."
+                },
+                "executed_action": {
+                  "status": "error",
+                  "output": "unable_to_plan_action",
+                  "error": "unable_to_plan_action",
+                  "raw": {
+                    "status": "error",
+                    "error": "unable_to_plan_action"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 1,
+                "timestamp": "2026-05-12T22:39:33.390890+00:00",
+                "planned_action": {
+                  "input": "Passo 2: Localize primeira falha em module_alpha.py."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 2,
+                "timestamp": "2026-05-12T22:39:33.392884+00:00",
+                "planned_action": {
+                  "input": "Passo 3: Aplique patch mínimo para passar um teste unitário."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 3,
+                "timestamp": "2026-05-12T22:39:33.393881+00:00",
+                "planned_action": {
+                  "input": "Passo 4: Reexecute testes; anote regressões novas."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 4,
+                "timestamp": "2026-05-12T22:39:33.395876+00:00",
+                "planned_action": {
+                  "input": "Passo 5: Se falha persistir, gere patch alternativo (segunda tentativa)."
+                },
+                "executed_action": {
+                  "status": "error",
+                  "output": "unable_to_plan_action",
+                  "error": "unable_to_plan_action",
+                  "raw": {
+                    "status": "error",
+                    "error": "unable_to_plan_action"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 5,
+                "timestamp": "2026-05-12T22:39:33.396875+00:00",
+                "planned_action": {
+                  "input": "Passo 6: Documente razão de cada tentativa de repair."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 6,
+                "timestamp": "2026-05-12T22:39:33.397870+00:00",
+                "planned_action": {
+                  "input": "Passo 7: Ao aplicar patch, rode subset de integration tests."
+                },
+                "executed_action": {
+                  "status": "error",
+                  "output": "unable_to_plan_action",
+                  "error": "unable_to_plan_action",
+                  "raw": {
+                    "status": "error",
+                    "error": "unable_to_plan_action"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 7,
+                "timestamp": "2026-05-12T22:39:33.400468+00:00",
+                "planned_action": {
+                  "input": "Passo 8: Se patch causa regressão, revert e tente abordagem B."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 8,
+                "timestamp": "2026-05-12T22:39:33.401467+00:00",
+                "planned_action": {
+                  "input": "Passo 9: Em caso de dependência quebrada, ajuste imports e contratos."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 9,
+                "timestamp": "2026-05-12T22:39:33.402464+00:00",
+                "planned_action": {
+                  "input": "Passo 10: Instrua agent a anotar retry_count e repair_iteration."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 10,
+                "timestamp": "2026-05-12T22:39:33.404459+00:00",
+                "planned_action": {
+                  "input": "Passo 11: Crie teste adicional que cobre caminho consertado."
+                },
+                "executed_action": {
+                  "status": "error",
+                  "output": "unable_to_plan_action",
+                  "error": "unable_to_plan_action",
+                  "raw": {
+                    "status": "error",
+                    "error": "unable_to_plan_action"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 11,
+                "timestamp": "2026-05-12T22:39:33.405456+00:00",
+                "planned_action": {
+                  "input": "Passo 12: Refaça pequenas refactors para reduzir hotspots."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 12,
+                "timestamp": "2026-05-12T22:39:33.406453+00:00",
+                "planned_action": {
+                  "input": "Passo 13: Validar que cada repair attempt reduz número de falhas."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 13,
+                "timestamp": "2026-05-12T22:39:33.408448+00:00",
+                "planned_action": {
+                  "input": "Passo 14: Para falhas não triviais, abrir investigação e isolar repro."
+                },
+                "executed_action": {
+                  "status": "error",
+                  "output": "unable_to_plan_action",
+                  "error": "unable_to_plan_action",
+                  "raw": {
+                    "status": "error",
+                    "error": "unable_to_plan_action"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 14,
+                "timestamp": "2026-05-12T22:39:33.409445+00:00",
+                "planned_action": {
+                  "input": "Passo 15: Realizar patch em múltiplos arquivos quando necessário."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 15,
+                "timestamp": "2026-05-12T22:39:33.411440+00:00",
+                "planned_action": {
+                  "input": "Passo 16: Automatizar aplicação de patch e testes subsequentes."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 16,
+                "timestamp": "2026-05-12T22:39:33.412437+00:00",
+                "planned_action": {
+                  "input": "Passo 17: Medir impacto em tempo de execução por attempt."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 17,
+                "timestamp": "2026-05-12T22:39:33.418422+00:00",
+                "planned_action": {
+                  "input": "Passo 18: Se attempts excederem limite, sinalizar necessidade de intervenção humana."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 18,
+                "timestamp": "2026-05-12T22:39:33.420415+00:00",
+                "planned_action": {
+                  "input": "Passo 19: Adicionar logs estruturados para cada patch aplicado."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 19,
+                "timestamp": "2026-05-12T22:39:33.422410+00:00",
+                "planned_action": {
+                  "input": "Passo 20: Reavaliar cobertura de testes após cada repair."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 20,
+                "timestamp": "2026-05-12T22:39:33.424404+00:00",
+                "planned_action": {
+                  "input": "Passo 21: Tentar simplificar solução para limitar surface change."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 21,
+                "timestamp": "2026-05-12T22:39:33.426490+00:00",
+                "planned_action": {
+                  "input": "Passo 22: Reexamine interação entre módulos após patches."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 22,
+                "timestamp": "2026-05-12T22:39:33.427397+00:00",
+                "planned_action": {
+                  "input": "Passo 23: Verificar efeitos colaterais em integração externa."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 23,
+                "timestamp": "2026-05-12T22:39:33.429392+00:00",
+                "planned_action": {
+                  "input": "Passo 24: Garantir que each repair possui test associado."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 24,
+                "timestamp": "2026-05-12T22:39:33.431386+00:00",
+                "planned_action": {
+                  "input": "Passo 25: Consolidar patches relacionados em um commit coerente."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 25,
+                "timestamp": "2026-05-12T22:39:33.432383+00:00",
+                "planned_action": {
+                  "input": "Passo 26: Executar suíte completa e medir regressões residuais."
+                },
+                "executed_action": {
+                  "status": "error",
+                  "output": "unable_to_plan_action",
+                  "error": "unable_to_plan_action",
+                  "raw": {
+                    "status": "error",
+                    "error": "unable_to_plan_action"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 26,
+                "timestamp": "2026-05-12T22:39:33.433381+00:00",
+                "planned_action": {
+                  "input": "Passo 27: Validar idempotência de patches quando re-aplicados."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 27,
+                "timestamp": "2026-05-12T22:39:33.436373+00:00",
+                "planned_action": {
+                  "input": "Passo 28: Se patches interferirem, propor nova estratégia de decomposition."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 28,
+                "timestamp": "2026-05-12T22:39:33.438368+00:00",
+                "planned_action": {
+                  "input": "Passo 29: Reescrever testes frágeis para reduzir flakiness."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 29,
+                "timestamp": "2026-05-12T22:39:33.441360+00:00",
+                "planned_action": {
+                  "input": "Passo 30: Incluir testes de integração que simulem múltiplos repairs."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 30,
+                "timestamp": "2026-05-12T22:39:33.444352+00:00",
+                "planned_action": {
+                  "input": "Passo 31: Medir eficiência do ciclo (tempo até primeiro passe)."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 31,
+                "timestamp": "2026-05-12T22:39:33.446346+00:00",
+                "planned_action": {
+                  "input": "Passo 32: Extrair heurísticas de sucesso das tentativas anteriores."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 32,
+                "timestamp": "2026-05-12T22:39:33.452331+00:00",
+                "planned_action": {
+                  "input": "Passo 33: Aplicar heurística para priorizar arquivos com maior impacto."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 33,
+                "timestamp": "2026-05-12T22:39:33.456319+00:00",
+                "planned_action": {
+                  "input": "Passo 34: Evitar mudanças globais desnecessárias; prefira local fixes."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 34,
+                "timestamp": "2026-05-12T22:39:33.457317+00:00",
+                "planned_action": {
+                  "input": "Passo 35: Gerar histórico de repair_iterations por run."
+                },
+                "executed_action": {
+                  "status": "error",
+                  "output": "unable_to_plan_action",
+                  "error": "unable_to_plan_action",
+                  "raw": {
+                    "status": "error",
+                    "error": "unable_to_plan_action"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 35,
+                "timestamp": "2026-05-12T22:39:33.460309+00:00",
+                "planned_action": {
+                  "input": "Passo 36: Validar que repairs não adicionam vulnerabilidades."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 36,
+                "timestamp": "2026-05-12T22:39:33.463301+00:00",
+                "planned_action": {
+                  "input": "Passo 37: Refatorar módulo que originou mais falhas."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 37,
+                "timestamp": "2026-05-12T22:39:33.465296+00:00",
+                "planned_action": {
+                  "input": "Passo 38: Executar análise de dependências e minimizar acoplamento."
+                },
+                "executed_action": {
+                  "status": "error",
+                  "output": "unable_to_plan_action",
+                  "error": "unable_to_plan_action",
+                  "raw": {
+                    "status": "error",
+                    "error": "unable_to_plan_action"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 38,
+                "timestamp": "2026-05-12T22:39:33.467290+00:00",
+                "planned_action": {
+                  "input": "Passo 39: Consolidar métricas e calcular retry efficiency."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 39,
+                "timestamp": "2026-05-12T22:39:33.469285+00:00",
+                "planned_action": {
+                  "input": "Passo 40: Confirmar estabilidade após último repair."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 40,
+                "timestamp": "2026-05-12T22:39:33.471279+00:00",
+                "planned_action": {
+                  "input": "Passo 41: Limpar código temporário adicionado durante debugging."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 41,
+                "timestamp": "2026-05-12T22:39:33.473275+00:00",
+                "planned_action": {
+                  "input": "Passo 42: Garantir que testes adicionais sejam mantidos."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 42,
+                "timestamp": "2026-05-12T22:39:33.475270+00:00",
+                "planned_action": {
+                  "input": "Passo 43: Gerar resumo dos patches e rationale para revisão."
+                },
+                "executed_action": {
+                  "status": "error",
+                  "output": "unable_to_plan_action",
+                  "error": "unable_to_plan_action",
+                  "raw": {
+                    "status": "error",
+                    "error": "unable_to_plan_action"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 43,
+                "timestamp": "2026-05-12T22:39:33.476266+00:00",
+                "planned_action": {
+                  "input": "Passo 44: Reexecutar suíte completa como validação final."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 44,
+                "timestamp": "2026-05-12T22:39:33.479258+00:00",
+                "planned_action": {
+                  "input": "Passo 45: Armazenar trace detalhado de cada repair attempt."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 45,
+                "timestamp": "2026-05-12T22:39:33.487237+00:00",
+                "planned_action": {
+                  "input": "Passo 46: Avaliar se problema exige arquitetura diferente."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 46,
+                "timestamp": "2026-05-12T22:39:33.490229+00:00",
+                "planned_action": {
+                  "input": "Passo 47: Se necessário, dividir tarefa em subtasks menores."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 47,
+                "timestamp": "2026-05-12T22:39:33.493221+00:00",
+                "planned_action": {
+                  "input": "Passo 48: Preparar arquivo CHANGELOG com entradas relevantes."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 48,
+                "timestamp": "2026-05-12T22:39:33.495216+00:00",
+                "planned_action": {
+                  "input": "Passo 49: Revisar e fechar issues criadas durante processo."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              },
+              {
+                "run_id": "218ad689cfcb4c7d8f99598c83376103",
+                "scenario_id": "multi_repair_loops_50",
+                "step_index": 49,
+                "timestamp": "2026-05-12T22:39:33.501200+00:00",
+                "planned_action": {
+                  "input": "Passo 50: Encerrar cenário e arquivar artefatos e traces."
+                },
+                "executed_action": {
+                  "status": "success",
+                  "output": "Resposta benchmark sem LLM externo",
+                  "error": null,
+                  "raw": {
+                    "status": "success",
+                    "output": "Resposta benchmark sem LLM externo"
+                  }
+                },
+                "tool_calls": [],
+                "critic_suggestions": [],
+                "memory_reads": [],
+                "validation": null,
+                "hallucination": false,
+                "self_detected": false,
+                "self_fixed": false,
+                "retry_count": 0,
+                "repair_iteration": null,
+                "extra": {}
+              }
+            ],
+            "metrics": {
+              "plan_stability": 0.0,
+              "critic_usefulness": 0.0,
+              "tool_misuse_rate": 0.0,
+              "hallucination_rate": 0.0,
+              "memory_relevance": 0.0,
+              "self_correction_success": 0.0,
+              "avg_repair_iterations": 0.0,
+              "context_drift_slope": 0.0
+            },
+            "elapsed": 2.943752500010305,
+            "workspace": "C:\\Users\\Juven\\AppData\\Local\\Temp\\ia_benchmark_ph523i7n",
+            "started_at": "2026-05-12T22:39:33.375045+00:00",
+            "ended_at": "2026-05-12T22:39:36.326840+00:00"
+          }
+        }
+      ]
+    }
+  ]
+}
