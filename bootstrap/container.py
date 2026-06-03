@@ -286,7 +286,24 @@ def build_engine(
     vector_size = int(config.get("embeddings.vector_size", 384))
     workspace_root = _workspace_root(config, safe_root=safe_root)
     # Ensure a StateManager instance is available and optionally configure it
+    # Support a feature-flag / config to use a Redis-backed adapter when desired.
     try:
+        use_redis_state = False
+        try:
+            use_redis_state = str(config.get("state.use_redis", "")).strip().lower() in ("1", "true", "yes", "y")
+        except Exception:
+            use_redis_state = os.environ.get("USE_REDIS_STATE", "").strip().lower() in ("1", "true", "yes", "y")
+
+        if state_manager is None and use_redis_state:
+            try:
+                from core.state_redis_adapter import StateRedisAdapter
+
+                redis_url = config.get("state.redis_url", os.environ.get("REDIS_URL", None))
+                state_manager = StateRedisAdapter(redis_url=redis_url)
+            except Exception:
+                # If Redis adapter instantiation fails, fall through to existing behavior
+                state_manager = None
+
         if state_manager is None:
             # prefer the global singleton from core.state when available
             import core.state as _core_state
