@@ -33,6 +33,11 @@
         "errors_file": "data/logs/errors.jsonl",
         "level": "INFO"
     },
+    "server": {
+        "host": "127.0.0.1",
+        "api_port": 8000,
+        "metrics_port": 8001
+    },
     "llm": {
         "base_url": "http://localhost:11434/api/generate",
         "fast_model": "phi3:mini",
@@ -40,7 +45,7 @@
         "power_model": "qwen2.5-coder:7b",
         "fallback_model": "phi3:mini",
         "temperature": 0.3,
-        "timeout": 15,
+        "timeout": 60,
         "cache_ttl": 120,
         "max_retries": 0,
         "retry_delay": 0.2,
@@ -49,7 +54,7 @@
     "features": {
         "auto_index_on_start": false,
         "auto_learn_memory": true,
-        "enable_action_execution": true,
+        "enable_action_execution": false,
         "enable_vision": true,
         "enable_web_search": true
     }

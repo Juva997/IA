@@ -1,0 +1,18 @@
+{
+  "schema": "memory_v2",
+  "facts": {
+    "pending_user_name": "Ana"
+  },
+  "fact_metadata": {
+    "pending_user_name": {
+      "created_at": 1780490812.4242005,
+      "updated_at": 1780490812.4242005,
+      "source": "user_statement_pending",
+      "confidence": 0.95,
+      "last_validated_at": 1780490812.4242005
+    }
+  },
+  "episodes": [],
+  "skills": {},
+  "lessons": []
+}

@@ -58,6 +58,63 @@ class AutonomousEngine:
             # 🔥 contexto inicial
             context = self._build_context(goal, state)
 
+            # 🔍 atalho: se o usuário pedir um diagnóstico, rode os diagnósticos internos
+            try:
+                import unicodedata
+
+                goal_norm = str(goal or "")
+                # remover acentos para comparação robusta
+                goal_ascii = unicodedata.normalize("NFKD", goal_norm)
+                goal_ascii = "".join(c for c in goal_ascii if not unicodedata.combining(c)).lower()
+
+                if "diagn" in goal_ascii:
+                    from core.diagnostics import collect_health_details
+
+                    diag = collect_health_details(self)
+                    return self._success(diag)
+            except Exception as diag_exc:
+                # se falhar aqui, registre logs mais verbosos para depuração
+                try:
+                    import traceback as _tb
+
+                    self.logger.error(f"[DIAGNOSTIC] Falha ao executar diagnóstico: {diag_exc}")
+                    self.logger.error(_tb.format_exc())
+
+                    # detalhes de runtime e configuração
+                    try:
+                        self.logger.debug(f"[DIAGNOSTIC] runtime_info: {getattr(self, 'runtime_info', {})}")
+                    except Exception:
+                        pass
+
+                    # snapshot de memória (se disponível)
+                    try:
+                        mem = getattr(self, 'memory', None)
+                        if mem and hasattr(mem, 'get_memory_snapshot'):
+                            snap = mem.get_memory_snapshot()
+                            self.logger.debug(f"[DIAGNOSTIC] memory snapshot: {snap}")
+                    except Exception as ex2:
+                        self.logger.debug(f"[DIAGNOSTIC] memory snapshot error: {ex2}")
+
+                    # diagnóstico do roteador/llm (se disponível)
+                    try:
+                        router = getattr(self, 'router', None)
+                        if router and hasattr(router, 'diagnostics'):
+                            routediag = router.diagnostics()
+                            self.logger.debug(f"[DIAGNOSTIC] router diagnostics: {routediag}")
+                    except Exception as ex3:
+                        self.logger.debug(f"[DIAGNOSTIC] router diagnostics error: {ex3}")
+
+                    # Adicional: gravar um arquivo resumo de diagnóstico rápido
+                    try:
+                        diag_path = getattr(self, 'runtime_info', {}).get('workspace_root', '.')
+                        diag_file = f"{diag_path}/data/logs/diagnostic_errors_last.txt"
+                        with open(diag_file, 'w', encoding='utf-8') as dfh:
+                            dfh.write(f"diagnostic_error: {diag_exc}\n")
+                    except Exception:
+                        pass
+                except Exception:
+                    pass
+
             # 🔥 memória direta (super importante)
             memory_answer = self._handle_memory_question(goal, context)
             if memory_answer:
@@ -110,13 +167,13 @@ class AutonomousEngine:
     # =========================
     def _handle_memory_question(self, goal, context):
         goal = str(goal).lower()
-        facts = context.get("facts", {})
+        facts = context.get("facts", {}) or {}
 
         if self._is_memory_statement(goal):
             return self._memory_statement_response(context)
 
         if "meu nome" in goal:
-            name = facts.get("user_name")
+            name = facts.get("user_name") or facts.get("pending_user_name")
             if name:
                 return f"Seu nome é {name}."
             return "Ainda não sei seu nome."
@@ -139,8 +196,9 @@ class AutonomousEngine:
     def _memory_statement_response(self, context):
         facts = context.get("facts", {})
 
-        if facts.get("user_name"):
-            return f"Memória atualizada: seu nome é {facts['user_name']}."
+        name = facts.get("user_name") or facts.get("pending_user_name")
+        if name:
+            return f"Memória atualizada: seu nome é {name}."
 
         details = []
         if facts.get("likes"):
@@ -265,9 +323,35 @@ class AutonomousEngine:
     # 💬 RESPOSTA DIRETA
     # =========================
     def _handle_direct_response(self, goal, context, goal_type):
+        # Se o planner não conseguiu gerar um plano de ação, tente um
+        # fallback mais tolerante: solicitar uma resposta direta ao agente.
         if goal_type == "action":
-            self._log("[ENGINE] Empty action plan")
-            return {"status": "error", "error": "unable_to_plan_action"}
+            self._log("[ENGINE] Empty action plan -> attempting fallback to agent.respond")
+
+            try:
+                # Logar saída bruta do planner/LLM (truncada) se disponível
+                try:
+                    llm_resp = getattr(self.planner, "last_llm_response", None)
+                    if llm_resp:
+                        truncated = llm_resp if len(llm_resp) < 1000 else llm_resp[:1000] + "...(truncated)"
+                        self._log(f"[PLANNER DEBUG] last_llm_response: {truncated}")
+                except Exception:
+                    pass
+
+                output = self.agent.respond(goal, context)
+
+                if isinstance(output, str) and output.startswith("[LLM_ERROR]"):
+                    # Fallback falhou — manter comportamento anterior por compatibilidade
+                    self._log(f"[ENGINE] Fallback LLM error: {output}")
+                    return {"status": "error", "error": "unable_to_plan_action"}
+
+                if isinstance(output, dict):
+                    return output
+
+                return self._success(str(output).strip() if output is not None else "")
+            except Exception as e:
+                self._log(f"[ENGINE] Fallback handler exception: {e}")
+                return {"status": "error", "error": "unable_to_plan_action"}
 
         self._log("[ENGINE] Direct response")
 
@@ -339,6 +423,19 @@ class AutonomousEngine:
                         folder = path.replace("\\", "/").rsplit("/", 1)[0]
                         if folder:
                             self.session_context["last_folder_path"] = folder
+                # Após deleção bem-sucedida, remover do conjunto de pendências (se existir)
+                if step.get("action") == "delete_file" and path:
+                    try:
+                        if hasattr(self, "memory") and getattr(self, "memory", None) is not None:
+                            pending = self.memory.get_fact("pending_deletions", []) or []
+                            if path in pending:
+                                pending = [p for p in pending if p != path]
+                                try:
+                                    self.memory.remember_fact("pending_deletions", pending, source="system")
+                                except Exception:
+                                    pass
+                    except Exception:
+                        pass
             return result
         except Exception as e:
             return {"status": "error", "error": str(e)}

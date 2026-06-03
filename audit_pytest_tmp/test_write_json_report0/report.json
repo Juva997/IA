@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "dataset": "unit",
+    "runs_per_test": 3,
+    "generated_at": "2026-06-03T12:46:39.179970+00:00"
+  },
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "quality_gate": "PRODUCTION READY"
+  },
+  "results": [
+    {
+      "name": "ok",
+      "status": "success",
+      "metrics": {
+        "final_score": 1.0
+      }
+    }
+  ]
+}

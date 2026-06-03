@@ -5,6 +5,14 @@ from actions.tools.python_tools import run_python_code
 from actions.tools.system_tools import list_files, read_file, respond
 from integrations.browser import open_browser
 from integrations.vision import analyze_screen
+from actions.tools.self_care import self_care
+
+
+def _doc_repair_tool(data, state=None):
+    # import dinâmico para evitar import circular
+    from cognition.specialists import doc_repair
+
+    return doc_repair(data, state)
 
 
 class ActionRegistry:
@@ -36,6 +44,11 @@ class ActionRegistry:
 
         # 👁️ visão
         self.register("analyze_screen", analyze_screen, "Analisa tela")
+
+        # 🛠 doc repair specialist (import dinâmico)
+        self.register("doc_repair", _doc_repair_tool, "Corrige docstrings e aplica patch verificado por testes")
+        # 🧘 autocuidado
+        self.register("self_care", self_care, "Sugestões e tarefas de autocuidado")
 
     # =========================
     # 🧩 REGISTRO

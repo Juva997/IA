@@ -9,6 +9,7 @@ __pycache__/
 # Test and coverage output
 .coverage
 .pytest_cache/
+.pytest_tmp*/
 
 # Type/lint caches
 .mypy_cache/

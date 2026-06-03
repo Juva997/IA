@@ -1,0 +1,36 @@
+{
+  "schema": "memory_v2",
+  "facts": {
+    "user_name": "João",
+    "likes": [
+      "programar em Python"
+    ],
+    "programming_language": "Python"
+  },
+  "fact_metadata": {
+    "user_name": {
+      "created_at": 1780490810.397301,
+      "updated_at": 1780490810.397301,
+      "source": "user_statement",
+      "confidence": 0.95,
+      "last_validated_at": 1780490810.397301
+    },
+    "likes": {
+      "created_at": 1780490810.397301,
+      "updated_at": 1780490810.397301,
+      "source": "user_statement",
+      "confidence": 0.85,
+      "last_validated_at": 1780490810.397301
+    },
+    "programming_language": {
+      "created_at": 1780490810.397301,
+      "updated_at": 1780490810.397301,
+      "source": "user_statement",
+      "confidence": 0.9,
+      "last_validated_at": 1780490810.397301
+    }
+  },
+  "episodes": [],
+  "skills": {},
+  "lessons": []
+}

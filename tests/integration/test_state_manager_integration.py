@@ -1,5 +1,3 @@
-import pytest
-
 from bootstrap.container import build_engine
 
 

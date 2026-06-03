@@ -25,6 +25,25 @@ def _workspace_root(state=None):
     return os.path.abspath(os.getcwd())
 
 
+def list_files(data=None, state=None):
+    try:
+        if isinstance(data, dict):
+            path = data.get("path", ".")
+        elif isinstance(data, str):
+            path = data
+        else:
+            path = "." if data is None else str(data)
+
+        safe = _safe_path(path, state)
+        files = os.listdir(safe)
+        formatted_list = "\n".join([f"  - {f}" for f in sorted(files)])
+        output = f"Arquivos na pasta '{path}':\n{formatted_list}"
+        return {"status": "success", "output": output}
+
+    except Exception as e:
+        return {"status": "error", "error": str(e)}
+
+
 def delete_file(data, state=None):
     try:
         path = data.get("path")

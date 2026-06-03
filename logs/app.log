@@ -1,21 +1,10 @@
-[2026-05-11 16:14:33.882295] [INFO] [ENGINE] Start goal: Teste usando Ollama real com timeout 60s
-[2026-05-11 16:14:33.884716] [INFO] [ROUTER] -> default
-[2026-05-11 16:14:33.889935] [INFO] [ENGINE] Fallback -> direct response
-[2026-05-11 16:14:33.889935] [INFO] [ENGINE] Direct response
-INFO:     127.0.0.1:50928 - "POST /query HTTP/1.1" 200 OK
-8001
-[2026-05-11 16:14:24,938] [INFO] app: Metricas ja iniciadas
-[2026-05-11 17:04:28,232] [INFO] app: 
+[2026-06-03 07:10:36,001] [INFO] app: 
 Assistente Local V2 v2.0.0
-[2026-05-11 17:04:28,233] [INFO] app: Modo inicializando...
+[2026-06-03 07:10:36,001] [INFO] app: Modo inicializando...
 
-[2026-05-11 17:06:59,560] [INFO] comtypes.client._code_cache: Imported existing <module 'comtypes.gen' from 'C:\\Users\\Juven\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
-[2026-05-11 17:06:59,560] [INFO] comtypes.client._code_cache: Using writeable comtypes cache directory: 'C:\Users\Juven\AppData\Local\Programs\Python\Python311\Lib\site-packages\comtypes\gen'
-[2026-05-11 18:09:47,634] [INFO] app: 
+[2026-06-03 07:10:36,003] [INFO] interfaces.launcher: Launcher: iniciando UI no thread principal
+[2026-06-03 07:33:58,985] [INFO] app: 
 Assistente Local V2 v2.0.0
-[2026-05-11 18:09:47,646] [INFO] app: Modo inicializando...
+[2026-06-03 07:33:58,986] [INFO] app: Modo inicializando...
 
-[2026-05-11 18:25:04,413] [INFO] app: 
-Assistente Local V2 v2.0.0
-[2026-05-11 18:25:04,426] [INFO] app: Modo inicializando...
-
+[2026-06-03 07:33:58,987] [INFO] interfaces.launcher: Launcher: iniciando UI no thread principal

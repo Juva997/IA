@@ -1,0 +1,90 @@
+{
+  "schema": "memory_v2",
+  "facts": {},
+  "fact_metadata": {},
+  "episodes": [
+    {
+      "id": "a8efc781d9f29e37",
+      "kind": "episode",
+      "task": "write_file",
+      "step": {
+        "action": "write_file",
+        "data": {
+          "path": "../escape.txt"
+        }
+      },
+      "result": {
+        "status": "error",
+        "error": "path_outside_safe_root"
+      },
+      "feedback": "fail",
+      "status": "error",
+      "summary": "write_file -> error; feedback=fail; output=path_outside_safe_root",
+      "confidence": 0.35,
+      "source": "store_step",
+      "created_at": 1780490810.4113233,
+      "last_validated_at": null,
+      "tags": []
+    }
+  ],
+  "skills": {
+    "use_write_file": {
+      "id": "2b1738d53028e4fe",
+      "kind": "skill",
+      "name": "use_write_file",
+      "trigger": "use_write_file",
+      "procedure": {
+        "steps": [
+          {
+            "action": "write_file"
+          }
+        ]
+      },
+      "confidence": 0.75,
+      "source": "learned",
+      "evidence": null,
+      "success_count": 1,
+      "failure_count": 1,
+      "created_at": 1780490810.4103026,
+      "updated_at": 1780490810.4113233,
+      "last_validated_at": 1780490810.4103026
+    }
+  },
+  "lessons": [
+    {
+      "id": "fef787968989364e",
+      "kind": "lesson",
+      "problem": "write_file failed: path_outside_safe_root",
+      "solution": "Review the action parameters, keep paths inside the safe workspace, and retry with a smaller step.",
+      "confidence": 0.6,
+      "source": "failed_step",
+      "evidence": {
+        "id": "a8efc781d9f29e37",
+        "kind": "episode",
+        "task": "write_file",
+        "step": {
+          "action": "write_file",
+          "data": {
+            "path": "../escape.txt"
+          }
+        },
+        "result": {
+          "status": "error",
+          "error": "path_outside_safe_root"
+        },
+        "feedback": "fail",
+        "status": "error",
+        "summary": "write_file -> error; feedback=fail; output=path_outside_safe_root",
+        "confidence": 0.35,
+        "source": "store_step",
+        "created_at": 1780490810.4113233,
+        "last_validated_at": null,
+        "tags": []
+      },
+      "observations": 1,
+      "created_at": 1780490810.4113233,
+      "updated_at": 1780490810.4113233,
+      "last_validated_at": null
+    }
+  ]
+}

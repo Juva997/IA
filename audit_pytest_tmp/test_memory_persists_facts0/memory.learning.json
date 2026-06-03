@@ -1,0 +1,18 @@
+{
+  "schema": "memory_v2",
+  "facts": {
+    "user_name": "Ana"
+  },
+  "fact_metadata": {
+    "user_name": {
+      "created_at": 1780490810.4023223,
+      "updated_at": 1780490810.4023223,
+      "source": "user_statement",
+      "confidence": 0.95,
+      "last_validated_at": 1780490810.4023223
+    }
+  },
+  "episodes": [],
+  "skills": {},
+  "lessons": []
+}

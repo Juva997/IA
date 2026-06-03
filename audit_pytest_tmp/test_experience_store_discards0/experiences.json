@@ -1,0 +1,38 @@
+[
+  {
+    "task": "same task",
+    "plan": [
+      {
+        "action": "bad",
+        "data": {}
+      }
+    ],
+    "result": {
+      "steps": [],
+      "output": "bad"
+    },
+    "score": 0.2,
+    "passed": false,
+    "feedback": "fail",
+    "metadata": {},
+    "created_at": 1780490812.2989728
+  },
+  {
+    "task": "same task",
+    "plan": [
+      {
+        "action": "ok",
+        "data": {}
+      }
+    ],
+    "result": {
+      "steps": [],
+      "output": "ok"
+    },
+    "score": 0.95,
+    "passed": true,
+    "feedback": "success",
+    "metadata": {},
+    "created_at": 1780490812.2999735
+  }
+]

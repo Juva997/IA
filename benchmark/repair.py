@@ -2,6 +2,7 @@ import difflib
 import py_compile
 import re
 import traceback
+import os
 from pathlib import Path
 
 
@@ -62,7 +63,15 @@ def apply_llm_patches(root, text, *, allowed_exts=None, max_patch_size=200000):
 
     Returns (applied_patches, errors, backups).
     """
-    allowed_exts = allowed_exts or {".py", ".txt", ".md", ".json"}
+    # Por padrão não permitir patches em arquivos .py a menos que a variável
+    # de ambiente `ASSISTENTE_ALLOW_PY_PATCHES` esteja ativada.
+    if allowed_exts is None:
+        allow_py = str(os.getenv("ASSISTENTE_ALLOW_PY_PATCHES", "0")).lower() in (
+            "1",
+            "true",
+            "yes",
+        )
+        allowed_exts = {".py", ".txt", ".md", ".json"} if allow_py else {".txt", ".md", ".json"}
     applied = []
     errors = []
     backups = []

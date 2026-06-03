@@ -209,6 +209,38 @@ class BenchmarkRunner:
         return {"time": elapsed, "output": output}
 
     def _run_test_payload(self, engine, test):
+        # Special case: doc_repair tests use the doc_repair specialist to modify files
+        if test.get("type") == "doc_repair":
+            try:
+                # current working directory is the workspace root
+                root = os.getcwd()
+                # dynamic import to avoid startup import cycles
+                from cognition.specialists import doc_repair
+
+                setup = test.get("setup") or {}
+                files = []
+                if isinstance(setup, dict):
+                    fs = setup.get("files") or []
+                    if isinstance(fs, dict):
+                        files = list(fs.keys())
+                    elif isinstance(fs, list):
+                        files = [s.get("path") for s in fs if isinstance(s, dict) and s.get("path")]
+
+                results = []
+                for f in files:
+                    try:
+                        state = {"workspace_root": root}
+                        # run_tests=False to let runner handle verification
+                        r = doc_repair({"path": f, "run_tests": False}, state=state)
+                    except Exception as exc:
+                        r = {"status": "error", "error": str(exc)}
+                    results.append({"path": f, "result": r})
+
+                status = "success" if all(r.get("result", {}).get("status") == "success" for r in results) else "error"
+                return {"status": status, "output": results}
+            except Exception as exc:
+                return {"status": "error", "output": None, "error": str(exc)}
+
         if isinstance(test.get("steps"), list):
             records = []
             for step in test["steps"]:

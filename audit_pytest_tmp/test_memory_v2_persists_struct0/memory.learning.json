@@ -1,0 +1,53 @@
+{
+  "schema": "memory_v2",
+  "facts": {
+    "user_name": "Bia"
+  },
+  "fact_metadata": {
+    "user_name": {
+      "created_at": 1780490810.4153225,
+      "updated_at": 1780490810.4153225,
+      "source": "user_statement",
+      "confidence": 0.95,
+      "last_validated_at": 1780490810.4153225
+    }
+  },
+  "episodes": [],
+  "skills": {
+    "validate_project": {
+      "id": "c46ca3525bd052cf",
+      "kind": "skill",
+      "name": "validate_project",
+      "trigger": "testar projeto inteiro",
+      "procedure": {
+        "steps": [
+          "python -m pytest -q",
+          "python -m benchmark.runner --dataset full"
+        ]
+      },
+      "confidence": 0.9,
+      "source": "unit_test",
+      "evidence": null,
+      "success_count": 1,
+      "failure_count": 0,
+      "created_at": 1780490810.4163306,
+      "updated_at": 1780490810.4163306,
+      "last_validated_at": 1780490810.4163306
+    }
+  },
+  "lessons": [
+    {
+      "id": "bf4867d26f63ecf5",
+      "kind": "lesson",
+      "problem": "dataset all nao inclui suites grandes",
+      "solution": "use dataset full para validar tudo",
+      "confidence": 0.9,
+      "source": "unit_test",
+      "evidence": null,
+      "observations": 1,
+      "created_at": 1780490810.4163306,
+      "updated_at": 1780490810.4163306,
+      "last_validated_at": null
+    }
+  ]
+}

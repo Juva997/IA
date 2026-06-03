@@ -1,5 +1,6 @@
 import json
 import re
+import os
 from urllib.parse import quote_plus
 
 
@@ -7,9 +8,17 @@ class Planner:
     def __init__(self, llm, registry):
         self.llm = llm
         self.registry = registry
+        # Última resposta bruta do LLM (para diagnóstico/fallbacks)
+        self.last_llm_response = None
+        # Último plano analisado/parseado pelo planner
+        self.last_parsed_plan = None
 
     # =========================
     def create_plan(self, goal, context, analysis=None):
+        # resetar capturas anteriores a cada invocação
+        self.last_llm_response = None
+        self.last_parsed_plan = None
+
         goal_type = self._classify_goal(goal)
 
         if goal_type != "action":
@@ -17,18 +26,39 @@ class Planner:
 
         deterministic_plan = self._deterministic_plan(goal, context)
         if deterministic_plan is not None:
+            # Garantir que planos determinísticos também passem pelo reparo/filtragem
+            try:
+                deterministic_plan = self._repair_plan_steps(deterministic_plan, goal, context)
+            except Exception:
+                pass
             return deterministic_plan
 
         tools = self._format_tools()
         prompt = self._build_prompt(goal, tools)
 
         response = self.llm.generate(goal, prompt, analysis)
+        # Tratamento: LLM pode retornar erro formatado como string iniciando com [LLM_ERROR]
+        if isinstance(response, str) and response.startswith("[LLM_ERROR]"):
+            # salvar para diag e retornar plano vazio para fallback controlado
+            try:
+                self.last_llm_response = response
+            except Exception:
+                pass
+            return []
+        # armazenar resposta bruta do LLM para diagnóstico posterior
+        try:
+            self.last_llm_response = response
+        except Exception:
+            self.last_llm_response = None
+
         plan = self._parse(response, goal)
-        
-        # Validar e reparar planos inválidos antes de retornar
+        self.last_parsed_plan = plan
+
+        # Validar, reparar e filtrar planos inválidos antes de retornar
         if plan:
-            plan = self._repair_plan_steps(plan, goal)
-        
+            plan = self._repair_plan_steps(plan, goal, context)
+            self.last_parsed_plan = plan
+
         return plan
 
     def _normalize_command(self, goal):
@@ -174,6 +204,11 @@ Gere um plano JSON com as ações necessárias. Responda APENAS o JSON, sem expl
 
         text = self._normalize_command(goal)
         lowered = text.lower()
+
+        # Checar se o usuário está confirmando deleções pendentes
+        confirm_plan = self._plan_confirm_deletions(text, lowered, context)
+        if confirm_plan is not None:
+            return confirm_plan
 
         inline_code = self._extract_inline_code(text)
         if inline_code is not None:
@@ -331,6 +366,34 @@ Gere um plano JSON com as ações necessárias. Responda APENAS o JSON, sem expl
                 "benchmark()\n"
             )
             return self._write_and_read("benchmark_exemplo.py", content)
+
+        # Gerador de calculadora: cria um arquivo `calculadora.py` e o executa
+        if "calculadora" in lowered or "calculator" in lowered:
+            content = (
+                "def add(a, b):\n"
+                "    return a + b\n\n"
+                "def sub(a, b):\n"
+                "    return a - b\n\n"
+                "def mul(a, b):\n"
+                "    return a * b\n\n"
+                "def div(a, b):\n"
+                "    if b == 0:\n"
+                "        raise ValueError('Divisão por zero não permitida')\n"
+                "    return a / b\n\n"
+                "if __name__ == '__main__':\n"
+                "    print(add(5,3))\n"
+                "    print(sub(10,4))\n"
+                "    print(mul(6,7))\n"
+                "    try:\n"
+                "        print(div(8,0))\n"
+                "    except Exception as e:\n"
+                "        print('Erro:', e)\n"
+            )
+
+            return [
+                {"action": "write_file", "data": {"path": "calculadora.py", "content": content}},
+                {"action": "run_python", "data": {"code": "exec(open('calculadora.py').read())"}},
+            ]
 
         if "próprio nome" in lowered or "proprio nome" in lowered:
             content = "print('assistente_local')\n"
@@ -578,6 +641,42 @@ Gere um plano JSON com as ações necessárias. Responda APENAS o JSON, sem expl
             return None
 
         return [{"action": "delete_file", "data": {"path": self._clean_path(match.group(1))}}]
+
+    def _plan_confirm_deletions(self, text, lowered, context=None):
+        # Detecta intenções explícitas de confirmação para apagar arquivos previamente propostos
+        confirm_phrases = ["confirmar apagar", "confirmar deletar", "confirmar", "sim apagar", "sim", "confirmo apagar", "apague agora"]
+        cancel_phrases = ["cancelar apagar", "cancelar", "não apagar", "nao apagar", "não", "nao"]
+
+        has_confirm = any(phrase in lowered for phrase in confirm_phrases)
+        has_cancel = any(phrase in lowered for phrase in cancel_phrases)
+
+        # Recupera pendências de contexto/fatos (memória)
+        pending = []
+        try:
+            if isinstance(context, dict):
+                facts = context.get("facts", {}) or {}
+                pending = facts.get("pending_deletions") or []
+        except Exception:
+            pending = []
+
+        if not pending:
+            return None
+
+        # Cancelar: limpar pendências (o Engine tratará a remoção ao ver a ação respond)
+        if has_cancel:
+            return [{"action": "respond", "data": {"output": "Operação de deleção cancelada. Pendências removidas."}}]
+
+        if not has_confirm:
+            return None
+
+        # Construir passos de deleção com confirmação explícita para cada item pendente
+        steps = []
+        for p in pending:
+            if not p:
+                continue
+            steps.append({"action": "delete_file", "data": {"path": self._clean_path(p), "confirm_delete": True}})
+
+        return steps
 
     def _infer_file_extension(self, path, lowered):
         if not path:
@@ -1005,7 +1104,7 @@ Gere um plano JSON com as ações necessárias. Responda APENAS o JSON, sem expl
         return valid_steps
 
     # =========================
-    def _repair_plan_steps(self, steps, goal=None):
+    def _repair_plan_steps(self, steps, goal=None, context=None):
         """Repair broken steps in a plan (e.g., incomplete code, missing fields)."""
         repaired = []
         for step in steps:
@@ -1132,6 +1231,9 @@ Gere um plano JSON com as ações necessárias. Responda APENAS o JSON, sem expl
                     {"action": "run_python", "data": {"code": "exec(open('fatorial.py').read())"}},
                 ]
 
+        # Filtrar propostas de deleção para garantir existência física.
+        # Um delete_file continua válido quando o mesmo plano criou o arquivo antes.
+        final = self._filter_delete_steps_by_existence(final, context)
         return final
 
     # =========================
@@ -1288,3 +1390,67 @@ Gere um plano JSON com as ações necessárias. Responda APENAS o JSON, sem expl
                 normalized = "\n".join(repaired)
 
         return normalized
+
+    # =========================
+    def _file_exists_in_context(self, path, context):
+        """Check if a given path exists, considering session context when available."""
+        try:
+            if not path:
+                return False
+            # Absolute path
+            if os.path.isabs(path):
+                return os.path.exists(path)
+
+            # Relative to current working directory
+            if os.path.exists(path):
+                return True
+
+            # Check session last_folder_path if provided in context
+            if isinstance(context, dict):
+                session = context.get("session") or {}
+                last_folder = session.get("last_folder_path")
+                if last_folder:
+                    # Try joining with session folder
+                    try:
+                        cand = last_folder if os.path.isabs(last_folder) else os.path.join(os.getcwd(), last_folder)
+                        cand_path = os.path.join(cand, path)
+                        if os.path.exists(cand_path):
+                            return True
+                    except Exception:
+                        pass
+
+            return False
+        except Exception:
+            return False
+
+    def _filter_delete_steps_by_existence(self, steps, context):
+        """Replace delete_file steps that point to non-existent files with a safe respond step."""
+        if not isinstance(steps, list):
+            return steps
+
+        filtered = []
+        created_paths = set()
+        for step in steps:
+            if not isinstance(step, dict):
+                continue
+
+            action = step.get("action")
+            data = step.get("data") or {}
+            path = data.get("path")
+            normalized_path = self._clean_path(path) if isinstance(path, str) else path
+
+            if action == "delete_file":
+                if normalized_path in created_paths:
+                    filtered.append(step)
+                    continue
+
+                if not self._file_exists_in_context(path, context):
+                    # Do not propose destructive action if file not found
+                    filtered.append({"action": "respond", "data": {"output": f"Não apaguei '{path}': arquivo não encontrado."}})
+                    continue
+
+            filtered.append(step)
+            if action == "write_file" and normalized_path:
+                created_paths.add(normalized_path)
+
+        return filtered

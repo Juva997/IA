@@ -1,6 +1,7 @@
 import hashlib
 import os
 import re
+import tempfile
 from typing import Any
 
 from actions.executor import Executor
@@ -26,6 +27,102 @@ try:
     _SecurityManager = _ImportedSecurityManager
 except Exception:
     pass
+
+
+# Se o módulo de segurança não estiver disponível, fornecer um fallback
+if _SecurityManager is None:
+    import os as _os
+
+    class _FallbackGuard:
+        def __init__(self, safe_root, allow_delete=False):
+            self.safe_root = _os.path.abspath(safe_root or _os.getcwd())
+            self.allow_delete = allow_delete
+            self.blocked_actions = {"run_command", "shell", "system"}
+            self.destructive_actions = {"delete_file"}
+
+        def validate(self, step):
+            if not isinstance(step, dict):
+                return False, "invalid_step"
+
+            action = step.get("action")
+            data = step.get("data", {})
+
+            if not isinstance(action, str) or not action.strip():
+                return False, "missing_action"
+
+            if action in self.blocked_actions:
+                return False, f"blocked_action:{action}"
+
+            confirmed = isinstance(data, dict) and data.get("confirm_delete") is True
+            if action in self.destructive_actions and not self.allow_delete and not confirmed:
+                return False, f"destructive_action_blocked:{action}"
+
+            for key in ("path", "file_path", "filename", "directory", "folder"):
+                path = data.get(key)
+                if path is not None:
+                    try:
+                        full_path = _os.path.abspath(_os.path.join(self.safe_root, path))
+                        if _os.path.commonpath([self.safe_root, full_path]) != self.safe_root:
+                            return False, f"path_outside_safe_root:{key}"
+                    except Exception:
+                        return False, f"path_outside_safe_root:{key}"
+
+            return True, None
+
+
+    class _FallbackSelfModifySafe:
+        def __init__(self, safe_root=None):
+            self.safe_root = _os.path.abspath(safe_root or _os.getcwd())
+            self.allowed_paths = ["sandbox", "outputs", "temp"]
+            self.blocked_paths = ["core", "security", "memory"]
+
+        def can_modify(self, path):
+            normalized = self._normalize(path)
+            if normalized is None:
+                return False
+            return any(self._is_relative_to(normalized, allowed) for allowed in self.allowed_paths)
+
+        def validate_write(self, path, content=None):
+            normalized = self._normalize(path)
+            if normalized is None:
+                return False
+
+            if any(self._is_relative_to(normalized, blocked) for blocked in self.blocked_paths):
+                return False
+
+            return self.can_modify(path)
+
+        def _normalize(self, path):
+            if not isinstance(path, str) or not path.strip():
+                return None
+            try:
+                full_path = _os.path.abspath(_os.path.join(self.safe_root, path))
+                if _os.path.commonpath([self.safe_root, full_path]) != self.safe_root:
+                    return None
+                return _os.path.relpath(full_path, self.safe_root).replace("\\", "/")
+            except (OSError, ValueError):
+                return None
+
+        def _is_relative_to(self, path, root):
+            return path == root or path.startswith(root.rstrip("/") + "/")
+
+
+    class _FallbackSecurityManager:
+        def __init__(self, safe_root=None, allow_delete=False):
+            self.safe_root = _os.path.abspath(safe_root or _os.getcwd())
+            self.guard = _FallbackGuard(self.safe_root, allow_delete=allow_delete)
+            self.modify_guard = _FallbackSelfModifySafe(self.safe_root)
+
+        def validate_action(self, step):
+            return self.guard.validate(step)
+
+        def validate_write(self, path, content=None):
+            return self.modify_guard.validate_write(path, content)
+
+        def can_modify(self, path):
+            return self.modify_guard.can_modify(path)
+
+    _SecurityManager = _FallbackSecurityManager
 
 
 _EventBus: Any = None
@@ -281,6 +378,11 @@ def build_engine(
             retriever,
             persist_path=persist_path or "data/vectors/memory",
         )
+        # ativar confirmação por padrão para extrações automáticas (ex.: nomes)
+        try:
+            memory.require_confirmation = True
+        except Exception:
+            pass
 
     if registry is None:
         registry = ActionRegistry()
@@ -294,7 +396,7 @@ def build_engine(
 
     reasoning = Reasoning()
     if agent is None:
-        agent = Agent(llm_router, reasoning)
+        agent = Agent(llm_router, reasoning, memory)
 
     if critic is None:
         critic = Critic()
@@ -328,10 +430,35 @@ def build_engine(
         debug=debug,
     )
     engine.workspace_root = workspace_root
-    engine.sandbox_root = workspace_root
+
+    # Criar sandbox isolado por padrão para evitar executar código diretamente
+    # no workspace do repositório. Em caso de falha, cair para o workspace.
+    try:
+        sandbox_dir = tempfile.mkdtemp(prefix="assistente_local_sandbox_")
+        engine.sandbox_root = sandbox_dir
+    except Exception:
+        engine.sandbox_root = workspace_root
+
+    # Configurar política de exigência de API Key (reforçar auth global)
+    try:
+        require_api_key = bool(str(config.get("server.require_api_key", "1")).strip().lower() in ("1", "true", "yes"))
+    except Exception:
+        require_api_key = True
+
+    try:
+        api_key_cfg = config.get("server.api_key", "") or os.environ.get("ASSISTENTE_API_KEY", "")
+        if api_key_cfg:
+            os.environ["ASSISTENTE_API_KEY"] = str(api_key_cfg)
+        os.environ["ASSISTENTE_REQUIRE_API_KEY"] = "1" if require_api_key else "0"
+    except Exception:
+        pass
+
+    engine.require_api_key = require_api_key
+
     engine.runtime_info = {
         "workspace_root": workspace_root,
-        "sandbox_root": workspace_root,
+        "sandbox_root": engine.sandbox_root,
         "llm": model_info,
+        "require_api_key": require_api_key,
     }
     return engine

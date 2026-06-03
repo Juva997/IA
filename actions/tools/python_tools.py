@@ -356,8 +356,9 @@ def _make_safe_open(root):
         if not isinstance(file, (str, bytes, os.PathLike)):
             raise PermissionError("invalid file path")
 
-        if any(flag in mode for flag in ("+",)):
-            raise PermissionError("read/write update mode is not allowed")
+            # Negar modos que permitem escrita/atualização. Apenas leitura é permitida.
+            if any(ch in mode for ch in ("w", "a", "x", "+")):
+                raise PermissionError("write modes not allowed")
 
         full_path = os.path.abspath(os.path.join(root, os.fspath(file)))
         if os.path.commonpath([root, full_path]) != root:
