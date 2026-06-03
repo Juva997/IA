@@ -2,6 +2,7 @@ from typing import Optional
 import os
 
 from fastapi import Depends, FastAPI, HTTPException, Header
+from fastapi.concurrency import run_in_threadpool
 from pydantic import BaseModel
 
 from bootstrap.container import build_engine
@@ -74,7 +75,8 @@ def _require_api_key(authorization: Optional[str] = Header(None)):
 @app.post("/query", response_model=QueryResponse)
 async def query_assistant(request: QueryRequest, auth=Depends(_require_api_key), engine=Depends(get_engine)):
     try:
-        result = engine.run(request.goal)
+        # Run engine.run in a threadpool to avoid blocking the async event loop
+        result = await run_in_threadpool(engine.run, request.goal)
 
         if isinstance(result, dict):
             return QueryResponse(
