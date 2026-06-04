@@ -1,0 +1,1 @@
+exec(open('calculadora.py').read())

@@ -1,0 +1,35 @@
+{
+  "schema": "memory_v2",
+  "facts": {
+    "user_name": "Caio"
+  },
+  "fact_metadata": {
+    "user_name": {
+      "created_at": 1780490810.4213028,
+      "updated_at": 1780490810.4213028,
+      "source": "user",
+      "confidence": 0.7,
+      "last_validated_at": 1780490810.4213028,
+      "validated_by": "validation"
+    }
+  },
+  "episodes": [],
+  "skills": {},
+  "lessons": [
+    {
+      "id": "931d7e691fe3d662",
+      "kind": "lesson",
+      "problem": "falha antiga",
+      "solution": "corrigir entrada",
+      "confidence": 0.8,
+      "source": "learned",
+      "evidence": null,
+      "observations": 1,
+      "created_at": 1780490810.4213028,
+      "updated_at": 1780490810.4243026,
+      "last_validated_at": 1780490810.4243026,
+      "validated_by": "validation",
+      "validation_count": 1
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  memory_service:
+    image: python:3.11-slim
+    container_name: ia_memory_service
+    volumes:
+      - ..:/app
+    working_dir: /app
+    command: >
+      bash -lc "pip install --no-cache-dir -r requirements.txt || true; pip install --no-cache-dir fastapi uvicorn || true; uvicorn service.memory.service:app --host 0.0.0.0 --port 8001"
+    ports:
+      - "8001:8001"

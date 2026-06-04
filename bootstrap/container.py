@@ -422,8 +422,27 @@ def build_engine(
         router = create_default_router()
 
     logger = None
-    if event_bus is None and _EventBus:
-        event_bus = _EventBus()
+
+    # Decidir uso do EventBus: permitir adapter async compat via feature-flag
+    use_async_adapter = False
+    try:
+        use_async_adapter = str(config.get("eventbus.use_async_adapter", "")).strip().lower() in ("1", "true", "yes") or os.environ.get("USE_ASYNC_EVENTBUS_ADAPTER", "").strip().lower() in ("1", "true", "yes")
+    except Exception:
+        use_async_adapter = False
+
+    if event_bus is None:
+        if use_async_adapter:
+            try:
+                from service.eventbus.async_event_bus import create_compat_eventbus as _create_compat_eventbus
+
+                event_bus = _create_compat_eventbus()
+            except Exception:
+                # fallback para event bus legado se adapter não estiver disponível
+                if _EventBus:
+                    event_bus = _EventBus()
+        else:
+            if _EventBus:
+                event_bus = _EventBus()
 
     if _Logger:
         logger = _Logger()

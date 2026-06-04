@@ -1,0 +1,116 @@
+[
+  {
+    "task": "similar task",
+    "plan": [
+      {
+        "action": "ok",
+        "data": {}
+      }
+    ],
+    "result": {
+      "steps": [],
+      "output": "ok"
+    },
+    "score": 1.0,
+    "passed": true,
+    "feedback": "success",
+    "metadata": {},
+    "created_at": 1780490812.2929714
+  },
+  {
+    "task": "similar task",
+    "plan": [
+      {
+        "action": "ok",
+        "data": {}
+      }
+    ],
+    "result": {
+      "steps": [
+        {
+          "step": {
+            "action": "ok",
+            "data": {}
+          },
+          "result": {
+            "status": "success",
+            "output": "ok done",
+            "error": null
+          },
+          "trace": {
+            "step_id": "d257f41d1d3c45d59f95f7f47eeac820",
+            "duration": 5e-06
+          }
+        }
+      ],
+      "output": "ok done",
+      "cost": {
+        "steps": 1,
+        "failed_steps": 0,
+        "estimated_tool_calls": 1
+      },
+      "trace": {
+        "trace_id": "24bb7b51dc6d41cbac24806560bcf918",
+        "duration": 9.4e-05,
+        "steps": 1,
+        "failures": 0,
+        "first_error": null,
+        "timeline": [
+          {
+            "event": "simulate",
+            "time": 5.5e-05,
+            "data": {
+              "status": "success",
+              "steps": 1,
+              "issues": []
+            }
+          },
+          {
+            "event": "critique",
+            "time": 6.1e-05,
+            "data": {
+              "approved": true,
+              "feedback": "plan_approved",
+              "issues": []
+            }
+          },
+          {
+            "event": "execute_start",
+            "time": 6.4e-05,
+            "data": {
+              "steps": 1
+            }
+          },
+          {
+            "event": "step",
+            "step_id": "d257f41d1d3c45d59f95f7f47eeac820",
+            "iteration": 1,
+            "action": "ok",
+            "status": "success",
+            "duration": 5e-06,
+            "error": null,
+            "step": {
+              "action": "ok",
+              "data": {}
+            }
+          },
+          {
+            "event": "execute_end",
+            "time": 8.7e-05,
+            "data": {
+              "steps": 1
+            }
+          }
+        ]
+      }
+    },
+    "score": 1.0,
+    "passed": true,
+    "feedback": "success",
+    "metadata": {
+      "attempts": 1,
+      "used_experiences": 1
+    },
+    "created_at": 1780490812.2939715
+  }
+]

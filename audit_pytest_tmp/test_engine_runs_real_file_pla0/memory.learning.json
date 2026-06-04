@@ -1,0 +1,226 @@
+{
+  "schema": "memory_v2",
+  "facts": {},
+  "fact_metadata": {},
+  "episodes": [
+    {
+      "id": "1f548ae4a1cd8b10",
+      "kind": "episode",
+      "task": "read_file",
+      "step": {
+        "action": "read_file",
+        "data": {
+          "path": "projeto/resultado.txt"
+        }
+      },
+      "result": {
+        "status": "success",
+        "output": "ok",
+        "error": null
+      },
+      "feedback": "success",
+      "status": "success",
+      "summary": "read_file -> success; feedback=success; output=ok",
+      "confidence": 0.85,
+      "source": "store_step",
+      "created_at": 1780490812.4171758,
+      "last_validated_at": 1780490812.4171758,
+      "tags": []
+    },
+    {
+      "id": "5830a7749da6c896",
+      "kind": "episode",
+      "task": "write_file",
+      "step": {
+        "action": "write_file",
+        "data": {
+          "path": "projeto/resultado.txt",
+          "content": "ok"
+        }
+      },
+      "result": {
+        "status": "success",
+        "output": "arquivo criado: projeto/resultado.txt",
+        "error": null
+      },
+      "feedback": "success",
+      "status": "success",
+      "summary": "write_file -> success; feedback=success; output=arquivo criado: projeto/resultado.txt",
+      "confidence": 0.85,
+      "source": "store_step",
+      "created_at": 1780490812.4131768,
+      "last_validated_at": 1780490812.4131768,
+      "tags": []
+    },
+    {
+      "id": "1f131dbfd7c39a93",
+      "kind": "episode",
+      "task": "create_folder",
+      "step": {
+        "action": "create_folder",
+        "data": {
+          "path": "projeto"
+        }
+      },
+      "result": {
+        "status": "success",
+        "output": "pasta criada: projeto",
+        "error": null
+      },
+      "feedback": "success",
+      "status": "success",
+      "summary": "create_folder -> success; feedback=success; output=pasta criada: projeto",
+      "confidence": 0.85,
+      "source": "store_step",
+      "created_at": 1780490812.408177,
+      "last_validated_at": 1780490812.408177,
+      "tags": []
+    }
+  ],
+  "skills": {
+    "use_create_folder": {
+      "id": "1dcbb372e3037aa9",
+      "kind": "skill",
+      "name": "use_create_folder",
+      "trigger": "task requiring create_folder",
+      "procedure": {
+        "steps": [
+          {
+            "action": "create_folder",
+            "required_fields": [
+              "path"
+            ]
+          }
+        ]
+      },
+      "confidence": 0.75,
+      "source": "successful_step",
+      "evidence": {
+        "id": "1f131dbfd7c39a93",
+        "kind": "episode",
+        "task": "create_folder",
+        "step": {
+          "action": "create_folder",
+          "data": {
+            "path": "projeto"
+          }
+        },
+        "result": {
+          "status": "success",
+          "output": "pasta criada: projeto",
+          "error": null
+        },
+        "feedback": "success",
+        "status": "success",
+        "summary": "create_folder -> success; feedback=success; output=pasta criada: projeto",
+        "confidence": 0.85,
+        "source": "store_step",
+        "created_at": 1780490812.408177,
+        "last_validated_at": 1780490812.408177,
+        "tags": []
+      },
+      "success_count": 1,
+      "failure_count": 0,
+      "created_at": 1780490812.408177,
+      "updated_at": 1780490812.408177,
+      "last_validated_at": 1780490812.408177
+    },
+    "use_write_file": {
+      "id": "2b1738d53028e4fe",
+      "kind": "skill",
+      "name": "use_write_file",
+      "trigger": "task requiring write_file",
+      "procedure": {
+        "steps": [
+          {
+            "action": "write_file",
+            "required_fields": [
+              "content",
+              "path"
+            ]
+          }
+        ]
+      },
+      "confidence": 0.75,
+      "source": "successful_step",
+      "evidence": {
+        "id": "5830a7749da6c896",
+        "kind": "episode",
+        "task": "write_file",
+        "step": {
+          "action": "write_file",
+          "data": {
+            "path": "projeto/resultado.txt",
+            "content": "ok"
+          }
+        },
+        "result": {
+          "status": "success",
+          "output": "arquivo criado: projeto/resultado.txt",
+          "error": null
+        },
+        "feedback": "success",
+        "status": "success",
+        "summary": "write_file -> success; feedback=success; output=arquivo criado: projeto/resultado.txt",
+        "confidence": 0.85,
+        "source": "store_step",
+        "created_at": 1780490812.4131768,
+        "last_validated_at": 1780490812.4131768,
+        "tags": []
+      },
+      "success_count": 1,
+      "failure_count": 0,
+      "created_at": 1780490812.4141786,
+      "updated_at": 1780490812.4141786,
+      "last_validated_at": 1780490812.4141786
+    },
+    "use_read_file": {
+      "id": "f91f2ec1418d8aaa",
+      "kind": "skill",
+      "name": "use_read_file",
+      "trigger": "task requiring read_file",
+      "procedure": {
+        "steps": [
+          {
+            "action": "read_file",
+            "required_fields": [
+              "path"
+            ]
+          }
+        ]
+      },
+      "confidence": 0.75,
+      "source": "successful_step",
+      "evidence": {
+        "id": "1f548ae4a1cd8b10",
+        "kind": "episode",
+        "task": "read_file",
+        "step": {
+          "action": "read_file",
+          "data": {
+            "path": "projeto/resultado.txt"
+          }
+        },
+        "result": {
+          "status": "success",
+          "output": "ok",
+          "error": null
+        },
+        "feedback": "success",
+        "status": "success",
+        "summary": "read_file -> success; feedback=success; output=ok",
+        "confidence": 0.85,
+        "source": "store_step",
+        "created_at": 1780490812.4171758,
+        "last_validated_at": 1780490812.4171758,
+        "tags": []
+      },
+      "success_count": 1,
+      "failure_count": 0,
+      "created_at": 1780490812.4171758,
+      "updated_at": 1780490812.4171758,
+      "last_validated_at": 1780490812.4171758
+    }
+  },
+  "lessons": []
+}

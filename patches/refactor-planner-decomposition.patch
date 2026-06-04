@@ -1,0 +1,61 @@
+diff --git a/cognition/prompt_builder.py b/cognition/prompt_builder.py
+new file mode 100644
+--- /dev/null
++++ b/cognition/prompt_builder.py
+@@ -0,0 +1,21 @@
+ class PromptBuilder:
+     """Rascunho de PromptBuilder.
+
+     Objetivo: isolar os templates e construção do prompt usado pelo Planner.
+     Este arquivo é um rascunho inicial para revisão — deve conter o texto
+     do prompt em recursos separados e helpers de interpolação.
+     """
+
+     def __init__(self):
+         pass
+
+     def build_prompt(self, goal: str, tools: str) -> str:
+         # Implementar construção de prompt baseado no original em planner.py
+         prompt = f"Objetivo: {goal}\n\nFerramentas:\n{tools}\n"
+         prompt += "\n(este é um rascunho de PromptBuilder — substituir pelo conteúdo real)"
+         return prompt
+
+diff --git a/cognition/plan_parser.py b/cognition/plan_parser.py
+new file mode 100644
+--- /dev/null
++++ b/cognition/plan_parser.py
+@@ -0,0 +1,18 @@
+ import json
+ from typing import Any, List
+
+
+ def parse_plan(response: Any) -> List[dict]:
+     """Rascunho de PlanParser.
+
+     Tenta transformar a resposta do LLM em uma lista de passos (plan).
+     Estratégia inicial: tentar JSON loads; se falhar, retornar lista vazia.
+     """
+     try:
+         if isinstance(response, str):
+             return json.loads(response)
+         if isinstance(response, list):
+             return response
+     except Exception:
+         return []
+     return []
+
+diff --git a/cognition/deterministic_planner.py b/cognition/deterministic_planner.py
+new file mode 100644
+--- /dev/null
++++ b/cognition/deterministic_planner.py
+ @@ -0,0 +1,12 @@
+ class DeterministicPlanner:
+     """Rascunho de DeterministicPlanner.
+
+     Implementa heurísticas locais que atualmente estão embutidas em `Planner._deterministic_plan`.
+     Este rascunho fornece uma interface simples para encapsular regras determinísticas.
+     """
+
+     def plan_for_goal(self, goal: str, context: dict) -> list:
+         # Implementar heurísticas reais; por enquanto, retornar None para delegar ao LLM
+         return None

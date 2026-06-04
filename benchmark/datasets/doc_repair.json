@@ -1,0 +1,88 @@
+[
+  {
+    "name": "doc_repair_simple_function_and_class",
+    "type": "doc_repair",
+    "input": "Repare as docstrings deste módulo.",
+    "setup": {
+      "files": {
+        "proj/module1.py": "def foo(x, y):\n    return x + y\n\nclass Bar:\n    def method(self, a):\n        return a\n"
+      }
+    },
+    "verification": [
+      {"type": "file_contains", "path": "proj/module1.py", "contains": "\"\"\""}
+    ],
+    "expectations": {"requires_tools": true}
+  },
+  {
+    "name": "doc_repair_with_params",
+    "type": "doc_repair",
+    "input": "Adicione docstrings com seção Args quando houver parâmetros.",
+    "setup": {
+      "files": {
+        "proj2/utils.py": "def greet(name, loud=False):\n    return f'Hello {name}'\n"
+      }
+    },
+    "verification": [
+      {"type": "file_contains", "path": "proj2/utils.py", "contains": "Args:"}
+    ],
+    "expectations": {"requires_tools": true}
+  }
+  ,
+  {
+    "name": "doc_repair_pt_module_multiline",
+    "type": "doc_repair",
+    "input": "Repare as docstrings deste módulo em português, adicionando resumo e seções quando apropriado.",
+    "setup": {
+      "files": {
+        "proj_pt/modulo.py": "def soma(a, b):\n    return a + b\n\ndef saudacao(nome):\n    return f'Olá {nome}'\n"
+      }
+    },
+    "verification": [
+      {"type": "file_contains", "path": "proj_pt/modulo.py", "contains": "\"\"\""}
+    ],
+    "expectations": {"requires_tools": true}
+  },
+  {
+    "name": "doc_repair_pt_google_style",
+    "type": "doc_repair",
+    "input": "Adicione docstrings no estilo Google (Args / Returns) em português quando houver parâmetros.",
+    "setup": {
+      "files": {
+        "proj_pt/google_style.py": "def saudacao(nome, tempo=None):\n    return f'Bom dia {nome}'\n"
+      }
+    },
+    "verification": [
+      {"type": "file_contains", "path": "proj_pt/google_style.py", "contains": "Args:"}
+    ],
+    "expectations": {"requires_tools": true}
+  },
+  {
+    "name": "doc_repair_pt_numpy_style",
+    "type": "doc_repair",
+    "input": "Adicione docstrings no estilo NumPy (Parameters / Returns) em português quando houver parâmetros.",
+    "setup": {
+      "files": {
+        "proj_pt/numpy_style.py": "def multiplicar(x, y):\n    return x * y\n"
+      }
+    },
+    "verification": [
+      {"type": "file_contains", "path": "proj_pt/numpy_style.py", "contains": "Parameters"}
+    ],
+    "expectations": {"requires_tools": true}
+  },
+  {
+    "name": "doc_repair_pt_class_and_methods",
+    "type": "doc_repair",
+    "input": "Adicione docstrings para classe e métodos públicos em português; ignore métodos privados.",
+    "setup": {
+      "files": {
+        "proj_pt/classes.py": "class Calculadora:\n    def soma(self, a, b):\n        return a + b\n\n    def _helper(self, x):\n        return x\n"
+      }
+    },
+    "verification": [
+      {"type": "file_contains", "path": "proj_pt/classes.py", "contains": "Calculadora"},
+      {"type": "file_contains", "path": "proj_pt/classes.py", "contains": "\"\"\""}
+    ],
+    "expectations": {"requires_tools": true}
+  }
+]

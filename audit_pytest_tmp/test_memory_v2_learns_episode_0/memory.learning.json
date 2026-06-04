@@ -1,0 +1,82 @@
+{
+  "schema": "memory_v2",
+  "facts": {},
+  "fact_metadata": {},
+  "episodes": [
+    {
+      "id": "d442dc8af30b45a0",
+      "kind": "episode",
+      "task": "write_file",
+      "step": {
+        "action": "write_file",
+        "data": {
+          "path": "out.txt",
+          "content": "ok"
+        }
+      },
+      "result": {
+        "status": "success",
+        "output": "arquivo criado"
+      },
+      "feedback": "pass",
+      "status": "success",
+      "summary": "write_file -> success; feedback=pass; output=arquivo criado",
+      "confidence": 0.85,
+      "source": "store_step",
+      "created_at": 1780490810.4063013,
+      "last_validated_at": 1780490810.4063013,
+      "tags": []
+    }
+  ],
+  "skills": {
+    "use_write_file": {
+      "id": "2b1738d53028e4fe",
+      "kind": "skill",
+      "name": "use_write_file",
+      "trigger": "task requiring write_file",
+      "procedure": {
+        "steps": [
+          {
+            "action": "write_file",
+            "required_fields": [
+              "content",
+              "path"
+            ]
+          }
+        ]
+      },
+      "confidence": 0.75,
+      "source": "successful_step",
+      "evidence": {
+        "id": "d442dc8af30b45a0",
+        "kind": "episode",
+        "task": "write_file",
+        "step": {
+          "action": "write_file",
+          "data": {
+            "path": "out.txt",
+            "content": "ok"
+          }
+        },
+        "result": {
+          "status": "success",
+          "output": "arquivo criado"
+        },
+        "feedback": "pass",
+        "status": "success",
+        "summary": "write_file -> success; feedback=pass; output=arquivo criado",
+        "confidence": 0.85,
+        "source": "store_step",
+        "created_at": 1780490810.4063013,
+        "last_validated_at": 1780490810.4063013,
+        "tags": []
+      },
+      "success_count": 1,
+      "failure_count": 0,
+      "created_at": 1780490810.4063013,
+      "updated_at": 1780490810.4063013,
+      "last_validated_at": 1780490810.4063013
+    }
+  },
+  "lessons": []
+}
