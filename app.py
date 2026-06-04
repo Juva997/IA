@@ -35,30 +35,51 @@ def _prepare_directories(config):
             log.warning(f"erro ao criar pasta {path}: {e}")
 
 
-def start_api():
-    log.info("Iniciando API REST em http://localhost:8000")
-    log.info("Docs: http://localhost:8000/docs")
-    log.info("Metricas: http://localhost:8001")
+def start_api(config=None):
+    if config is None:
+        config = ConfigLoader()
+
+    host = config.get("server.host", "127.0.0.1")
+    try:
+        api_port = int(config.get("server.api_port", 8000))
+    except Exception:
+        api_port = 8000
+    try:
+        metrics_port = int(config.get("server.metrics_port", 8001))
+    except Exception:
+        metrics_port = 8001
+
+    log.info(f"Iniciando API REST em http://{host}:{api_port}")
+    log.info(f"Docs: http://{host}:{api_port}/docs")
+    log.info(f"Metricas: http://{host}:{metrics_port}")
 
     try:
         from monitor.metrics import Metrics
 
         metrics = Metrics()
-        metrics.start_server(8001)
+        metrics.start_server(metrics_port)
     except ValueError:
         log.info("Metricas ja iniciadas")
 
-    uvicorn.run(api_app, host="127.0.0.1", port=8000)
-
-
+    uvicorn.run(api_app, host=host, port=api_port)
 def main():
     logger.configure_logging()
-    bootstrap()
+    config = bootstrap()
 
     mode = "ui"
 
     if len(sys.argv) > 1:
         mode = sys.argv[1].lower()
+
+    # Prefer launcher (unificado). Fallback para comportamento legado se o
+    # launcher não puder ser importado.
+    try:
+        from interfaces.launcher import launch  # type: ignore
+
+        launch(mode)
+        return
+    except Exception:
+        log.info("Launcher não disponível, usando comportamento legado")
 
     if mode == "cli":
         run_cli()
@@ -67,7 +88,7 @@ def main():
     elif mode == "voice":
         start_voice()
     elif mode == "api":
-        start_api()
+        start_api(config)
     elif mode == "doctor":
         run_doctor()
     else:

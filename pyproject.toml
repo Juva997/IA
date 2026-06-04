@@ -4,6 +4,7 @@ exclude = [
     "experiments/*",
     "build",
     ".git",
+    ".pytest_tmp*",
     ".venv",
     "venv",
     "debug_*.py",

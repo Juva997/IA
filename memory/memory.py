@@ -21,6 +21,7 @@ class Memory:
         max_episodes=200,
         max_lessons=100,
         max_skills=100,
+        require_confirmation=False,
     ):
         self.vector_store = vector_store
         self.retriever = retriever
@@ -37,6 +38,9 @@ class Memory:
         self.episodes = []
         self.skills = {}
         self.lessons = []
+
+        # se True, fatos extraídos automaticamente são gravados como 'pending_*' até confirmação
+        self.require_confirmation = bool(require_confirmation)
 
         self._load_if_exists()
 
@@ -426,11 +430,12 @@ class Memory:
         for pattern in name_patterns:
             match = re.search(pattern, text, flags=re.IGNORECASE)
             if match:
+                key = "pending_user_name" if getattr(self, "require_confirmation", False) else "user_name"
                 self.remember_fact(
-                    "user_name",
+                    key,
                     self._clean_fact_value(match.group(1)),
                     confidence=0.95,
-                    source="user_statement",
+                    source=("user_statement_pending" if key.startswith("pending_") else "user_statement"),
                 )
                 break
 

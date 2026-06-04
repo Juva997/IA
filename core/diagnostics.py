@@ -2,6 +2,11 @@ import os
 
 
 def collect_health_details(engine):
+    # Allow forcing a diagnostic failure for testing via env var
+    val = os.getenv("FORCE_DIAG_FAIL", "")
+    if str(val).strip().lower() in ("1", "true", "yes", "y"):
+        raise RuntimeError("Forced diagnostic failure for testing (FORCE_DIAG_FAIL)")
+
     runtime = getattr(engine, "runtime_info", {}) or {}
     llm_details = _llm_details(engine, runtime)
     memory_details = _memory_details(engine)

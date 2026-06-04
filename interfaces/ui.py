@@ -15,6 +15,8 @@ from PyQt6.QtWidgets import (
     QScrollArea,
     QVBoxLayout,
     QWidget,
+    QDialog,
+    QTextEdit,
 )
 
 from core.orchestrator import Orchestrator
@@ -25,6 +27,9 @@ HISTORY_FILE = "chat_history.json"
 class ChatBubble(QFrame):
     def __init__(self, text="", is_user=False):
         super().__init__()
+        self.is_user = is_user
+        self.details = None
+        self.details_button = None
 
         self.layout = QHBoxLayout(self)
         self.label = QLabel(text)
@@ -50,15 +55,54 @@ class ChatBubble(QFrame):
             self.layout.addWidget(self.label)
             self.layout.addStretch()
 
+    def set_details(self, details):
+        # Armazena texto de detalhes e adiciona botão se necessário
+        try:
+            self.details = details
+            if self.details_button is None:
+                btn = QPushButton("Detalhes")
+                btn.setFixedHeight(22)
+                btn.setFixedWidth(80)
+                btn.clicked.connect(self._show_details)
+                btn.setStyleSheet("font-size:11px; padding:2px;")
+                self.details_button = btn
+                if not self.is_user:
+                    # inserir entre label e stretch
+                    self.layout.insertWidget(1, self.details_button)
+                else:
+                    # para mensagens do usuário, adicionar após o label
+                    self.layout.addWidget(self.details_button)
+        except Exception:
+            pass
+
+    def _show_details(self):
+        try:
+            dialog = QDialog(self)
+            dialog.setWindowTitle("Detalhes")
+            dlg_layout = QVBoxLayout(dialog)
+            te = QTextEdit()
+            te.setReadOnly(True)
+            if isinstance(self.details, str):
+                te.setPlainText(self.details)
+            else:
+                try:
+                    te.setPlainText(json.dumps(self.details, ensure_ascii=False, indent=2))
+                except Exception:
+                    te.setPlainText(str(self.details))
+            dlg_layout.addWidget(te)
+            dialog.resize(700, 480)
+            dialog.exec()
+        except Exception:
+            pass
     def update_text(self, text):
         self.label.setText(text)
 
 
 class JarvisHUD(QWidget):
-    response_signal = pyqtSignal(str)
+    response_signal = pyqtSignal(object)
     stream_signal = pyqtSignal(str)
     user_message_signal = pyqtSignal(str)
-    notification_signal = pyqtSignal(str)
+    notification_signal = pyqtSignal(object)
 
     def __init__(self):
         super().__init__()
@@ -204,6 +248,37 @@ class JarvisHUD(QWidget):
     def _capture_screen(self):
         threading.Thread(target=self._vision_capture_thread, daemon=True).start()
 
+    def _summarize_diagnosis(self, diag: dict):
+        try:
+            status = diag.get("status", "unknown")
+            ollama = diag.get("ollama", {}) or {}
+            reachable = ollama.get("reachable")
+            ollama_state = "online" if reachable else "offline"
+            resolved = ollama.get("resolved_models") or ollama.get("resolved") or ollama.get("resolved_models", {})
+
+            if isinstance(resolved, dict):
+                balanced = resolved.get("balanced") or next(iter(resolved.values()), "")
+            else:
+                balanced = str(resolved)
+
+            memory = diag.get("memory", {}) or {}
+            facts = memory.get("facts", 0)
+            episodes = memory.get("episodes", 0)
+            tools = diag.get("tools", {}) or {}
+            tool_count = tools.get("count") if isinstance(tools, dict) else ""
+
+            summary = (
+                f"Diagnóstico: {status} — Ollama: {ollama_state} ({balanced}) "
+                f"— Memória: facts={facts} episodes={episodes} — Ferramentas: {tool_count}"
+            )
+            details = json.dumps(diag, ensure_ascii=False, indent=2)
+            return summary, details
+        except Exception:
+            try:
+                return str(diag), json.dumps(diag, ensure_ascii=False, indent=2)
+            except Exception:
+                return str(diag), str(diag)
+
     def _vision_capture_thread(self):
         try:
             from integrations.vision import VisionSystem
@@ -223,22 +298,51 @@ class JarvisHUD(QWidget):
             self.notification_signal.emit(f"Erro de visao: {e}")
 
     def _run_agent(self, text):
+        # Obter resposta do orchestrator e preparar payloads para stream e finalização
         try:
-            response = self.orch.handle_user_query(text)
-            if isinstance(response, dict):
-                response = response.get("output", "Erro")
-            else:
-                response = str(response)
+            resp = self.orch.handle_user_query(text)
         except Exception as e:
-            response = f"Erro: {str(e)}"
+            resp = f"Erro: {str(e)}"
+
+        to_stream = ""
+        final_payload = ""
+
+        if isinstance(resp, dict):
+            # Diagnóstico detectado: possui 'status' e campos de diagnóstico
+            if "status" in resp and any(k in resp for k in ("ollama", "memory", "tools")):
+                summary, details = self._summarize_diagnosis(resp)
+                to_stream = summary
+                final_payload = (summary, details)
+            elif "output" in resp:
+                out = resp.get("output", "")
+                if isinstance(out, (dict, list)):
+                    try:
+                        s = json.dumps(out, ensure_ascii=False, indent=2)
+                    except Exception:
+                        s = str(out)
+                    to_stream = s
+                    final_payload = s
+                else:
+                    to_stream = str(out)
+                    final_payload = to_stream
+            else:
+                try:
+                    s = json.dumps(resp, ensure_ascii=False, indent=2)
+                except Exception:
+                    s = str(resp)
+                to_stream = s
+                final_payload = (s, s)
+        else:
+            to_stream = str(resp)
+            final_payload = to_stream
 
         current = ""
-        for char in response:
+        for char in to_stream:
             current += char
             self.stream_signal.emit(current)
             time.sleep(0.01)
 
-        self.response_signal.emit(response)
+        self.response_signal.emit(final_payload)
 
     def add_user_message(self, text):
         bubble = ChatBubble(text, is_user=True)
@@ -248,7 +352,24 @@ class JarvisHUD(QWidget):
         self._save_history()
 
     def _add_ai_message(self, text):
-        bubble = ChatBubble(text, is_user=False)
+        details = None
+
+        if isinstance(text, (list, tuple)) and len(text) >= 2:
+            txt, details = text[0], text[1]
+        elif isinstance(text, dict):
+            if "status" in text and any(k in text for k in ("ollama", "memory", "tools")):
+                txt, details = self._summarize_diagnosis(text)
+            else:
+                try:
+                    txt = json.dumps(text, ensure_ascii=False, indent=2)
+                except Exception:
+                    txt = str(text)
+        else:
+            txt = str(text)
+
+        bubble = ChatBubble(txt, is_user=False)
+        if details:
+            bubble.set_details(details)
         self.chat_layout.insertWidget(self.chat_layout.count() - 1, bubble)
         self._trim_messages()
         self._scroll_to_bottom()
@@ -265,6 +386,21 @@ class JarvisHUD(QWidget):
         self._scroll_to_bottom()
 
     def _finish_ai_message(self, text):
+        # `text` pode ser string ou (summary, details)
+        details = None
+        if isinstance(text, (list, tuple)) and len(text) >= 2:
+            final_text, details = text[0], text[1]
+        else:
+            final_text = str(text)
+
+        if self.current_ai_bubble:
+            try:
+                self.current_ai_bubble.update_text(final_text)
+                if details:
+                    self.current_ai_bubble.set_details(details)
+            except Exception:
+                pass
+
         self.current_ai_bubble = None
         self._trim_messages()
         self._save_history()

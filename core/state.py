@@ -13,7 +13,7 @@ class AgentState:
     no `state_manager`.
     """
 
-    def __init__(self, goal, max_history=50, task_id: str = None):
+    def __init__(self, goal, max_history=50, task_id: str | None = None):
         # atributos internos começam com '_' para não colidir com delegation
         object.__setattr__(self, "_max_history", int(max_history or 50))
         if task_id:

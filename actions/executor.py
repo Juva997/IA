@@ -1,4 +1,8 @@
 import traceback
+import os
+import subprocess
+import shutil
+import tempfile
 
 
 class Executor:
@@ -20,6 +24,10 @@ class Executor:
 
         if action_type == "specialist":
             return self._execute_specialist(action, state)
+
+        # fluxo especial: aplicar patch gerado por LLM com backup + pytest + rollback
+        if action in ("apply_llm_patches", "apply_patch", "apply_patch_with_tests"):
+            return self._apply_patch_flow(data, state)
 
         tool = self.registry.get(action)
         if not tool:
@@ -116,6 +124,169 @@ class Executor:
             return self._error(f"specialist_error: {str(e)}")
 
     # =========================
+    def _apply_patch_flow(self, data, state):
+        try:
+            # import dinamico para evitar import circular
+            from benchmark.repair import apply_llm_patches, rollback_patches
+        except Exception as e:
+            return self._error(f"import_error: {str(e)}")
+
+        # extrair texto do patch
+        text = None
+        if isinstance(data, str):
+            text = data
+        elif isinstance(data, dict):
+            text = data.get("text") or data.get("patch") or data.get("content") or data.get("llm_output")
+        else:
+            return self._error("invalid_patch_data")
+
+        if not text:
+            return self._error("patch_text_missing")
+
+        # determinar workspace root
+        root = None
+        if isinstance(state, dict):
+            root = state.get("workspace_root") or (state.get("metadata") or {}).get("workspace_root")
+        if not root:
+            root = os.path.abspath(os.getcwd())
+
+        # Aplicar patches em uma cópia temporária do workspace e executar
+        # os testes nessa cópia. Só publicar as mudanças no workspace real
+        # se os testes passarem.
+        run_tests = True
+        timeout = 120
+        if isinstance(data, dict):
+            if "run_tests" in data:
+                run_tests = bool(data.get("run_tests"))
+            if "timeout" in data:
+                try:
+                    timeout = int(data.get("timeout"))
+                except Exception:
+                    pass
+
+        # criar cópia temporária do workspace
+        tmp_root = None
+        try:
+            tmp_root = tempfile.mkdtemp(prefix="assistente_patch_")
+            shutil.copytree(root, tmp_root, dirs_exist_ok=True)
+        except Exception as e:
+            try:
+                if tmp_root and os.path.exists(tmp_root):
+                    shutil.rmtree(tmp_root)
+            except Exception:
+                pass
+            return self._error(f"workspace_copy_error: {str(e)}")
+
+        try:
+            applied, errors, _ = apply_llm_patches(tmp_root, text)
+        except Exception as e:
+            try:
+                if tmp_root and os.path.exists(tmp_root):
+                    shutil.rmtree(tmp_root)
+            except Exception:
+                pass
+            return self._error(f"apply_error: {str(e)}")
+
+        if errors:
+            try:
+                if tmp_root and os.path.exists(tmp_root):
+                    shutil.rmtree(tmp_root)
+            except Exception:
+                pass
+            return {"status": "error", "output": None, "error": "apply_errors", "details": errors}
+
+        # rodar pytest na cópia temporária quando solicitado
+        if run_tests:
+            try:
+                proc = subprocess.run(["pytest", "-q"], capture_output=True, text=True, timeout=timeout, cwd=tmp_root)
+            except Exception as e:
+                try:
+                    if tmp_root and os.path.exists(tmp_root):
+                        shutil.rmtree(tmp_root)
+                except Exception:
+                    pass
+                return {"status": "error", "output": None, "error": f"pytest_error: {str(e)}", "applied": applied}
+
+            if proc.returncode != 0:
+                try:
+                    if tmp_root and os.path.exists(tmp_root):
+                        shutil.rmtree(tmp_root)
+                except Exception:
+                    pass
+                return {
+                    "status": "error",
+                    "error": "tests_failed",
+                    "output": (proc.stdout or "") + "\n" + (proc.stderr or ""),
+                    "applied": applied,
+                }
+
+        # Publicar as alterações no workspace real (com backup)
+        final_backups = []
+        try:
+            for entry in applied:
+                rel = entry.get("path")
+                if not rel:
+                    continue
+                src = os.path.join(tmp_root, rel)
+                dst = os.path.join(root, rel)
+                existed = os.path.exists(dst)
+                original = ""
+                if existed:
+                    try:
+                        with open(dst, "r", encoding="utf-8") as f:
+                            original = f.read()
+                    except Exception:
+                        original = None
+                final_backups.append({"path": rel, "original": original, "existed": existed})
+
+                # garantir diretório
+                dstdir = os.path.dirname(dst)
+                if dstdir:
+                    os.makedirs(dstdir, exist_ok=True)
+
+                # se arquivo novo/alterado, copiar do tmp para o destino
+                if os.path.exists(src) and os.path.isfile(src):
+                    with open(src, "r", encoding="utf-8") as f:
+                        new_content = f.read()
+                    with open(dst, "w", encoding="utf-8") as f:
+                        f.write(new_content)
+                else:
+                    # se patch removeu o arquivo
+                    if existed and os.path.exists(dst):
+                        os.remove(dst)
+
+        except Exception as e:
+            # tentar rollback local usando backups
+            for b in final_backups:
+                rel = b.get("path")
+                dst = os.path.join(root, rel)
+                try:
+                    if b.get("existed"):
+                        with open(dst, "w", encoding="utf-8") as f:
+                            f.write(b.get("original") or "")
+                    elif os.path.exists(dst):
+                        os.remove(dst)
+                except Exception:
+                    pass
+            try:
+                if tmp_root and os.path.exists(tmp_root):
+                    shutil.rmtree(tmp_root)
+            except Exception:
+                pass
+            return {"status": "error", "error": f"apply_publish_error:{str(e)}", "applied": applied}
+
+        # cleanup temporário
+        try:
+            if tmp_root and os.path.exists(tmp_root):
+                shutil.rmtree(tmp_root)
+        except Exception:
+            pass
+
+        return {"status": "success", "output": f"applied {len(applied)} patches", "patches": applied}
+
+        return {"status": "success", "output": f"applied {len(applied)} patches", "patches": applied}
+
+    # =========================
     def _safe_execute(self, tool, data, state):
         attempts = 0
 
@@ -131,7 +302,10 @@ class Executor:
 
             except Exception as e:
                 attempts += 1
-                traceback.print_exc()
+                # Format traceback but avoid printing it to captured stderr (which
+                # can fail in low-disk or CI environments). Keep the formatted
+                # traceback available for debugging if needed.
+                _tb = traceback.format_exc()
 
                 if attempts > self.max_retries:
                     return self._error(f"execution_failed: {str(e)}")

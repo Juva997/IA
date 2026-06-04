@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional
 import time
@@ -15,8 +15,24 @@ class GenerateRequest(BaseModel):
 @app.post("/api/generate")
 async def generate(req: GenerateRequest):
     prompt = (req.prompt or "").strip()
-    # Resposta simples: ecoa e adiciona info de mock
-    text = f"[MOCK LLM resposta] modelo={req.model or 'mock'} prompt={prompt}"
+    # Tenta extrair a pergunta do prompt estruturado e responder de forma curta
+    question = None
+    if "PERGUNTA:" in prompt:
+        question = prompt.split("PERGUNTA:")[-1].strip()
+    elif prompt:
+        question = prompt
+
+    if question:
+        q_lower = question.lower()
+        if "tudo bem" in q_lower:
+            text = "Tudo bem! E você?"
+        else:
+            # Resposta curta com a pergunta para testes (não retornar o contexto completo)
+            text = f"[MOCK RESPOSTA] {question}"
+    else:
+        # Fallback: comportamento antigo (ecoar prompt) apenas se não houver conteúdo
+        text = f"[MOCK LLM resposta] modelo={req.model or 'mock'} prompt={prompt}"
+
     return {"response": text}
 
 
