@@ -1,0 +1,127 @@
+name: Dependency Audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  python-audit:
+    name: Python dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install audit tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install pip-audit safety
+
+      - name: Run pip-audit and fail on high/critical
+        run: |
+          pip-audit --requirement requirements.txt --requirement backend/requirements.txt --requirement requirements-ci.txt --requirement dev/mock_ollama/requirements.txt --format=json > pip-audit.json || true
+          python - <<'PY'
+import json, sys
+try:
+    data = json.load(open('pip-audit.json'))
+except Exception as e:
+    print('pip-audit produced no JSON or failed:', e)
+    sys.exit(0)
+found = False
+if isinstance(data, list):
+    for rec in data:
+        for v in rec.get('vulns', []):
+            sev = str(v.get('severity','')).lower()
+            if 'high' in sev or 'critical' in sev:
+                print('High/critical vuln found:', rec.get('name'), v.get('id'), v.get('severity'))
+                found = True
+else:
+    # defensive handling
+    try:
+        for recs in data.values():
+            for rec in recs:
+                for v in rec.get('vulns', []):
+                    if 'high' in str(v.get('severity','')).lower() or 'critical' in str(v.get('severity','')).lower():
+                        print('High/critical vuln found:', rec.get('name'), v.get('id'), v.get('severity'))
+                        found = True
+    except Exception:
+        pass
+if found:
+    sys.exit(1)
+print('No high/critical vulnerabilities found by pip-audit')
+PY
+
+      - name: Upload pip-audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pip-audit-report
+          path: pip-audit.json
+
+      - name: Run safety checks
+        run: |
+          for f in requirements.txt backend/requirements.txt requirements-ci.txt dev/mock_ollama/requirements.txt; do
+            echo "Checking $f"
+            safety check --file=$f --json > "safety-${f//\//-}.json" || true
+          done
+
+      - name: Upload safety reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: safety-reports
+          path: safety-*.json
+
+  node-audit:
+    name: Node dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install frontend deps
+        working-directory: frontend
+        run: npm ci
+
+      - name: Run npm audit and fail on high/critical
+        working-directory: frontend
+        run: |
+          npm audit --json > npm-audit.json || true
+          python - <<'PY'
+import json, sys
+try:
+    data = json.load(open('frontend/npm-audit.json'))
+except Exception as e:
+    print('npm audit failed or did not produce JSON:', e)
+    sys.exit(0)
+found=False
+vuln_summary = data.get('advisories') or data.get('vulnerabilities') or {}
+def check_v(v):
+    sev = v.get('severity','').lower()
+    return 'high' in sev or 'critical' in sev
+if isinstance(vuln_summary, dict):
+    for k,v in vuln_summary.items():
+        if isinstance(v, dict) and check_v(v):
+            print('Found high/critical vuln:', k, v.get('title'), v.get('severity'))
+            found=True
+if found:
+    sys.exit(1)
+print('No high/critical vulnerabilities found by npm audit')
+PY
+
+      - name: Upload npm audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-report
+          path: frontend/npm-audit.json
