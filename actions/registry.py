@@ -7,6 +7,13 @@ from integrations.browser import open_browser
 from integrations.vision import analyze_screen
 from actions.tools.self_care import self_care
 
+# ToolCatalog migration: use the MCP-style catalog as the backing store
+try:
+    from service.tools.mcp_catalog import ToolCatalog, LocalMCPTool
+except Exception:
+    ToolCatalog = None
+    LocalMCPTool = None
+
 
 def _doc_repair_tool(data, state=None):
     # import dinâmico para evitar import circular
@@ -18,6 +25,8 @@ def _doc_repair_tool(data, state=None):
 class ActionRegistry:
     def __init__(self):
         self.tools = {}
+        # catalog is the MCP-compatible catalog used for migration
+        self.catalog = ToolCatalog() if ToolCatalog is not None else None
 
     # =========================
     # 🔥 AUTO REGISTER
@@ -54,14 +63,63 @@ class ActionRegistry:
     # 🧩 REGISTRO
     # =========================
     def register(self, name, func, description=""):
-        if not name or not callable(func):
+        if not name:
             raise ValueError("invalid tool registration")
 
-        if name in self.tools:
-            # mantém comportamento: sobrescreve
-            pass
+        # If func is a callable local function, register it as a LocalMCPTool
+        if callable(func):
+            # Create a wrapper that preserves the old callable signature
+            def wrapper(data, state=None):
+                try:
+                    # Prefer calling via catalog if available
+                    if self.catalog and name in getattr(self.catalog, 'tools', {}):
+                        tool = self.catalog.tools.get(name)
+                        try:
+                            res = tool.invoke(data)
+                            return res
+                        except Exception:
+                            # fallthrough to direct call
+                            pass
 
-        self.tools[name] = {"func": func, "description": description or ""}
+                    # direct call to original function
+                    try:
+                        return func(data, state)
+                    except TypeError:
+                        return func(data)
+                except Exception as e:
+                    return {"status": "error", "error": str(e)}
+
+            # register local tool in the catalog when possible
+            if self.catalog is not None and hasattr(self.catalog, 'register_local'):
+                try:
+                    self.catalog.register_local(name, func, description=description)
+                except Exception:
+                    # ignore catalog registration errors and keep wrapper
+                    pass
+
+            self.tools[name] = {"func": wrapper, "description": description or ""}
+            return
+
+        # If func is an MCP-like tool object with `invoke`, register directly
+        if hasattr(func, 'invoke'):
+            # store in catalog if available
+            if self.catalog is not None:
+                try:
+                    self.catalog.tools[name] = func
+                except Exception:
+                    pass
+
+            def wrapper(data, state=None):
+                try:
+                    res = func.invoke(data)
+                    return res
+                except Exception as e:
+                    return {"status": "error", "error": str(e)}
+
+            self.tools[name] = {"func": wrapper, "description": description or ""}
+            return
+
+        raise ValueError("invalid tool registration: unsupported func type")
 
     # =========================
     def get(self, name):
