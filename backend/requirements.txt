@@ -1,7 +1,11 @@
-fastapi
-uvicorn[standard]
-python-multipart
-passlib[bcrypt]
-python-jose
-sqlalchemy
-alembic
+# Backend - pinned / recommended versions (inicial)
+fastapi>=0.95,<0.101
+uvicorn[standard]>=0.22,<1.0
+python-multipart>=0.0.6,<1.0
+passlib[bcrypt]>=1.7,<2.0
+python-jose>=3.3.0,<4.0
+sqlalchemy>=2.0,<3.0
+alembic>=1.10,<2.0
+# Optional / recommended DB and cache clients
+psycopg[binary]>=3.1,<4.0
+redis>=4.6,<5.0
