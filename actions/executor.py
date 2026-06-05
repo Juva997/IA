@@ -236,58 +236,163 @@ class Executor:
                 pass
             return {"status": "error", "error": "publish_disabled_env", "applied": applied}
 
+        # Additional safeguards before publishing:
+        # - limit number of files changed
+        # - block changes to critical paths unless a SecurityManager allows it
+        # - block publishing when on `main`/`master` branch unless explicitly allowed
+        max_files = int(os.environ.get("ASSISTENTE_PUBLISH_MAX_FILES", "20"))
+        blocked_paths = [
+            "core",
+            "security",
+            "memory",
+            "bootstrap",
+            "actions",
+            "monitor",
+            "integrations",
+            ".github",
+            "Dockerfile",
+            "docker-compose.yml",
+            "pyproject.toml",
+            "requirements.txt",
+            "requirements-ci.txt",
+        ]
+
         try:
+            # quick size check
+            if len(applied) > max_files:
+                try:
+                    if tmp_root and os.path.exists(tmp_root):
+                        shutil.rmtree(tmp_root)
+                except Exception:
+                    pass
+                return {"status": "error", "error": "publish_too_many_files", "applied": applied}
+
+            # If repo is git, avoid publishing directly to main/master by default
+            if os.path.isdir(os.path.join(root, ".git")):
+                try:
+                    br = subprocess.run(["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=root, capture_output=True, text=True, timeout=5)
+                    branch = (br.stdout or "").strip()
+                    if branch in ("main", "master") and os.environ.get("ASSISTENTE_PUBLISH_ON_MAIN", "0").strip().lower() not in ("1", "true", "yes"):
+                        try:
+                            if tmp_root and os.path.exists(tmp_root):
+                                shutil.rmtree(tmp_root)
+                        except Exception:
+                            pass
+                        return {"status": "error", "error": "publish_on_main_blocked", "branch": branch}
+                except Exception:
+                    # if git check fails, be conservative and continue
+                    pass
+
+            # Try to use SecurityManager if available to validate writes
+            sec = None
+            try:
+                from security.security import SecurityManager
+
+                sec = SecurityManager(safe_root=root)
+            except Exception:
+                sec = None
+
+            # Validate each file change against security policy / blocked paths
             for entry in applied:
                 rel = entry.get("path")
                 if not rel:
                     continue
-                src = os.path.join(tmp_root, rel)
-                dst = os.path.join(root, rel)
-                existed = os.path.exists(dst)
-                original = ""
-                if existed:
-                    try:
-                        with open(dst, "r", encoding="utf-8") as f:
-                            original = f.read()
-                    except Exception:
-                        original = None
-                final_backups.append({"path": rel, "original": original, "existed": existed})
+                normalized = rel.replace("\\", "/").lstrip("/")
+                # Reject obvious modifications to blocked paths when no SecurityManager
+                if sec is None:
+                    for bp in blocked_paths:
+                        if normalized == bp or normalized.startswith(bp.rstrip("/") + "/"):
+                            try:
+                                if tmp_root and os.path.exists(tmp_root):
+                                    shutil.rmtree(tmp_root)
+                            except Exception:
+                                pass
+                            return {"status": "error", "error": f"blocked_path:{rel}", "applied": applied}
 
-                # garantir diretório
-                dstdir = os.path.dirname(dst)
-                if dstdir:
-                    os.makedirs(dstdir, exist_ok=True)
+            # All pre-checks passed; now apply changes but validate per-file via SecurityManager if available
+            try:
+                for entry in applied:
+                    rel = entry.get("path")
+                    if not rel:
+                        continue
+                    src = os.path.join(tmp_root, rel)
+                    dst = os.path.join(root, rel)
+                    existed = os.path.exists(dst)
+                    original = ""
+                    if existed:
+                        try:
+                            with open(dst, "r", encoding="utf-8") as f:
+                                original = f.read()
+                        except Exception:
+                            original = None
+                    final_backups.append({"path": rel, "original": original, "existed": existed})
 
-                # se arquivo novo/alterado, copiar do tmp para o destino
-                if os.path.exists(src) and os.path.isfile(src):
-                    with open(src, "r", encoding="utf-8") as f:
-                        new_content = f.read()
-                    with open(dst, "w", encoding="utf-8") as f:
-                        f.write(new_content)
-                else:
-                    # se patch removeu o arquivo
-                    if existed and os.path.exists(dst):
-                        os.remove(dst)
+                    # garantir diretório
+                    dstdir = os.path.dirname(dst)
+                    if dstdir:
+                        os.makedirs(dstdir, exist_ok=True)
 
-        except Exception as e:
-            # tentar rollback local usando backups
-            for b in final_backups:
-                rel = b.get("path")
-                dst = os.path.join(root, rel)
-                try:
-                    if b.get("existed"):
+                    # se arquivo novo/alterado, copiar do tmp para o destino
+                    if os.path.exists(src) and os.path.isfile(src):
+                        with open(src, "r", encoding="utf-8") as f:
+                            new_content = f.read()
+
+                        # Validate with SecurityManager if available
+                        if sec is not None:
+                            try:
+                                ok = sec.validate_write(rel, new_content)
+                                if not ok:
+                                    raise PermissionError(f"security_manager_blocked:{rel}")
+                            except Exception as secexc:
+                                raise secexc
+
                         with open(dst, "w", encoding="utf-8") as f:
-                            f.write(b.get("original") or "")
-                    elif os.path.exists(dst):
-                        os.remove(dst)
+                            f.write(new_content)
+                    else:
+                        # se patch removeu o arquivo
+                        if existed and os.path.exists(dst):
+                            # for deletions, consult SecurityManager when available
+                            if sec is not None:
+                                allowed, reason = (True, None)
+                                try:
+                                    res = sec.validate_action({"action": "delete_file", "data": {"path": rel, "confirm_delete": True}})
+                                    if isinstance(res, tuple) and len(res) >= 1:
+                                        allowed = bool(res[0])
+                                        reason = res[1] if len(res) > 1 else None
+                                except Exception:
+                                    allowed = False
+                                if not allowed:
+                                    raise PermissionError(f"security_manager_blocked_delete:{rel}:{reason}")
+
+                            os.remove(dst)
+
+            except Exception as e:
+                # tentar rollback local usando backups
+                for b in final_backups:
+                    rel = b.get("path")
+                    dst = os.path.join(root, rel)
+                    try:
+                        if b.get("existed"):
+                            with open(dst, "w", encoding="utf-8") as f:
+                                f.write(b.get("original") or "")
+                        elif os.path.exists(dst):
+                            os.remove(dst)
+                    except Exception:
+                        pass
+                try:
+                    if tmp_root and os.path.exists(tmp_root):
+                        shutil.rmtree(tmp_root)
                 except Exception:
                     pass
+                return {"status": "error", "error": f"apply_publish_error:{str(e)}", "applied": applied}
+
+        except Exception as e:
             try:
                 if tmp_root and os.path.exists(tmp_root):
                     shutil.rmtree(tmp_root)
             except Exception:
                 pass
-            return {"status": "error", "error": f"apply_publish_error:{str(e)}", "applied": applied}
+            return {"status": "error", "error": f"apply_publish_precheck_error:{str(e)}", "applied": applied}
 
         # cleanup temporário
         try:
@@ -295,8 +400,6 @@ class Executor:
                 shutil.rmtree(tmp_root)
         except Exception:
             pass
-
-        return {"status": "success", "output": f"applied {len(applied)} patches", "patches": applied}
 
         return {"status": "success", "output": f"applied {len(applied)} patches", "patches": applied}
 

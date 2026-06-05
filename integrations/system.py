@@ -49,9 +49,38 @@ class SystemController:
             if not cmd:
                 return {"status": "error", "error": "cmd_missing"}
 
-            result = subprocess.getoutput(cmd)
+            # Allow list/tuple of args for explicit argv execution
+            timeout = 10
+            if isinstance(data, dict) and data.get("timeout"):
+                try:
+                    timeout = max(1, int(data.get("timeout")))
+                except Exception:
+                    pass
 
-            return {"status": "success", "output": result}
+            if isinstance(cmd, (list, tuple)):
+                args = list(cmd)
+            elif isinstance(cmd, str):
+                # Block common shell metacharacters to avoid shell injection
+                forbidden = ["|", "&", ";", ">", "<", "$(`", "`", "\n"]
+                if any(ch in cmd for ch in ("|", "&", ";", ">", "<", "$(`", "`", "\n")):
+                    return {"status": "error", "error": "forbidden_shell_characters"}
+                try:
+                    import shlex
+
+                    args = shlex.split(cmd)
+                except Exception:
+                    return {"status": "error", "error": "invalid_cmd_format"}
+            else:
+                return {"status": "error", "error": "invalid_cmd_type"}
+
+            try:
+                proc = subprocess.run(args, capture_output=True, text=True, timeout=min(timeout, 60), shell=False)
+                out = (proc.stdout or "") + (proc.stderr or "")
+                return {"status": "success", "output": out.strip()}
+            except subprocess.TimeoutExpired:
+                return {"status": "error", "error": "command_timeout"}
+            except Exception as e:
+                return {"status": "error", "error": str(e)}
 
         except Exception as e:
             return {"status": "error", "error": str(e)}

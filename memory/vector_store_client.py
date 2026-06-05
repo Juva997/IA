@@ -34,7 +34,7 @@ def create_vector_store(embedding_fn, driver: Optional[str] = None, **kwargs) ->
 
             url = kwargs.get("url") or _get_env("QDRANT_URL") or _get_env("VECTORDB_URL")
             collection = kwargs.get("collection") or _get_env("VECTORDB_COLLECTION") or "default"
-            vector_size = kwargs.get("vector_size") or int(_get_env("EMBEDDINGS_VECTOR_SIZE") or 384)
+            vector_size = kwargs.get("vector_size") or int(_get_env("EMBEDDINGS_VECTOR_SIZE") or 256)
             return QdrantVectorStoreAdapter(embedding_fn=embedding_fn, url=url, collection=collection, vector_size=vector_size)
         except Exception as e:
             # fallback to local
@@ -47,7 +47,7 @@ def create_vector_store(embedding_fn, driver: Optional[str] = None, **kwargs) ->
             host = kwargs.get("host") or _get_env("MILVUS_HOST") or _get_env("VECTORDB_HOST")
             port = kwargs.get("port") or int(_get_env("MILVUS_PORT") or 19530)
             collection = kwargs.get("collection") or _get_env("VECTORDB_COLLECTION") or "default"
-            vector_size = kwargs.get("vector_size") or int(_get_env("EMBEDDINGS_VECTOR_SIZE") or 384)
+            vector_size = kwargs.get("vector_size") or int(_get_env("EMBEDDINGS_VECTOR_SIZE") or 256)
             return MilvusVectorStoreAdapter(embedding_fn=embedding_fn, host=host, port=port, collection=collection, vector_size=vector_size)
         except Exception:
             # fallback
@@ -57,7 +57,7 @@ def create_vector_store(embedding_fn, driver: Optional[str] = None, **kwargs) ->
     try:
         from .vector_store import VectorStore
 
-        vector_size = kwargs.get("vector_size") or int(_get_env("EMBEDDINGS_VECTOR_SIZE") or 384)
+        vector_size = kwargs.get("vector_size") or int(_get_env("EMBEDDINGS_VECTOR_SIZE") or 256)
         return VectorStore(embedding_fn, vector_size=vector_size)
     except Exception as e:
         raise RuntimeError("No vector store implementation available: %s" % e)

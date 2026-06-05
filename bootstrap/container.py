@@ -140,7 +140,7 @@ except Exception:
     pass
 
 
-def offline_embedding(text, size=384):
+def offline_embedding(text, size=256):
     text = str(text or "")
     vec = [0.0] * size
     tokens = re.findall(r"\w+", text.lower(), flags=re.UNICODE)
@@ -283,7 +283,7 @@ def build_engine(
     llm_cache_ttl = int(config.get("llm.cache_ttl", 120))
     llm_max_retries = int(config.get("llm.max_retries", 0))
     llm_retry_delay = float(config.get("llm.retry_delay", 0.2))
-    vector_size = int(config.get("embeddings.vector_size", 384))
+    vector_size = int(config.get("embeddings.vector_size", 256))
     workspace_root = _workspace_root(config, safe_root=safe_root)
     # Ensure a StateManager instance is available and optionally configure it
     # Support a feature-flag / config to use a Redis-backed adapter when desired.

@@ -117,7 +117,7 @@ result = random.randint(1, 100)
 with open('numero.txt', 'w', encoding='utf-8') as f:
     f.write(str(result))
 print(result)"}},
-{"action": "run_python", "data": {"code": "exec(open('gerador.py').read())"}}
+{"action": "run_python", "data": {"file_path": "gerador.py"}}
 ]
 
 6. Para ler um arquivo e relatar conteúdo ou verificar texto:
@@ -136,7 +136,7 @@ print(result)"}},
 [
 {"action": "create_folder", "data": {"path": "meu_projeto"}},
 {"action": "write_file", "data": {"path": "meu_projeto/main.py", "content": "print('hello world')"}},
-{"action": "run_python", "data": {"code": "exec(open('meu_projeto/main.py').read())"}}
+{"action": "run_python", "data": {"file_path": "meu_projeto/main.py"}}
 ]
 
 9. Para criar e relatar o conteúdo de um arquivo:
@@ -154,7 +154,7 @@ print(result)"}},
 11. Para criar um sistema completo que gera números aleatórios e salva em arquivo:
 [
 {"action": "write_file", "data": {"path": "gerador.py", "content": "import random\nnumero = random.randint(1, 100)\nwith open('numero.txt', 'w') as f:\n    f.write(str(numero))\nprint(f'Numero gerado: {numero}')"}},
-{"action": "run_python", "data": {"code": "exec(open('gerador.py').read())"}},
+{"action": "run_python", "data": {"file_path": "gerador.py"}},
 {"action": "read_file", "data": {"path": "numero.txt"}}
 ]
 
@@ -171,11 +171,11 @@ print(result)"}},
 14. Para criar um teste unitário Python simples:
 [
 {"action": "write_file", "data": {"path": "test_example.py", "content": "import unittest\n\nclass TestExample(unittest.TestCase):\n    def test_addition(self):\n        self.assertEqual(2 + 3, 5)\n\nif __name__ == '__main__':\n    unittest.main()"}},
-{"action": "run_python", "data": {"code": "exec(open('test_example.py').read())"}}
+{"action": "run_python", "data": {"file_path": "test_example.py"}}
 ]
 
 REGRAS RIGOROSAS:
-1. Sempre execute códigos Python necessários para completar o objetivo. Use `exec(open('arquivo.py').read())` para executar arquivos criados.
+1. Sempre execute códigos Python necessários para completar o objetivo. Use `run_python` com `file_path` para executar arquivos Python criados.
 2. Para excluir arquivos, prefira `delete_file` e não use `run_python` para apagar arquivos.
 3. Não use comandos de shell dentro de `run_python`; esse campo deve conter apenas código Python válido.
 4. Se a tarefa pede para relatar algo do arquivo, inclua `run_python` ou `read_file` para gerar saída que responda diretamente ao pedido.
@@ -244,10 +244,11 @@ Gere um plano JSON com as ações necessárias. Responda APENAS o JSON, sem expl
             if read_plan or self._contains_read_intent(text, lowered):
                 plan.append({"action": "read_file", "data": {"path": file_plan[0]["data"]["path"]}})
             if self._should_execute_python_file(file_plan[0]["data"]["path"], lowered):
+                fp = file_plan[0]["data"]["path"]
                 plan.append(
                     {
                         "action": "run_python",
-                        "data": {"code": f"exec(open('{file_plan[0]['data']['path']}').read())"},
+                        "data": {"code": f"exec(open({repr(fp)}).read())"},
                     }
                 )
             return plan
@@ -257,10 +258,11 @@ Gere um plano JSON com as ações necessárias. Responda APENAS o JSON, sem expl
             if read_plan or "soma" in lowered or self._contains_read_intent(text, lowered):
                 plan.append({"action": "read_file", "data": {"path": file_plan[0]["data"]["path"]}})
             if self._should_execute_python_file(file_plan[0]["data"]["path"], lowered):
+                fp = file_plan[0]["data"]["path"]
                 plan.append(
                     {
                         "action": "run_python",
-                        "data": {"code": f"exec(open('{file_plan[0]['data']['path']}').read())"},
+                        "data": {"code": f"exec(open({repr(fp)}).read())"},
                     }
                 )
             if delete_plan:
@@ -392,7 +394,7 @@ Gere um plano JSON com as ações necessárias. Responda APENAS o JSON, sem expl
 
             return [
                 {"action": "write_file", "data": {"path": "calculadora.py", "content": content}},
-                {"action": "run_python", "data": {"code": "exec(open('calculadora.py').read())"}},
+                {"action": "run_python", "data": {"file_path": "calculadora.py"}},
             ]
 
         if "próprio nome" in lowered or "proprio nome" in lowered:
@@ -1216,7 +1218,7 @@ Gere um plano JSON com as ações necessárias. Responda APENAS o JSON, sem expl
                             "content": "import unittest\n\nclass TestExample(unittest.TestCase):\n    def test_addition(self):\n        self.assertEqual(2 + 3, 5)\n\nif __name__ == '__main__':\n    unittest.main()",
                         },
                     },
-                    {"action": "run_python", "data": {"code": "exec(open('teste_unitario.py').read())"}},
+                    {"action": "run_python", "data": {"file_path": "teste_unitario.py"}},
                 ]
 
             elif "fatorial" in goal_text or "factorial" in goal_text:
@@ -1228,7 +1230,7 @@ Gere um plano JSON com as ações necessárias. Responda APENAS o JSON, sem expl
                             "content": "def fatorial(n):\n    if n < 0:\n        raise ValueError('n deve ser não negativo')\n    result = 1\n    for i in range(1, n + 1):\n        result *= i\n    print(result)",
                         },
                     },
-                    {"action": "run_python", "data": {"code": "exec(open('fatorial.py').read())"}},
+                    {"action": "run_python", "data": {"file_path": "fatorial.py"}},
                 ]
 
         # Filtrar propostas de deleção para garantir existência física.

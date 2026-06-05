@@ -11,9 +11,16 @@ from utils.cache import Cache
 
 
 class VectorStore:
-    def __init__(self, embedding_fn, vector_size=384, max_entries=None):
+    def __init__(self, embedding_fn, vector_size=None, max_entries=None):
         self.embedding_fn = embedding_fn
-        self.vector_size = vector_size
+        # Determine vector size from explicit parameter, environment or default to 256
+        try:
+            if vector_size is not None:
+                self.vector_size = int(vector_size)
+            else:
+                self.vector_size = int(os.environ.get("EMBEDDINGS_VECTOR_SIZE", "256"))
+        except Exception:
+            self.vector_size = 256
         self.texts = []
         self.metadatas = []
         self._lock = threading.RLock()
@@ -35,7 +42,7 @@ class VectorStore:
         # Use FAISS if available, otherwise use a simple numpy-backed fallback
         if faiss is not None:
             self._use_faiss = True
-            self.index = faiss.IndexFlatIP(vector_size)  # Inner product for cosine
+            self.index = faiss.IndexFlatIP(self.vector_size)  # Inner product for cosine
         else:
             self._use_faiss = False
             self._fallback_index = []  # list of numpy vectors
