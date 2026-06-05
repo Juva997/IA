@@ -10,9 +10,17 @@ from sqlalchemy.orm import Session
 
 from . import crud, database
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "change-me-secret")
+# SECURITY: require SECRET_KEY to be set in environment — fail fast if missing
+SECRET_KEY = os.environ.get("SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError("Missing required environment variable: SECRET_KEY. Set a strong secret for JWT signing.")
+
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.environ.get("ACCESS_TOKEN_EXPIRE_MINUTES", "60"))
+
+# Hardening: require minimal length for SECRET_KEY to avoid weak secrets
+if len(SECRET_KEY) < 32:
+    raise RuntimeError("SECRET_KEY too short; use a random 32+ character secret")
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

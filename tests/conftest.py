@@ -1,8 +1,12 @@
 from pathlib import Path
 
 import pytest
+import os
 
 from bootstrap.container import build_engine
+
+# Ensure tests keep allowing sandbox writes (legacy test expectations)
+os.environ.setdefault("SANDBOX_ALLOW_FILE_WRITE", "1")
 
 
 class FakeLLM:

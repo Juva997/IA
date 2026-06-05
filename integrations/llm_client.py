@@ -1,10 +1,18 @@
+    # =========================
+    # 🔥 PUBLIC API
+    # =========================
 import hashlib
 import re
 import time
+import os
 from urllib.parse import urljoin
 import logging
+import threading
+import random
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 from utils.cache import Cache
 
@@ -12,6 +20,15 @@ logger = logging.getLogger(__name__)
 
 
 class LLMClient:
+    """Client HTTP para LLMs com timeouts, retries e circuit-breaker simples.
+
+    Config via env:
+      LLM_POOL_CONNECTIONS, LLM_POOL_MAXSIZE
+      LLM_CIRCUIT_THRESHOLD (default 3)
+      LLM_CIRCUIT_OPEN_SECONDS (default 30)
+      LLM_MAX_RETRIES (fallback to constructor)
+    """
+
     def __init__(
         self,
         model="llama3",
@@ -23,22 +40,68 @@ class LLMClient:
     ):
         self.model = model
         self.url = base_url
-        self.timeout = timeout
-        self.max_retries = max_retries
-        self.retry_delay = retry_delay
+        self.timeout = float(timeout or 15)
+        self.max_retries = int(os.environ.get("LLM_MAX_RETRIES", str(max_retries)))
+        self.retry_delay = float(retry_delay or 0.2)
 
         self.cache = Cache(ttl=cache_ttl)
         self.session = requests.Session()
+
+        # Configure connection pooling and retries for concurrency
+        try:
+            pool_conn = int(os.environ.get("LLM_POOL_CONNECTIONS", "10"))
+            pool_max = int(os.environ.get("LLM_POOL_MAXSIZE", "10"))
+        except Exception:
+            pool_conn = 10
+            pool_max = 10
+
+        try:
+            retry_strategy = Retry(
+                total=max(0, int(self.max_retries)),
+                backoff_factor=0.2,
+                status_forcelist=[429, 500, 502, 503, 504],
+                allowed_methods=["HEAD", "GET", "POST"],
+            )
+        except Exception:
+            retry_strategy = None
+
+        try:
+            adapter = HTTPAdapter(max_retries=retry_strategy, pool_connections=pool_conn, pool_maxsize=pool_max)
+            self.session.mount("http://", adapter)
+            self.session.mount("https://", adapter)
+        except Exception:
+            pass
+
+        # circuit breaker state
+        self._lock = threading.Lock()
+        self._failure_count = 0
+        self._circuit_open_until = 0
+        self._half_open_attempts = 0
+
+        # config
+        try:
+            self._circuit_threshold = int(os.environ.get("LLM_CIRCUIT_THRESHOLD", "3"))
+        except Exception:
+            self._circuit_threshold = 3
+        try:
+            self._circuit_open_seconds = int(os.environ.get("LLM_CIRCUIT_OPEN_SECONDS", "30"))
+        except Exception:
+            self._circuit_open_seconds = 30
 
     # =========================
     # 🔥 PUBLIC API
     # =========================
     def generate(self, prompt):
+        """Generate text from prompt with retries, backoff and circuit-breaker."""
         if not isinstance(prompt, str):
             return self._error("invalid_prompt")
 
-        cache_key = self._build_cache_key(prompt)
+        now = time.time()
+        with self._lock:
+            if getattr(self, "_circuit_open_until", 0) > now:
+                return self._error("circuit_open")
 
+        cache_key = self._build_cache_key(prompt)
         cached = self._get_cached(cache_key)
         if cached:
             return cached
@@ -46,53 +109,98 @@ class LLMClient:
         attempt = 0
         while attempt <= self.max_retries:
             try:
-                response = self._make_request(prompt)
+                resp = self._make_request(prompt)
 
-                if response is None:
+                if resp is None:
+                    # treat as failure
+                    with self._lock:
+                        self._failure_count += 1
+                        if self._failure_count >= self._circuit_threshold:
+                            self._circuit_open_until = time.time() + self._circuit_open_seconds
+                            self._failure_count = 0
+                            return self._error("circuit_open_after_failures")
                     return self._error("no_response")
 
-                if response.status_code != 200:
-                    if attempt < self.max_retries:
-                        attempt += 1
-                        time.sleep(self.retry_delay)
-                        continue
-                    return self._error(f"http_error: {response.status_code}")
+                if resp.status_code != 200:
+                    # record failure
+                    with self._lock:
+                        self._failure_count += 1
+                        if self._failure_count >= self._circuit_threshold:
+                            self._circuit_open_until = time.time() + self._circuit_open_seconds
+                            self._failure_count = 0
+                            return self._error("circuit_open_after_failures")
 
-                text = self._extract_text(response)
+                    if attempt < self.max_retries:
+                        backoff = self.retry_delay * (2 ** attempt) + random.uniform(0, self.retry_delay)
+                        time.sleep(backoff)
+                        attempt += 1
+                        continue
+
+                    return self._error(f"http_error: {resp.status_code}")
+
+                text = self._extract_text(resp)
                 text = self._clean_response(text)
 
-                self._save_cache(cache_key, text)
+                # success -> reset failure counters
+                with self._lock:
+                    self._failure_count = 0
+                    self._half_open_attempts = 0
 
+                self._save_cache(cache_key, text)
                 return text
 
             except requests.exceptions.Timeout:
+                # timeout -> retry with backoff
                 if attempt < self.max_retries:
+                    backoff = self.retry_delay * (2 ** attempt) + random.uniform(0, self.retry_delay)
+                    time.sleep(backoff)
                     attempt += 1
-                    time.sleep(self.retry_delay)
                     continue
+
+                with self._lock:
+                    self._failure_count += 1
                 return self._error("timeout_llm")
 
-            except requests.exceptions.ConnectionError:
+            except requests.exceptions.RequestException:
+                # connection / other request errors
                 if attempt < self.max_retries:
+                    backoff = self.retry_delay * (2 ** attempt) + random.uniform(0, self.retry_delay)
+                    time.sleep(backoff)
                     attempt += 1
-                    time.sleep(self.retry_delay)
                     continue
-                return self._error("llm_offline_or_not_running")
+
+                with self._lock:
+                    self._failure_count += 1
+                    if self._failure_count >= self._circuit_threshold:
+                        self._circuit_open_until = time.time() + self._circuit_open_seconds
+                        self._failure_count = 0
+                        return self._error("circuit_open_after_failures")
+
+                return self._error("llm_request_error")
 
             except Exception as e:
+                # unknown error -> retry if possible
                 if attempt < self.max_retries:
+                    backoff = self.retry_delay * (2 ** attempt) + random.uniform(0, self.retry_delay)
+                    time.sleep(backoff)
                     attempt += 1
-                    time.sleep(self.retry_delay)
                     continue
+
+                with self._lock:
+                    self._failure_count += 1
                 return self._error(f"erro_llm_local: {str(e)}")
 
     # =========================
     # 🌐 REQUEST
     # =========================
     def _make_request(self, prompt):
-        return self.session.post(
-            self.url, json=self._build_payload(prompt), timeout=self.timeout
-        )
+        try:
+            return self.session.post(self.url, json=self._build_payload(prompt), timeout=self.timeout)
+        except requests.exceptions.Timeout:
+            raise
+        except requests.exceptions.RequestException:
+            # propagate to caller to handle retries / circuit
+            raise
 
     def _build_payload(self, prompt):
         return {"model": self.model, "prompt": prompt, "stream": False}

@@ -29,3 +29,8 @@ black
 isort
 trl
 transformers
+rq
+redis
+opentelemetry-sdk
+opentelemetry-exporter-otlp
+psycopg2-binary

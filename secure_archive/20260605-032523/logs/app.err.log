@@ -1,0 +1,1 @@
+[2026-06-04 22:14:44,429] [ERROR] app: ASSISTENTE_REQUIRE_API_KEY is set but ASSISTENTE_API_KEY is not configured. Aborting start.

@@ -1,29 +1,123 @@
-# Local Python environment
-.venv/
+# -------------------------
+# Gitignore profissional (Python + comuns)
+# -------------------------
 
-# Python generated files
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.venv*/
+.venv_*/
+.venv_profiler/
+
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
 
-# Test and coverage output
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+wheelhouse/
+*.whl
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# pyenv
+.python-version
+
+# Test and coverage
 .coverage
+.coverage.*
 .pytest_cache/
 .pytest_tmp*/
+.pytest_temp/
+nosetests.xml
+coverage.xml
 
-# Type/lint caches
+# Type / linter caches
 .mypy_cache/
 .ruff_cache/
+.pytype/
 
-# Local runtime data
+# Local runtime data & caches
 data/logs/
 data/cache/
 data/vectors/
+.cache/
+
+# Logs and temporary files
+logs/
+*.log
+*.err.log
+*.out
+*.tmp
+tmp/
+tmp_*
+*.swp
+*~
+
+# Profiles, traces and flamegraphs
+profile.prof
+*.prof
+pyspy_flame.svg
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime*
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker / env files
+.env
+.env.*
+docker-compose.override.yml
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+.pnp/
+
+# Binary/tool artifacts & installers
+.bin/
+*.exe
+*.dll
+*.lib
+*.pdb
+
+# Project-specific & benchmark artifacts
 benchmark_workspace/
 benchmark/repair_sim_workspaces/
+benchmark/*.log
 benchmark-*.json
 benchmark_report.json
 mini_swe_report*.json
 mini_swe_repair*.json
 chat_history.json
 benchmark.zip
+
+# Temporary or generated windows installer mistakenly added
+vs_BuildTools.exe
+
+# Keep this file in repo; large generated artifacts should be removed with git rm --cached
+
+# Remediation: ignore reports, archives and relocated patches
+reports/
+secure_archive/
+patches/*.patch
+patches/*.orig
+

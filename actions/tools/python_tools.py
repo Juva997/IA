@@ -1,4 +1,5 @@
 import ast
+import re
 import builtins
 import io
 import json
@@ -22,6 +23,19 @@ FORBIDDEN_TOKENS = [
     "source ",
     "bash",
     "sh ",
+    "socket",
+    "requests",
+    "urllib",
+    "http.client",
+    "ftplib",
+    "smtplib",
+    "paramiko",
+    "fabric",
+    "ctypes",
+    "fcntl",
+    "mmap",
+    "shutil",
+    "execfile",
 ]
 
 SAFE_MODULES = {
@@ -260,6 +274,37 @@ def _run_in_subprocess(code, sandbox_root, timeout_seconds):
 
 
 def _worker_execute(code, sandbox_root, result_path):
+    # Scrub sensitive environment variables in the worker process to avoid
+    # accidental access/exfiltration by sandboxed code. Only remove common
+    # secret-related env names (KEY/SECRET/TOKEN/PASS/etc.). This affects
+    # the child process only and is best-effort.
+    try:
+        for k in list(os.environ.keys()):
+            up = k.upper()
+            if any(tok in up for tok in ("KEY", "SECRET", "TOKEN", "PASS", "PWD", "AWS", "GCP", "GOOGLE", "OPENAI", "AZURE")):
+                try:
+                    del os.environ[k]
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
+    # On POSIX, apply resource limits to reduce blast radius (CPU and virtual
+    # memory). This is best-effort and will be skipped on unsupported systems.
+    try:
+        if os.name != "nt":
+            try:
+                import resource
+
+                # limit CPU seconds (soft, hard)
+                resource.setrlimit(resource.RLIMIT_CPU, (10, 10))
+                # limit address space (virtual memory) to 256 MiB
+                resource.setrlimit(resource.RLIMIT_AS, (256 * 1024 * 1024, 256 * 1024 * 1024))
+            except Exception:
+                pass
+    except Exception:
+        pass
+
     result = _execute_in_sandbox(code, sandbox_root)
     _write_result_file(result_path, result)
 
@@ -361,6 +406,23 @@ def _make_safe_open(root):
         # devem ser permitidos dentro do sandbox.
         if "+" in mode:
             raise PermissionError("read/write modes not allowed")
+
+        # By default, disallow write modes from sandboxed code. To enable writes
+        # in controlled test environments set SANDBOX_ALLOW_FILE_WRITE=1 in env.
+        # Default is now OFF for production safety. Tests/CI may override this
+        # via environment to preserve legacy behavior.
+        allow_write = str(os.environ.get("SANDBOX_ALLOW_FILE_WRITE", "0")).strip().lower() in (
+            "1",
+            "true",
+            "yes",
+        )
+
+        read_only_modes = ("r", "rb")
+        write_modes = ("w", "wb")
+        m0 = mode.split("b")[0].split("t")[0]
+        m0 = m0.strip()
+        if not allow_write and not any(m0.startswith(rm) for rm in read_only_modes):
+            raise PermissionError("write modes not allowed in sandbox")
 
         full_path = os.path.abspath(os.path.join(root, os.fspath(file)))
         if os.path.commonpath([root, full_path]) != root:
@@ -570,7 +632,26 @@ def _contains_forbidden(code):
         code = "\n".join(code.splitlines()[1:])
 
     lowered = code.lower()
-    return any(token.lower() in lowered for token in FORBIDDEN_TOKENS)
+    if any(token.lower() in lowered for token in FORBIDDEN_TOKENS):
+        return True
+
+    # Detect embedded private keys
+    try:
+        if re.search(r"-----BEGIN [A-Z ]+PRIVATE KEY-----", code):
+            return True
+    except Exception:
+        pass
+
+    # Detect very long base64 / hex blobs that often indicate embedded secrets
+    try:
+        if re.search(r"(?<![A-Za-z0-9+/=])[A-Za-z0-9+/=]{80,}(?![A-Za-z0-9+/=])", code):
+            return True
+        if re.search(r"(?<![0-9a-fA-F])[0-9a-fA-F]{64,}(?![0-9a-fA-F])", code):
+            return True
+    except Exception:
+        pass
+
+    return False
 
 
 def _validate_code(code):

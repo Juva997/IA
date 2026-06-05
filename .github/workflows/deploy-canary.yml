@@ -1,0 +1,97 @@
+name: CI/CD Canary Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.REGISTRY }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ secrets.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}:latest
+            ${{ secrets.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Set image tag output
+        run: echo "IMAGE_TAG=${{ secrets.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}" >> $GITHUB_OUTPUT
+
+  deploy-canary:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set Kubeconfig
+        uses: azure/setup-kubectl@v3
+        with:
+          version: '1.27'
+        # Note: replace this step with your cloud provider's kubeconfig action or
+        # set `KUBECONFIG` via secrets (e.g., --mount or actions/upload-artifact).
+
+      - name: Deploy canary (apply canary manifest)
+        run: |
+          IMAGE="${{ secrets.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          kubectl set image deployment/assistente-api-canary api=$IMAGE --record || kubectl apply -f infra/k8s/mvp/api-canary-deployment.yaml
+
+      - name: Wait for canary readiness
+        run: |
+          kubectl rollout status deployment/assistente-api-canary --timeout=120s
+
+      - name: Run smoke tests against canary
+        run: |
+          # Basic smoke check; customize endpoints as needed
+          CANARY_IP=$(kubectl get svc assistente-api -o jsonpath='{.spec.clusterIP}') || CANARY_IP=localhost
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://$CANARY_IP/health || echo 000)
+          echo "Health status: $HTTP_STATUS"
+          if [ "$HTTP_STATUS" != "200" ]; then
+            echo "Canary unhealthy"; exit 1
+          fi
+
+      - name: Promote canary to stable
+        if: success()
+        run: |
+          IMAGE="${{ secrets.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          # patch stable deployment to use new image
+          kubectl set image deployment/assistente-api api=$IMAGE --record
+          kubectl rollout status deployment/assistente-api --timeout=180s
+
+  cleanup-canary:
+    needs: deploy-canary
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Remove canary deployment on failure
+        run: |
+          if [ "${{ needs.deploy-canary.result }}" != "success" ]; then
+            kubectl delete deployment assistente-api-canary --ignore-not-found
+          fi

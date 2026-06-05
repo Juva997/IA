@@ -68,26 +68,25 @@ class ActionRegistry:
 
         # If func is a callable local function, register it as a LocalMCPTool
         if callable(func):
-            # Create a wrapper that preserves the old callable signature
+            # Create a wrapper that preserves the old callable signature.
+            # NOTE: do not catch broad exceptions here so that the Executor can
+            # perform retries and surface execution failures consistently.
             def wrapper(data, state=None):
-                try:
-                    # Prefer calling via catalog if available
-                    if self.catalog and name in getattr(self.catalog, 'tools', {}):
-                        tool = self.catalog.tools.get(name)
-                        try:
-                            res = tool.invoke(data)
-                            return res
-                        except Exception:
-                            # fallthrough to direct call
-                            pass
-
-                    # direct call to original function
+                # Prefer calling via catalog if available (catalog errors are non-fatal)
+                if self.catalog and name in getattr(self.catalog, 'tools', {}):
+                    tool = self.catalog.tools.get(name)
                     try:
-                        return func(data, state)
-                    except TypeError:
-                        return func(data)
-                except Exception as e:
-                    return {"status": "error", "error": str(e)}
+                        res = tool.invoke(data)
+                        return res
+                    except Exception:
+                        # fallthrough to direct call
+                        pass
+
+                # direct call to original function; allow exceptions to propagate
+                try:
+                    return func(data, state)
+                except TypeError:
+                    return func(data)
 
             # register local tool in the catalog when possible
             if self.catalog is not None and hasattr(self.catalog, 'register_local'):

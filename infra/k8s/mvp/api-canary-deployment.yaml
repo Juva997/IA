@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assistente-api-canary
+  labels:
+    app: assistente-api
+    role: canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: assistente-api
+      role: canary
+  template:
+    metadata:
+      labels:
+        app: assistente-api
+        role: canary
+    spec:
+      containers:
+        - name: api
+          image: assistente_local:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: ASSISTENTE_REQUIRE_API_KEY
+              value: "0"
+            - name: REDIS_URL
+              value: "redis://redis:6379/0"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 20

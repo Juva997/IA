@@ -3,6 +3,7 @@ import json
 import os
 import re
 import time
+import threading
 
 
 class Memory:
@@ -43,6 +44,12 @@ class Memory:
         self.require_confirmation = bool(require_confirmation)
 
         self._load_if_exists()
+        # Background save helpers
+        try:
+            self._save_lock = threading.Lock()
+        except Exception:
+            self._save_lock = None
+        self._save_thread = None
 
     def store_step(self, step, result, feedback):
         try:
@@ -368,15 +375,68 @@ class Memory:
         self._save()
 
     def _save(self):
+        # Persist memory state. Use synchronous save by default to avoid
+        # race conditions where callers expect persistence to be available
+        # immediately after calling APIs that trigger a save (tests and
+        # short-lived processes). For production, set
+        # `ASSISTENTE_BACKGROUND_SAVE=1` to restore background behavior.
         try:
-            directory = os.path.dirname(self.persist_path)
-            if directory:
-                os.makedirs(directory, exist_ok=True)
-            self.vector_store.save(self.persist_path)
-            self._save_facts()
-            self._save_learning_state()
+            bg = str(os.environ.get("ASSISTENTE_BACKGROUND_SAVE", "0")).strip().lower() in ("1", "true", "yes")
+            if bg:
+                if getattr(self, "_save_thread", None) and self._save_thread.is_alive():
+                    return
+                t = threading.Thread(target=self._save_sync, daemon=True)
+                self._save_thread = t
+                t.start()
+                return
+
+            # Default: synchronous save for reliability
+            self._save_sync()
         except Exception:
             pass
+
+    def _save_sync(self):
+        lock = getattr(self, "_save_lock", None)
+        if lock is None:
+            try:
+                directory = os.path.dirname(self.persist_path)
+                if directory:
+                    os.makedirs(directory, exist_ok=True)
+                try:
+                    self.vector_store.save(self.persist_path)
+                except Exception:
+                    pass
+                try:
+                    self._save_facts()
+                except Exception:
+                    pass
+                try:
+                    self._save_learning_state()
+                except Exception:
+                    pass
+            except Exception:
+                pass
+            return
+
+        with lock:
+            try:
+                directory = os.path.dirname(self.persist_path)
+                if directory:
+                    os.makedirs(directory, exist_ok=True)
+                try:
+                    self.vector_store.save(self.persist_path)
+                except Exception:
+                    pass
+                try:
+                    self._save_facts()
+                except Exception:
+                    pass
+                try:
+                    self._save_learning_state()
+                except Exception:
+                    pass
+            except Exception:
+                pass
 
     def _load_if_exists(self):
         try:

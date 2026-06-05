@@ -1,5 +1,6 @@
 import traceback
 import os
+import threading
 
 from monitor.logger import Logger
 
@@ -44,123 +45,163 @@ class AutonomousEngine:
             )
         except Exception:
             self.session_context = {"last_folder_path": None, "last_file_path": None}
+        # lock to protect updates to engine-level session_context (last-writer wins)
+        try:
+            self._session_context_lock = threading.Lock()
+        except Exception:
+            self._session_context_lock = None
 
     # =========================
     # 🚀 LOOP PRINCIPAL (ESTÁVEL)
     # =========================
     def run(self, goal):
+        # Instrumentação: tentar obter tracer/metrics; usar fallback silencioso
+        try:
+            from integrations.otel import get_tracer, get_metrics
+
+            tracer = get_tracer("engine")
+            metrics = get_metrics()
+        except Exception:
+            tracer = None
+            metrics = None
+
         state = self._init_state(goal)
         failures = 0
 
         self._log(f"[ENGINE] Start goal: {goal}")
 
+        import time
+        from contextlib import nullcontext
+
+        span_ctx = nullcontext()
         try:
-            # 🔥 contexto inicial
-            context = self._build_context(goal, state)
-
-            # 🔍 atalho: se o usuário pedir um diagnóstico, rode os diagnósticos internos
-            try:
-                import unicodedata
-
-                goal_norm = str(goal or "")
-                # remover acentos para comparação robusta
-                goal_ascii = unicodedata.normalize("NFKD", goal_norm)
-                goal_ascii = "".join(c for c in goal_ascii if not unicodedata.combining(c)).lower()
-
-                if "diagn" in goal_ascii:
-                    from core.diagnostics import collect_health_details
-
-                    diag = collect_health_details(self)
-                    return self._success(diag)
-            except Exception as diag_exc:
-                # se falhar aqui, registre logs mais verbosos para depuração
+            if tracer:
                 try:
-                    import traceback as _tb
-
-                    self.logger.error(f"[DIAGNOSTIC] Falha ao executar diagnóstico: {diag_exc}")
-                    self.logger.error(_tb.format_exc())
-
-                    # detalhes de runtime e configuração
-                    try:
-                        self.logger.debug(f"[DIAGNOSTIC] runtime_info: {getattr(self, 'runtime_info', {})}")
-                    except Exception:
-                        pass
-
-                    # snapshot de memória (se disponível)
-                    try:
-                        mem = getattr(self, 'memory', None)
-                        if mem and hasattr(mem, 'get_memory_snapshot'):
-                            snap = mem.get_memory_snapshot()
-                            self.logger.debug(f"[DIAGNOSTIC] memory snapshot: {snap}")
-                    except Exception as ex2:
-                        self.logger.debug(f"[DIAGNOSTIC] memory snapshot error: {ex2}")
-
-                    # diagnóstico do roteador/llm (se disponível)
-                    try:
-                        router = getattr(self, 'router', None)
-                        if router and hasattr(router, 'diagnostics'):
-                            routediag = router.diagnostics()
-                            self.logger.debug(f"[DIAGNOSTIC] router diagnostics: {routediag}")
-                    except Exception as ex3:
-                        self.logger.debug(f"[DIAGNOSTIC] router diagnostics error: {ex3}")
-
-                    # Adicional: gravar um arquivo resumo de diagnóstico rápido
-                    try:
-                        diag_path = getattr(self, 'runtime_info', {}).get('workspace_root', '.')
-                        diag_file = f"{diag_path}/data/logs/diagnostic_errors_last.txt"
-                        with open(diag_file, 'w', encoding='utf-8') as dfh:
-                            dfh.write(f"diagnostic_error: {diag_exc}\n")
-                    except Exception:
-                        pass
+                    span_ctx = tracer.start_as_current_span("engine.run", attributes={"goal": str(goal)[:200]})
                 except Exception:
-                    pass
+                    span_ctx = nullcontext()
 
-            # 🔥 memória direta (super importante)
-            memory_answer = self._handle_memory_question(goal, context)
-            if memory_answer:
-                return self._success(memory_answer)
+            t0 = time.perf_counter()
+            with span_ctx:
+                try:
+                    # 🔥 contexto inicial
+                    context = self._build_context(goal, state)
 
-            # 🔥 conversa simples (evita planner)
-            if self._is_simple_chat(goal):
-                return self._success(self.agent.respond(goal, context))
+                    # 🔍 atalho: se o usuário pedir um diagnóstico, rode os diagnósticos internos
+                    try:
+                        import unicodedata
 
-            # 🔁 LOOP CONTROLADO
-            while self._should_continue(state):
-                state.iteration += 1
+                        goal_norm = str(goal or "")
+                        # remover acentos para comparação robusta
+                        goal_ascii = unicodedata.normalize("NFKD", goal_norm)
+                        goal_ascii = "".join(c for c in goal_ascii if not unicodedata.combining(c)).lower()
 
-                context = self._build_context(goal, state)
+                        if "diagn" in goal_ascii:
+                            from core.diagnostics import collect_health_details
 
-                route = self._route_if_available(goal, context, state)
-                context["route"] = route
+                            diag = collect_health_details(self)
+                            return self._success(diag)
+                    except Exception as diag_exc:
+                        # se falhar aqui, registre logs mais verbosos para depuração
+                        try:
+                            import traceback as _tb
 
-                analysis = self._analyze_if_available(goal, context)
+                            self.logger.error(f"[DIAGNOSTIC] Falha ao executar diagnóstico: {diag_exc}")
+                            self.logger.error(_tb.format_exc())
 
-                plan, goal_type = self._create_plan(goal, context, analysis)
+                            # detalhes de runtime e configuração
+                            try:
+                                self.logger.debug(f"[DIAGNOSTIC] runtime_info: {getattr(self, 'runtime_info', {})}")
+                            except Exception:
+                                pass
 
-                # 🔥 fallback crítico
-                if self._is_invalid_plan(plan):
-                    self._log("[ENGINE] Fallback -> direct response")
-                    return self._handle_direct_response(goal, context, goal_type)
+                            # snapshot de memória (se disponível)
+                            try:
+                                mem = getattr(self, 'memory', None)
+                                if mem and hasattr(mem, 'get_memory_snapshot'):
+                                    snap = mem.get_memory_snapshot()
+                                    self.logger.debug(f"[DIAGNOSTIC] memory snapshot: {snap}")
+                            except Exception as ex2:
+                                self.logger.debug(f"[DIAGNOSTIC] memory snapshot error: {ex2}")
 
-                if self._is_direct_response(plan, goal_type):
-                    return self._handle_direct_response(goal, context, goal_type)
+                            # diagnóstico do roteador/llm (se disponível)
+                            try:
+                                router = getattr(self, 'router', None)
+                                if router and hasattr(router, 'diagnostics'):
+                                    routediag = router.diagnostics()
+                                    self.logger.debug(f"[DIAGNOSTIC] router diagnostics: {routediag}")
+                            except Exception as ex3:
+                                self.logger.debug(f"[DIAGNOSTIC] router diagnostics error: {ex3}")
 
-                self._emit("plan_created", plan)
+                            # Adicional: gravar um arquivo resumo de diagnóstico rápido
+                            try:
+                                diag_path = getattr(self, 'runtime_info', {}).get('workspace_root', '.')
+                                diag_file = f"{diag_path}/data/logs/diagnostic_errors_last.txt"
+                                with open(diag_file, 'w', encoding='utf-8') as dfh:
+                                    dfh.write(f"diagnostic_error: {diag_exc}\n")
+                            except Exception:
+                                pass
+                        except Exception:
+                            pass
 
-                result, failures = self._execute_plan(plan, state, goal, failures)
+                    # 🔥 memória direta (super importante)
+                    memory_answer = self._handle_memory_question(goal, context)
+                    if memory_answer:
+                        return self._success(memory_answer)
 
-                if result:
-                    return result
+                    # 🔥 conversa simples (evita planner)
+                    if self._is_simple_chat(goal):
+                        return self._success(self.agent.respond(goal, context))
 
-                # 🔥 proteção contra loop infinito
-                if state.iteration >= self.max_iterations - 1:
-                    self._log("[ENGINE] Max iterations fallback")
-                    return self._success(self.agent.respond(goal, context))
+                    # 🔁 LOOP CONTROLADO
+                    while self._should_continue(state):
+                        state.iteration += 1
 
-        except Exception as e:
-            self._handle_error(e)
+                        context = self._build_context(goal, state)
 
-        return self._max_iterations_error()
+                        route = self._route_if_available(goal, context, state)
+                        context["route"] = route
+
+                        analysis = self._analyze_if_available(goal, context)
+
+                        plan, goal_type = self._create_plan(goal, context, analysis)
+
+                        # 🔥 fallback crítico
+                        if self._is_invalid_plan(plan):
+                            self._log("[ENGINE] Fallback -> direct response")
+                            return self._handle_direct_response(goal, context, goal_type)
+
+                        if self._is_direct_response(plan, goal_type):
+                            return self._handle_direct_response(goal, context, goal_type)
+
+                        self._emit("plan_created", plan)
+
+                        result, failures = self._execute_plan(plan, state, goal, failures)
+
+                        if result:
+                            return result
+
+                        # 🔥 proteção contra loop infinito
+                        if state.iteration >= self.max_iterations - 1:
+                            self._log("[ENGINE] Max iterations fallback")
+                            return self._success(self.agent.respond(goal, context))
+
+                except Exception as e:
+                    self._handle_error(e)
+
+                return self._max_iterations_error()
+        finally:
+            duration = time.perf_counter() - t0
+            try:
+                if metrics:
+                    try:
+                        metrics.increment_requests("engine.run")
+                        if hasattr(metrics, "observe_response_time"):
+                            metrics.observe_response_time("engine.run", duration)
+                    except Exception:
+                        pass
+            except Exception:
+                pass
 
     # =========================
     # 🧠 MEMÓRIA
@@ -416,13 +457,49 @@ class AutonomousEngine:
                 data = step.get("data", {}) or {}
                 path = data.get("path")
                 if step.get("action") == "create_folder" and path:
-                    self.session_context["last_folder_path"] = path
+                    # persistir contexto por tarefa para evitar concorrência
+                    try:
+                        sc = state.metadata.setdefault("session_context", {})
+                        sc["last_folder_path"] = path
+                    except Exception:
+                        pass
+                    # mantener engine.session_context compatível (último escritor vence)
+                    try:
+                        lock = getattr(self, "_session_context_lock", None)
+                        if lock:
+                            with lock:
+                                try:
+                                    if isinstance(getattr(self, "session_context", None), dict):
+                                        self.session_context.update(sc)
+                                    else:
+                                        self.session_context = dict(sc)
+                                except Exception:
+                                    pass
+                    except Exception:
+                        pass
                 if step.get("action") == "write_file" and path:
-                    self.session_context["last_file_path"] = path
-                    if "/" in path or "\\" in path:
-                        folder = path.replace("\\", "/").rsplit("/", 1)[0]
-                        if folder:
-                            self.session_context["last_folder_path"] = folder
+                    try:
+                        sc = state.metadata.setdefault("session_context", {})
+                        sc["last_file_path"] = path
+                        if "/" in path or "\\" in path:
+                            folder = path.replace("\\", "/").rsplit("/", 1)[0]
+                            if folder:
+                                sc["last_folder_path"] = folder
+                    except Exception:
+                        pass
+                    try:
+                        lock = getattr(self, "_session_context_lock", None)
+                        if lock:
+                            with lock:
+                                try:
+                                    if isinstance(getattr(self, "session_context", None), dict):
+                                        self.session_context.update(sc)
+                                    else:
+                                        self.session_context = dict(sc)
+                                except Exception:
+                                    pass
+                    except Exception:
+                        pass
                 # Após deleção bem-sucedida, remover do conjunto de pendências (se existir)
                 if step.get("action") == "delete_file" and path:
                     try:
@@ -501,6 +578,17 @@ class AutonomousEngine:
         state = AgentState(goal)
         state.metadata["workspace_root"] = self.workspace_root
         state.metadata["sandbox_root"] = self.sandbox_root or self.workspace_root
+        # Ensure each task/state gets its own session_context copy to avoid
+        # concurrent requests clobbering a shared engine-level session_context.
+        try:
+            if not isinstance(state.metadata.get("session_context"), dict):
+                state.metadata["session_context"] = dict(getattr(self, "session_context", {}) or {})
+        except Exception:
+            try:
+                state.metadata.setdefault("session_context", {"last_folder_path": None, "last_file_path": None})
+            except Exception:
+                pass
+
         return state
 
     # =========================

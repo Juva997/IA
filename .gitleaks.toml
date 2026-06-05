@@ -1,0 +1,20 @@
+title = "IA custom gitleaks rules"
+
+[[rules]]
+id = "change-me-secret"
+description = "Hardcoded default 'change-me-secret' (patches)"
+regex = '''(?i)change-me-secret'''
+tags = ["secret","default"]
+
+[[rules]]
+id = "secret_key_default"
+description = "SECRET_KEY default set to change-me-secret via os.environ.get(...)"
+regex = '''SECRET_KEY\s*=\s*os\.environ\.get\([^)]*change-me-secret[^)]*\)'''
+tags = ["secret","jwt","default"]
+
+[[rules]]
+id = "assistant_api_key_hardcoded"
+description = "ASSISTENTE_API_KEY hardcoded or default value"
+regex = '''ASSISTENTE_API_KEY.*(=|:).*['\"].{6,}['\"]'''
+tags = ["apikey","secret"]
+paths = ["patches/*","backend/*","interfaces/*"]

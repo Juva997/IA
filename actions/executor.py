@@ -3,12 +3,14 @@ import os
 import subprocess
 import shutil
 import tempfile
+from monitor.logger import Logger
 
 
 class Executor:
     def __init__(self, registry, max_retries=2):
         self.registry = registry
         self.max_retries = max_retries
+        self.logger = Logger()
 
     # =========================
     def execute(self, decision, state):
@@ -33,7 +35,7 @@ class Executor:
         if not tool:
             return self._error(f"tool_not_found: {action}")
 
-        return self._safe_execute(tool, data, state)
+        return self._safe_execute(tool, data, state, action)
 
     # =========================
     def _is_valid_decision(self, decision):
@@ -222,6 +224,18 @@ class Executor:
 
         # Publicar as alterações no workspace real (com backup)
         final_backups = []
+
+        # SECURITY: publishing patches to the real workspace is disabled by default.
+        # To enable in non-production/testing environments set ASSISTENTE_PUBLISH_PATCHES=1
+        publish_allowed = os.environ.get("ASSISTENTE_PUBLISH_PATCHES", "0").strip().lower() in ("1", "true", "yes")
+        if not publish_allowed:
+            try:
+                if tmp_root and os.path.exists(tmp_root):
+                    shutil.rmtree(tmp_root)
+            except Exception:
+                pass
+            return {"status": "error", "error": "publish_disabled_env", "applied": applied}
+
         try:
             for entry in applied:
                 rel = entry.get("path")
@@ -287,24 +301,80 @@ class Executor:
         return {"status": "success", "output": f"applied {len(applied)} patches", "patches": applied}
 
     # =========================
-    def _safe_execute(self, tool, data, state):
+    def _safe_execute(self, tool, data, state, action=None):
         attempts = 0
+
+        # Lazy import of tracing/metrics helpers (optional)
+        tracer = None
+        metrics = None
+        try:
+            from integrations.otel import get_tracer, get_metrics
+
+            tracer = get_tracer("executor")
+            metrics = get_metrics()
+        except Exception:
+            tracer = None
+            metrics = None
 
         while attempts <= self.max_retries:
             try:
-                result = tool(data, state)
+                # If configured, offload run_python to the queue (PoC using RQ)
+                try:
+                    if (action or "").lower() == "run_python":
+                        from integrations.queue_client import enqueue_run_python
+
+                        job = enqueue_run_python(data, state)
+                        if job is not None:
+                            # job enqueued -> return queued status
+                            if metrics:
+                                try:
+                                    metrics.increment_requests("run_python_queued")
+                                except Exception:
+                                    pass
+                            return self._normalize_result({"status": "queued", "output": None, "error": None, "job_id": job.get_id()})
+                except Exception:
+                    # Fail silently to fallback to local execution
+                    pass
+
+                # Instrument execution with tracing and timing
+                start = None
+                if tracer:
+                    span = tracer.start_as_current_span("executor.tool_call", attributes={"action": action or ""})
+                    span.__enter__()
+                    start = None
+                try:
+                    import time
+
+                    start = time.perf_counter()
+                    result = tool(data, state)
+                    duration = time.perf_counter() - start
+                finally:
+                    if tracer:
+                        try:
+                            span.__exit__(None, None, None)
+                        except Exception:
+                            pass
+
+                if metrics:
+                    try:
+                        metrics.increment_requests(action or "tool")
+                        if hasattr(metrics, "observe_response_time") and start is not None:
+                            metrics.observe_response_time(action or "tool", duration)
+                    except Exception:
+                        pass
 
                 if isinstance(result, dict) and result.get("status") == "error":
                     error_message = result.get("error") or result.get("output")
-                    print(f"[TOOL ERROR] {error_message}")
+                    try:
+                        self.logger.error(f"[TOOL ERROR] {error_message}")
+                    except Exception:
+                        # fallback to print if logger fails
+                        print(f"[TOOL ERROR] {error_message}")
 
                 return self._normalize_result(result)
 
             except Exception as e:
                 attempts += 1
-                # Format traceback but avoid printing it to captured stderr (which
-                # can fail in low-disk or CI environments). Keep the formatted
-                # traceback available for debugging if needed.
                 _tb = traceback.format_exc()
 
                 if attempts > self.max_retries:

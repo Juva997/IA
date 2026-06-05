@@ -388,7 +388,9 @@ def build_engine(
         )
 
     if memory is None:
-        vector_store = VectorStore(lambda text: offline_embedding(text, size=vector_size))
+        # Ensure VectorStore knows the configured vector size to avoid
+        # mismatches between the embedding function and the index shape.
+        vector_store = VectorStore(lambda text: offline_embedding(text, size=vector_size), vector_size=vector_size)
         retriever = Retriever(vector_store)
         memory = Memory(
             vector_store,
@@ -490,6 +492,18 @@ def build_engine(
         pass
 
     engine.require_api_key = require_api_key
+
+    # Optional strict enforcement for production deployments.
+    # Set `ASSISTENTE_ENFORCE_CONFIG=1` in production to fail-fast when critical envs are missing.
+    try:
+        enforce = os.environ.get("ASSISTENTE_ENFORCE_CONFIG", "0").strip().lower() in ("1", "true", "yes")
+        if require_api_key and enforce:
+            if not os.environ.get("ASSISTENTE_API_KEY"):
+                # prefer failing fast than running with insecure config
+                raise RuntimeError("ASSISTENTE_REQUIRE_API_KEY is enabled but ASSISTENTE_API_KEY is not set. Set ASSISTENTE_API_KEY or disable ASSISTENTE_ENFORCE_CONFIG if intentionally running without API key.")
+    except Exception:
+        # keep behavior conservative in non-production environments
+        pass
 
     engine.runtime_info = {
         "workspace_root": workspace_root,

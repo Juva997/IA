@@ -14,6 +14,7 @@ services:
       - LLM_CACHE_TTL=120
       - LLM_MAX_RETRIES=0
       - LLM_RETRY_DELAY=0.2
+      - ASSISTENTE_REQUIRE_API_KEY=0
       - EMBEDDINGS_VECTOR_SIZE=384
       - WORKSPACE_PATH=/app
     ports:
@@ -54,4 +55,29 @@ services:
     depends_on:
       - app
       - local-llm
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: assistente_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  rq_worker:
+    image: assistente_local:latest
+    container_name: assistente_rq_worker
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - redis
+      - app
+    command: ["python", "-m", "service.rq_worker"]
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
     restart: unless-stopped

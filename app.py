@@ -5,8 +5,6 @@ import uvicorn
 
 from interfaces.api import app as api_app
 from interfaces.cli import run_cli, run_doctor
-from interfaces.ui import start_ui
-from interfaces.voice import start_voice
 from utils import logger
 from utils.config_loader import ConfigLoader
 
@@ -49,6 +47,12 @@ def start_api(config=None):
     except Exception:
         metrics_port = 8001
 
+    # SECURITY: if API key requirement is enabled, ensure API key exists before starting
+    require_flag_env = os.environ.get("ASSISTENTE_REQUIRE_API_KEY", "1").strip().lower() in ("1", "true", "yes")
+    if require_flag_env and not os.environ.get("ASSISTENTE_API_KEY"):
+        log.error("ASSISTENTE_REQUIRE_API_KEY is set but ASSISTENTE_API_KEY is not configured. Aborting start.")
+        raise SystemExit("Missing ASSISTENTE_API_KEY while require_api_key is enabled")
+
     log.info(f"Iniciando API REST em http://{host}:{api_port}")
     log.info(f"Docs: http://{host}:{api_port}/docs")
     log.info(f"Metricas: http://{host}:{metrics_port}")
@@ -62,6 +66,9 @@ def start_api(config=None):
         log.info("Metricas ja iniciadas")
 
     uvicorn.run(api_app, host=host, port=api_port)
+
+# export `app` symbol for `uvicorn app:app` compatibility
+app = api_app
 def main():
     logger.configure_logging()
     config = bootstrap()
@@ -84,8 +91,18 @@ def main():
     if mode == "cli":
         run_cli()
     elif mode == "ui":
+        try:
+            from interfaces.ui import start_ui
+        except Exception as e:
+            log.error("UI não disponível: %s", e)
+            raise
         start_ui()
     elif mode == "voice":
+        try:
+            from interfaces.voice import start_voice
+        except Exception as e:
+            log.error("Voice interface não disponível: %s", e)
+            raise
         start_voice()
     elif mode == "api":
         start_api(config)

@@ -1,5 +1,8 @@
 from typing import Optional
 import os
+import asyncio
+import time
+import threading
 
 from fastapi import Depends, FastAPI, HTTPException, Header
 from fastapi.concurrency import run_in_threadpool
@@ -10,13 +13,74 @@ from core.diagnostics import collect_health_details
 
 app = FastAPI(title="Assistente Local API", version="1.0.0")
 
+# Instrumentação OTel + Requests (se disponível) e inicialização do servidor
+# de métricas Prometheus na inicialização do app.
+try:
+    from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+    from opentelemetry.instrumentation.requests import RequestsInstrumentor
+
+    try:
+        FastAPIInstrumentor.instrument_app(app)
+    except Exception:
+        pass
+
+    try:
+        RequestsInstrumentor().instrument()
+    except Exception:
+        pass
+except Exception:
+    # OpenTelemetry não instalado; proceed sem instrumentação automática
+    pass
+
+
+@app.on_event("startup")
+def _start_metrics_server_on_startup():
+    try:
+        from monitor.metrics import Metrics
+
+        port = int(os.environ.get("METRICS_PORT", os.environ.get("SERVER_METRICS_PORT", "8001")))
+        # start_http_server called inside Metrics.start_server is non-blocking,
+        # but run in a daemon thread to be safe when uvicorn manages the loop.
+        def _start():
+            try:
+                m = Metrics()
+                m.start_server(port)
+            except Exception:
+                pass
+
+        t = threading.Thread(target=_start, daemon=True)
+        t.start()
+    except Exception:
+        pass
+
 _engine = None
+
+# Concurrency controls for expensive `engine.run` operations
+_ENGINE_RUN_CONCURRENCY = int(os.environ.get("ENGINE_RUN_CONCURRENCY", "4"))
+_ENGINE_RUN_SEMAPHORE_WAIT = float(os.environ.get("ENGINE_RUN_SEMAPHORE_WAIT", "2"))
+_engine_run_semaphore = asyncio.Semaphore(_ENGINE_RUN_CONCURRENCY)
 
 
 def get_engine():
     global _engine
     if _engine is None:
-        _engine = build_engine()
+        # Allow forcing a lightweight mock engine for local load/profiling
+        try:
+            use_mock = str(os.environ.get("ASSISTENTE_MOCK_ENGINE", "0")).strip().lower() in ("1", "true", "yes")
+        except Exception:
+            use_mock = False
+
+        if use_mock:
+            class _MockEngine:
+                runtime_info = {"require_api_key": False}
+
+                def run(self, goal):
+                    # Simulate light processing and return quickly
+                    return {"status": "success", "output": f"mock response for: {str(goal)[:80]}"}
+
+            _engine = _MockEngine()
+        else:
+            _engine = build_engine()
     return _engine
 
 
@@ -74,9 +138,37 @@ def _require_api_key(authorization: Optional[str] = Header(None), engine=Depends
 
 @app.post("/query", response_model=QueryResponse)
 async def query_assistant(request: QueryRequest, auth=Depends(_require_api_key), engine=Depends(get_engine)):
+    # Bounded concurrency: try to acquire the semaphore with a short timeout
     try:
-        # Run engine.run in a threadpool to avoid blocking the async event loop
-        result = await run_in_threadpool(engine.run, request.goal)
+        try:
+            await asyncio.wait_for(_engine_run_semaphore.acquire(), timeout=_ENGINE_RUN_SEMAPHORE_WAIT)
+        except asyncio.TimeoutError:
+            raise HTTPException(status_code=503, detail="server_busy: too many concurrent requests")
+
+        try:
+            # Run engine.run in a threadpool to avoid blocking the async event loop
+            start_ts = time.time()
+            result = await run_in_threadpool(engine.run, request.goal)
+            duration = time.time() - start_ts
+            # Record metrics if available
+            try:
+                from integrations.otel import get_metrics
+
+                _metrics = get_metrics()
+            except Exception:
+                _metrics = None
+
+            if _metrics:
+                try:
+                    _metrics.increment_requests("query")
+                    _metrics.observe_response_time("query", duration)
+                except Exception:
+                    pass
+        finally:
+            try:
+                _engine_run_semaphore.release()
+            except Exception:
+                pass
 
         if isinstance(result, dict):
             return QueryResponse(
@@ -87,6 +179,8 @@ async def query_assistant(request: QueryRequest, auth=Depends(_require_api_key),
         else:
             return QueryResponse(status="success", output=str(result))
 
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

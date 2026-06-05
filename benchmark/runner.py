@@ -244,15 +244,38 @@ class BenchmarkRunner:
         if isinstance(test.get("steps"), list):
             records = []
             for step in test["steps"]:
+                # PoC: se fila habilitada, enfileirar engine.run em vez de executar localmente
+                try:
+                    from integrations.queue_client import enqueue_engine_run
+                except Exception:
+                    enqueue_engine_run = None
+
+                if enqueue_engine_run and (os.environ.get("ASSISTENTE_QUEUE_DRIVER") or os.environ.get("QUEUE_DRIVER")):
+                    job = enqueue_engine_run(step.get("input", ""), workspace_root=os.getcwd())
+                    if job is not None:
+                        records.append({"status": "queued", "output": None, "error": None, "job_id": job.get_id()})
+                        continue
+
                 response = engine.run(step.get("input", ""))
                 records.append(normalize_record(response))
-            status = "success" if records and all(r["status"] == "success" for r in records) else "error"
+
+            status = "success" if records and all(r.get("status") == "success" for r in records) else "error"
             return {
                 "status": status,
-                "output": records[-1]["output"] if records else "",
+                "output": records[-1].get("output") if records else "",
                 "error": _first_error(records),
                 "steps": records,
             }
+
+        try:
+            from integrations.queue_client import enqueue_engine_run
+        except Exception:
+            enqueue_engine_run = None
+
+        if enqueue_engine_run and (os.environ.get("ASSISTENTE_QUEUE_DRIVER") or os.environ.get("QUEUE_DRIVER")):
+            job = enqueue_engine_run(test.get("input", ""), workspace_root=os.getcwd())
+            if job is not None:
+                return normalize_record({"status": "queued", "output": None, "error": None, "job_id": job.get_id()})
 
         response = engine.run(test.get("input", ""))
         return normalize_record(response)

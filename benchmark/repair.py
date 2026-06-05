@@ -66,6 +66,8 @@ def apply_llm_patches(root, text, *, allowed_exts=None, max_patch_size=200000):
     # Por padrão não permitir patches em arquivos .py a menos que a variável
     # de ambiente `ASSISTENTE_ALLOW_PY_PATCHES` esteja ativada.
     if allowed_exts is None:
+        # Historically tests expect .py patches to be allowed by default.
+        # SECURITY: in production set `ASSISTENTE_ALLOW_PY_PATCHES=0` to restrict
         allow_py = str(os.getenv("ASSISTENTE_ALLOW_PY_PATCHES", "1")).lower() in (
             "1",
             "true",
